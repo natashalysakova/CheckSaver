@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CheckSaver.Models.Check>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Summ)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Neighbor.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Store.Title)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Summ)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Neighbor.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Store.Title)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckSaver", "CheckSaver\CheckSaver.csproj", "{07CC303D-5F89-4488-A429-EDC86CEB54A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckSaver.Tests", "CheckSaver.Tests\CheckSaver.Tests.csproj", "{2664C13F-BD09-461A-8A8C-1369079F8384}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07CC303D-5F89-4488-A429-EDC86CEB54A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07CC303D-5F89-4488-A429-EDC86CEB54A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07CC303D-5F89-4488-A429-EDC86CEB54A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07CC303D-5F89-4488-A429-EDC86CEB54A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2664C13F-BD09-461A-8A8C-1369079F8384}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2664C13F-BD09-461A-8A8C-1369079F8384}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2664C13F-BD09-461A-8A8C-1369079F8384}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2664C13F-BD09-461A-8A8C-1369079F8384}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
