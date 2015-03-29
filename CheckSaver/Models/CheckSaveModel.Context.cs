@@ -13,10 +13,10 @@ namespace CheckSaver.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CheckSaveEntities : DbContext
+    public partial class CheckSaveCS : DbContext
     {
-        public CheckSaveEntities()
-            : base("name=CheckSaveEntities")
+        public CheckSaveCS()
+            : base("name=CheckSaveCS")
         {
         }
     

@@ -13,13 +13,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CheckSaver</RootNamespace>
     <AssemblyName>CheckSaver</AssemblyName>
-    <TargetFrameworkVersion>v4.5.3</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -141,49 +142,49 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Check.cs">
-      <DependentUpon>CheckSaveDbModel.tt</DependentUpon>
+      <DependentUpon>CheckSaveModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CheckSaveModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CheckSaveModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CheckSaveModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CheckSaveModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CheckSaveModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CheckSaveModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Currency.cs">
+      <DependentUpon>CheckSaveModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DetailsModels\CheckDetailsModel.cs" />
     <Compile Include="Models\InputModels\CheckInputModel.cs" />
-    <Compile Include="Models\CheckSaveDbModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CheckSaveDbModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CheckSaveDbModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CheckSaveDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CheckSaveDbModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CheckSaveDbModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Currency.cs">
-      <DependentUpon>CheckSaveDbModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\InputModels\ProductInputModel.cs" />
     <Compile Include="Models\InputModels\PurchaseInputModel.cs" />
+    <Compile Include="Models\Neighbor.cs">
+      <DependentUpon>CheckSaveModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>CheckSaveModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Purchase.cs">
+      <DependentUpon>CheckSaveModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Repository\CheckSaveDbRepositoryProducts.cs" />
     <Compile Include="Models\Repository\CheckSaveDbRepositoryStores.cs" />
     <Compile Include="Models\Repository\CheckSaveDbRepositoryChecks.cs" />
     <Compile Include="Models\Repository\CheckSaveDbRepositoryNeighbours.cs" />
     <Compile Include="Models\Repository\CheckSaveDbRepositoryGeneral.cs" />
-    <Compile Include="Models\Neighbor.cs">
-      <DependentUpon>CheckSaveDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Product.cs">
-      <DependentUpon>CheckSaveDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Purchase.cs">
-      <DependentUpon>CheckSaveDbModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Store.cs">
-      <DependentUpon>CheckSaveDbModel.tt</DependentUpon>
+      <DependentUpon>CheckSaveModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WhoWillUse.cs">
-      <DependentUpon>CheckSaveDbModel.tt</DependentUpon>
+      <DependentUpon>CheckSaveModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -247,28 +248,28 @@
     <Content Include="Content\css\bootstrap-theme.css.map" />
     <Content Include="Content\css\bootstrap.css.map" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <EntityDeploy Include="Models\CheckSaveDbModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CheckSaveDbModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\CheckSaveDbModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CheckSaveDbModel.edmx</DependentUpon>
-      <LastGenOutput>CheckSaveDbModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\CheckSaveDbModel.edmx.diagram">
-      <DependentUpon>CheckSaveDbModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\CheckSaveDbModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CheckSaveDbModel.edmx</DependentUpon>
-      <LastGenOutput>CheckSaveDbModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Scripts\FileUpload.js" />
+    <EntityDeploy Include="Models\CheckSaveModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CheckSaveModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\CheckSaveModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CheckSaveModel.edmx</DependentUpon>
+      <LastGenOutput>CheckSaveModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\CheckSaveModel.edmx.diagram">
+      <DependentUpon>CheckSaveModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\CheckSaveModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CheckSaveModel.edmx</DependentUpon>
+      <LastGenOutput>CheckSaveModel.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />

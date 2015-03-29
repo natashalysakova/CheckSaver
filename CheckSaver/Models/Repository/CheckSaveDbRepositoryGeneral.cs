@@ -7,7 +7,7 @@ namespace CheckSaver.Models.Repository
 {
     public partial class CheckSaveDbRepository :IDisposable
     {
-        private CheckSaveEntities _db = new CheckSaveEntities();
+        private CheckSaveCS _db = new CheckSaveCS();
 
 
         internal IEnumerable GetStoresList()
@@ -29,20 +29,7 @@ namespace CheckSaver.Models.Repository
 
         public List<Product> FindProductsinDb(string term, string storeId)
         {
-            List<Product> list = new List<Product>();
-            foreach (Product variableProduct in _db.Product)
-            {
-                if (variableProduct.Name.ToLower().StartsWith(term.ToLower()))
-                    //if (storeTitle == "all")
-                    //{
-                    //    list.Add(variableProduct);
-                    //}
-                    //else 
-                    if (variableProduct.StoreId == Convert.ToInt32(storeId))
-                        list.Add(variableProduct);
-            }
-
-            return list;
+            return _db.Product.Where(variableProduct => variableProduct.Name.ToLower().StartsWith(term.ToLower())).Where(variableProduct => variableProduct.StoreId == Convert.ToInt32(storeId)).ToList();
         }
 
         public void Dispose()
