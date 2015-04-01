@@ -27,9 +27,12 @@ namespace CheckSaver.Models.Repository
                    .ToDictionary(t => t.Id, t => t.Name);
         }
 
-        public List<Product> FindProductsinDb(string term, string storeId)
+        public List<Product> FindProductsinDb(string term, int storeId)
         {
-            return _db.Product.Where(variableProduct => variableProduct.Name.ToLower().StartsWith(term.ToLower())).Where(variableProduct => variableProduct.StoreId == Convert.ToInt32(storeId)).ToList();
+            List<Product> products = (from product in _db.Product
+                where product.Name.ToLower().StartsWith(term.ToLower()) && product.StoreId == storeId
+                select product).ToList();
+            return products;
         }
 
         public void Dispose()

@@ -145,7 +145,7 @@ namespace CheckSaver.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult FindProducts(string term, string storeId, string fieldId)
+        public ActionResult FindProducts(string term, int storeId, string fieldId)
         {
             var products = _repository.FindProductsinDb(term, storeId);
 
