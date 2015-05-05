@@ -1,0 +1,9 @@
+.flag {
+    width: 32px;
+    height: 32px;
+    background:url(../images/flags.png) no-repeat
+}
+
+.flag.flag-ru {background-position: -32px 0}
+.flag.flag-ua {background-position: 0 -32px}
+.flag.flag-us {background-position: -32px -32px}

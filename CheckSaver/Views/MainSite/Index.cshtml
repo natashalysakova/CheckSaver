@@ -1,0 +1,93 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Лысакова Наталья - Портал магистров ДонНТУ</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <!-- Custom Fonts -->
+    <link href="~/Content/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa&subset=cyrillic-ext,latin' rel='stylesheet' type='text/css'>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body id="page-top" class="index">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container" id="navbar">
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header id="landing-content">
+        <div class="container" id="home" name="home">
+            <div class="intro-text">
+                <!--<div class="intro-lead-in">Welcome To Our Studio!</div>-->
+                <!--<div class="intro-heading">It's Nice To Meet You</div>-->
+                <!--<a href="#services" class="page-scroll btn btn-xl">Tell Me More</a>-->
+            </div>
+            <img src="~/Content/images/mnu.png" height="320px">
+        </div>
+        <div id="languages">
+            <div class="btn" onclick="switchLanguage('ru');"><img src="~/Content/images/blank.gif" class="flag flag-ru" alt="Русский" /></div>
+            <div class="btn" onclick="switchLanguage('ua');"><img src="~/Content/images/blank.gif" class="flag flag-ua" alt="Українська" /></div>
+            <div class="btn" onclick="switchLanguage('en');"><img src="~/Content/images/blank.gif" class="flag flag-us" alt="English" /></div>
+        </div>
+    </header>
+    <!-- Services Section -->
+    <section id="resume"></section>
+    <section id="biography" class="bg-light-gray"></section>
+    <section id="referat"></section>
+    <section id="library" class="bg-light-gray"></section>
+    <section id="links"></section>
+    <section id="report" class="bg-light-gray"></section>
+<section id="individual"></section>
+    <section id="application"></section>
+
+
+    <footer id="footer">    </footer>
+
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="~/Content/css/agency.css" />
+    <link rel="stylesheet" href="~/Content/css/flags.css" />
+
+    <script src="~/Scripts/jquery-2.1.3.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.11.3.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/FileUpload.js"></script>
+    <script src="~/Scripts/AddFieldsScript.js"></script>
+<script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+    <script src="~/Scripts/MainSite/classie.js"></script>
+    <script src="~/Scripts/MainSite/cbpAnimatedHeader.js"></script>
+
+<script src="~/Scripts/MainSite/languageSwitch.js"></script>
+    <script src="~/Scripts/MainSite/agency.js"></script>
+
+    <script>
+    $(function () {
+        console.log("ready!");
+        loadPage();
+    });
+    </script>
+
+
+</body>
+</html>
+

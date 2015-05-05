@@ -7,7 +7,7 @@ namespace CheckSaver.Models.Repository
 {
     public partial class CheckSaveDbRepository :IDisposable
     {
-        private CheckSaveCS _db = new CheckSaveCS();
+        private uh357966_db2Entities _db = new uh357966_db2Entities();
 
 
         internal IEnumerable GetStoresList()

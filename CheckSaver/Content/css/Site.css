@@ -22,3 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+.add_field_button {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 90%;
+}

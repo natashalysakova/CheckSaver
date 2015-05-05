@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CheckSaveModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="uh357966_db2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Check">
           <Key>
             <PropertyRef Name="Id" />
@@ -175,7 +175,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CheckSaveModelStoreContainer">
+        <EntityContainer Name="uh357966_db2ModelStoreContainer">
           <EntitySet Name="Check" EntityType="Self.Check" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Neighbor" EntityType="Self.Neighbor" Schema="dbo" store:Type="Tables" />
@@ -224,7 +224,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CheckSaveModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="uh357966_db2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Check">
           <Key>
             <PropertyRef Name="Id" />
@@ -413,7 +413,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CheckSaveCS" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="uh357966_db2Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Check" EntityType="Self.Check" />
           <EntitySet Name="Currency" EntityType="Self.Currency" />
           <EntitySet Name="Neighbor" EntityType="Self.Neighbor" />
@@ -463,9 +463,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CheckSaveModelStoreContainer" CdmEntityContainer="CheckSaveCS">
+        <EntityContainerMapping StorageEntityContainer="uh357966_db2ModelStoreContainer" CdmEntityContainer="uh357966_db2Entities">
           <EntitySetMapping Name="Check">
-            <EntityTypeMapping TypeName="CheckSaveModel.Check">
+            <EntityTypeMapping TypeName="uh357966_db2Model.Check">
               <MappingFragment StoreEntitySet="Check">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="DateTime" ColumnName="DateTime" />
@@ -476,7 +476,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Currency">
-            <EntityTypeMapping TypeName="CheckSaveModel.Currency">
+            <EntityTypeMapping TypeName="uh357966_db2Model.Currency">
               <MappingFragment StoreEntitySet="Currency">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PurchaseId" ColumnName="PurchaseId" />
@@ -486,7 +486,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Neighbor">
-            <EntityTypeMapping TypeName="CheckSaveModel.Neighbor">
+            <EntityTypeMapping TypeName="uh357966_db2Model.Neighbor">
               <MappingFragment StoreEntitySet="Neighbor">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -494,7 +494,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Product">
-            <EntityTypeMapping TypeName="CheckSaveModel.Product">
+            <EntityTypeMapping TypeName="uh357966_db2Model.Product">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -504,7 +504,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Purchase">
-            <EntityTypeMapping TypeName="CheckSaveModel.Purchase">
+            <EntityTypeMapping TypeName="uh357966_db2Model.Purchase">
               <MappingFragment StoreEntitySet="Purchase">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
@@ -515,7 +515,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Store">
-            <EntityTypeMapping TypeName="CheckSaveModel.Store">
+            <EntityTypeMapping TypeName="uh357966_db2Model.Store">
               <MappingFragment StoreEntitySet="Store">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -525,7 +525,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WhoWillUse">
-            <EntityTypeMapping TypeName="CheckSaveModel.WhoWillUse">
+            <EntityTypeMapping TypeName="uh357966_db2Model.WhoWillUse">
               <MappingFragment StoreEntitySet="WhoWillUse">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PurchaseId" ColumnName="PurchaseId" />
