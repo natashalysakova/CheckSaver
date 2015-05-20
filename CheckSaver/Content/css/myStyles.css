@@ -1,44 +1,93 @@
-﻿body {
-    background-color: rgb(227, 227, 227);
-    font-family: 'Roboto', sans-serif;
-    padding-top: 75px;
+﻿.navbar {
+    min-height: 100px;
 }
 
-.navbar {
-    min-height: 76px;
+.main-bar {
+    position: fixed;
+    width: 100%;
+    height: 25px;
+    top: 0;
+    background-color: #00796b;
+    z-index: 3000;
+    color: white;
+}
+
+.header {
+    height: 75px;
+    background-color: white;
+    position: fixed;
+    left: 0;
+    top: 25px;
+}
+
+.bottom-bordered {
+    border-bottom: 1px solid rgb(218, 218, 218);
+}
+
+.header-image {
+    height: 75px;
+    width: 100%;
+    background-image: url(/Content/images/w512h5121339248515check512.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.3;
 }
 
 .navbar-default {
-    background-color: #2196f3;
+    background-color: #009688;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.26);
     border: none;
 }
 
-    .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
-        color: #FFF;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    }
+.navbar-brand {
+    font-size: 20px;
+}
 
-    .navbar-default .navbar-nav > li > a {
-        color: #FFF;
-    }
+.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
+    color: #FFF;
+    /*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #FFF;
+}
 
 
-    .navbar-default .navbar-brand {
-        color: #FFF;
-    }
+.navbar-default .navbar-brand {
+    color: #FFF;
+}
 
-    .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
-        color: #FFF;
-        background-color: transparent;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    }
+.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
+    color: #FFF;
+    background-color: transparent;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
 
-    .navbar-default > .container {
-        position: relative;
-        top: 13px;
-        bottom: 13px;
-    }
+.navbar-default > .container {
+    position: relative;
+    top: 38px;
+    bottom: 38px;
+}
+
+.nav > li > a:hover {
+    text-decoration: none;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.navbar-nav > li > a {
+    padding: 15px;
+    padding-left: 30px;
+    color: #212121;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.navbar-collapse {
+    padding-right: 0;
+    padding-left: 0;
+}
 
 .navbar-toggle {
     position: relative;
@@ -54,59 +103,40 @@
         background-color: #FFF;
     }
 
-.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
-    margin-left: -40px;
-}
 
 .round-button {
     width: 56px;
     height: 56px;
-    position: absolute;
-    right: 5%;
-    top: 44px;
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
     z-index: 2999;
 }
 
-@media (max-width: 768px) {
-    .round-button {
-        width: 56px;
-        height: 56px;
-        position: absolute;
-        right: 5%;
-        bottom: 5%;
-        z-index: 2999;
-    }
-}
 
 .round-button-circle {
-    width: 100%;
-    height: 56px;
-    padding-bottom: 100%;
+    background: #FF5722 none repeat scroll 0 0;
     border-radius: 50%;
-    overflow: hidden;
-    background: #ffc107;
-    box-shadow: 0 0 3px gray;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    color: #e2eaf3;
     display: block;
     float: left;
-    width: 100%;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    line-height: 1em;
-    text-align: center;
-    color: #e2eaf3;
     font-family: Verdana;
     font-size: 24px;
     font-weight: bold;
+    height: 56px;
+    line-height: 1em;
+    overflow: hidden;
+    padding-left: 17px;
+    padding-top: 15px;
     text-decoration: none;
+    width: 100%;
+    cursor: pointer;
 }
 
     .round-button-circle:hover {
-        background: #ffa000;
+        background: #d84315;
     }
-
-
-
-
 
 
 
@@ -114,42 +144,127 @@
 
 
 .store-logo {
-    max-height: 50px;
-    max-width: 50px;
+    max-height: 100px;
+    max-width: 100px;
+    position: absolute;
+    right: 30px;
+    top: 15px;
+    opacity: 0.15;
+}
+
+.store-logo-big {
+    max-height: 200px;
+    max-width: 200px;
+    top: 30px;
+}
+
+.date-day {
+    font-size: 72px;
+    left: 20px;
+    position: relative;
+    top: 20px;
+    color: #616161;
+}
+
+.date-month {
+    font-size: 28px;
+    padding-left: 25px;
+    margin-top: 10px;
+    position: absolute;
+    color: #616161;
+}
+
+.summa {
+    font-size: 28px;
+    padding-left: 25px;
+    margin-top: 25px;
+    position: absolute;
+    color: #212121;
+}
+
+.nopaddiing {
+    padding-right: 10px;
+    padding-left: 0px;
+    padding-bottom: 10px;
 }
 
 .card {
-    width: 100%;
     height: 200px;
     background: white;
     -webkit-transition: all 250ms;
     -moz-transition: all 250ms;
     transition: all 250ms;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    cursor: pointer;
 }
 
     .card:hover {
         box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-        -webkit-transform: translateY(-5px);
-        -moz-transform: translateY(-5px);
-        transform: translateY(-5px);
     }
 
-    .card:active {
+
+
+.card-big {
+    height: auto;
+    padding: 30px;
+}
+
+.card-small {
+    width: 100%;
+}
+
+    .card-small:active {
         box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-        -webkit-transform: translateY(-3px);
-        -moz-transform: translateY(-3px);
-        transform: translateY(-3px);
     }
 
+.check-hovered:hover {
+
+}
 
 .right-menu {
     background-color: rgb(255, 255, 255);
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.26);
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.26);
     position: fixed;
+    padding-left: 0px;
+    padding-right: 0px;
+    z-index: 1000;
+}
 
+@media(max-width: 768px) {
+    .right-menu {
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.26);
+        position: fixed;
+        padding-left: 30px;
+        padding-right: 30px;
+        z-index: 1000;
+    }
 }
 
 li {
     width: 100%;
+}
+
+.toolbar {
+    padding: 15px;
+    background-color: #64b5f6;
+}
+
+.glyphicon {
+    padding-right: 28px;
+    color: #616161;
+    font-size: 18px;
+}
+
+
+.item-title {
+    font-size: 16px;
+}
+
+.item-sum {
+    font-size: 24px;
+}
+
+.item-price {
+    font-size: 10px;
 }

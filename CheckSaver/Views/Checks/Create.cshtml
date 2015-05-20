@@ -5,7 +5,9 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<script>
+    $('.navbar-brand')[0].innerHTML += 'Создать чек';
+</script>
 
 
 @using (Html.BeginForm())
@@ -64,7 +66,6 @@
 
 
     </div>
-    <button class="form-group btn btn-success add_field_button">Add More Fields</button>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create" class="btn btn-default" />
@@ -72,8 +73,9 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="round-button">
+    <div class="add_field_button round-button-circle">+</div>
+
 </div>
 
 @section Scripts {

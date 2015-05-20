@@ -7,20 +7,20 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
 
     @*<link href='http://fonts.googleapis.com/css?family=Ubuntu&subset=latin-ext,cyrillic-ext' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Comfortaa&subset=latin-ext,cyrillic-ext' rel='stylesheet' type='text/css'>*@
+        <link href='http://fonts.googleapis.com/css?family=Comfortaa&subset=latin-ext,cyrillic-ext' rel='stylesheet' type='text/css'>*@
     <link href='http://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
 
 
-    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="~/Content/css/jquery-ui.min.css"/>
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/css/jquery-ui.min.css" />
 
     @*<link href="/Content/css/roboto.min.css" rel="stylesheet">
-    <link href="/Content/css/material.min.css" rel="stylesheet">
-    <link href="/Content/css/ripples.min.css" rel="stylesheet">*@
+        <link href="/Content/css/material.min.css" rel="stylesheet">
+        <link href="/Content/css/ripples.min.css" rel="stylesheet">*@
 
 
-    <link rel="stylesheet" href="~/Content/css/Site.css"/>
-    <link rel="stylesheet" href="~/Content/css/myStyles.css"/>
+    <link rel="stylesheet" href="~/Content/css/Site.css" />
+    <link rel="stylesheet" href="~/Content/css/myStyles.css" />
 
     <link rel="stylesheet" href="~/Content/css/less.less" />
 
@@ -38,59 +38,62 @@
 
 </head>
 <body>
-<div class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            @Html.ActionLink("Хранитель чеков", "Index", "Checks", new {area = ""}, new {@class = "navbar-brand"})
+<div class="main-bar">
+    Сюда можно чё нибудь статичное выводить
+</div>
+<div class="header col-md-3 col-sm-3 col-lg-2 bottom-bordered">
+    <div class="header-image"></div>
+</div>
+    <div class="navbar navbar-default navbar-fixed-top col-md-9 col-md-offset-3 col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+        <div class="container">
+            <div class="navbar-header navbar-brand">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("Хранитель чеков", "Index", "Checks", new {area = ""}, new {@class = "navbar-brand"})*@
+
+            </div>
         </div>
     </div>
-</div>
 
-    <div class="round-button">
-        <div class="round-button-circle" onclick="location.href = '@Url.Action("Create", "Checks")';">
-            +
+
+
+    <div class="col-sm-3 col-md-3 col-lg-2 right-menu">
+        @*<div class="toolbar">Главное меню</div>*@
+
+        <div class=" navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/Checks"><span class="glyphicon glyphicon-usd"></span>Чеки</a></li>
+                <li><a href="/Stores"><span class="glyphicon glyphicon-store"></span>Магазины</a></li>
+                <li><a href="/Neighbors"><span class="glyphicon glyphicon-user"></span>Соседи</a></li>
+                <li class="bottom-bordered"><a href="/Products"><span class="glyphicon glyphicon-apple"></span>Продукты</a></li>
+                <li><a href="/"><span class="glyphicon glyphicon-flag"></span>На Главную</a></li>
+            </ul>
         </div>
     </div>
-
-<div class="col-sm-3 right-menu">
-    <div class=" navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-            <li>@Html.ActionLink("Главная", "Index", "Checks")</li>
-            <li>@Html.ActionLink("Магазины", "Index", "Stores")</li>
-            <li>@Html.ActionLink("Соседи", "Index", "Neighbors")</li>
-            <li>@Html.ActionLink("Продукты", "Index", "Products")</li>
-        </ul>
-    </div>
-</div>
-    <div class="col-sm-9 col-sm-offset-3">
-        <div class="body-content">
+    <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2 body-content">
             @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>
-        </div>
     </div>
-
-    <div id="overlay">
+    <hr />
+    @*<footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>*@
+    @*<div id="overlay">
         <img src="http://www.ray.rai.it/dl/siti/images/loading.gif" id="loader" />
-    </div>
+    </div>*@
 
     @RenderSection("scripts", false)
 
     @*<script src="~/Scripts/ripples.min.js"></script>
-    <script src="~/Scripts/material.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // This command is used to initialize some elements and make them work properly
-            $.material.init();
-        });
-    </script>*@
+        <script src="~/Scripts/material.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                // This command is used to initialize some elements and make them work properly
+                $.material.init();
+            });
+        </script>*@
 
 
 </body>

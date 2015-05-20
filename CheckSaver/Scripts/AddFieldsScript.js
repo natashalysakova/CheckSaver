@@ -82,7 +82,10 @@ $(function () {
     var height = $(window).height();
     $('body')[0].style.minHeight = height + 'px';
 
-    $('.right-menu')[0].style.height = height + 'px';
+    var rm = $('.right-menu');
+    if (rm.length > 0) {
+       rm[0].style.height = height + 'px';
+    }
 
 
 });
@@ -91,7 +94,10 @@ $(window).on('resize orientationChanged', function () {
     var height = $(window).height();
     $('body')[0].style.minHeight = height + 'px';
 
-    $('.right-menu')[0].style.height = height + 'px';
+    var rm = $('.right-menu');
+    if (rm.length > 0) {
+        rm[0].style.height = height + 'px';
+    }
 });
 
 

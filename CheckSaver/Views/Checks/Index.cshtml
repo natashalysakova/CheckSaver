@@ -5,36 +5,33 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Чеки</h2>
-
-
-
-@*<div class="btn btn-success btn-raised" onclick=" location.href = '@Url.Action("Recalc", "Checks")'; ">
-    Пересчитать
-</div>*@
-
+<script>
+    $('.navbar-brand')[0].innerHTML += 'Чеки';
+</script>
 
 
 <div>
 
     @foreach (var item in Model.OrderByDescending(x => x.DateTime))
     {
-        <div class="col-md-4 col-sm-6 col-xs-12 col-lg-3 ">
-            <div class="panel card" onclick="location.href='@Url.Action("Details", "Checks", new {id = item.Id})'; ">
-                <div class=" panel-body">
-                    @if (item.Store.Logo != null)
-                    {
-                        <img src="@item.Store.Logo" class="store-logo" />
-                    }
-                    <span class="date-day">@item.DateTime.ToString("dd")</span>
-                    <br />
-                    <span class="date-month">@item.DateTime.ToString("MMMM")</span>
-                    <br />
-                    <span class="summa">@item.Summ.ToString("C")</span>
-                </div>
+        <div class="col-md-4 col-sm-6 col-xs-12 col-lg-3 nopaddiing">
+            <div class="card card-small" onclick="location.href='@Url.Action("Details", "Checks", new {id = item.Id})'; ">
+                @if (item.Store.Logo != null)
+                {
+                    <img src="@item.Store.Logo" class="store-logo" />
+                }
+                <span class="date-day">@item.DateTime.ToString("dd")</span>
+                <br />
+                <span class="date-month">@item.DateTime.ToString("MMMM")</span>
+                <br />
+                <span class="summa">@item.Summ.ToString("C")</span>
             </div>
         </div>
     }
 </div>
 
-
+<div class="round-button">
+    <div class="round-button-circle" onclick="location.href='@Url.Action("Create", "Checks")'; ">
+        +
+    </div>
+</div>
