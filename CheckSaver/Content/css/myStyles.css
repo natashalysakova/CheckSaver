@@ -1,0 +1,155 @@
+﻿body {
+    background-color: rgb(227, 227, 227);
+    font-family: 'Roboto', sans-serif;
+    padding-top: 75px;
+}
+
+.navbar {
+    min-height: 76px;
+}
+
+.navbar-default {
+    background-color: #2196f3;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.26);
+    border: none;
+}
+
+    .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
+        color: #FFF;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+
+    .navbar-default .navbar-nav > li > a {
+        color: #FFF;
+    }
+
+
+    .navbar-default .navbar-brand {
+        color: #FFF;
+    }
+
+    .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
+        color: #FFF;
+        background-color: transparent;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+
+    .navbar-default > .container {
+        position: relative;
+        top: 13px;
+        bottom: 13px;
+    }
+
+.navbar-toggle {
+    position: relative;
+    float: left;
+    margin-left: 15px;
+}
+
+.navbar-default .navbar-toggle {
+    border: none;
+}
+
+    .navbar-default .navbar-toggle .icon-bar {
+        background-color: #FFF;
+    }
+
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+    margin-left: -40px;
+}
+
+.round-button {
+    width: 56px;
+    height: 56px;
+    position: absolute;
+    right: 5%;
+    top: 44px;
+    z-index: 2999;
+}
+
+@media (max-width: 768px) {
+    .round-button {
+        width: 56px;
+        height: 56px;
+        position: absolute;
+        right: 5%;
+        bottom: 5%;
+        z-index: 2999;
+    }
+}
+
+.round-button-circle {
+    width: 100%;
+    height: 56px;
+    padding-bottom: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #ffc107;
+    box-shadow: 0 0 3px gray;
+    display: block;
+    float: left;
+    width: 100%;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    line-height: 1em;
+    text-align: center;
+    color: #e2eaf3;
+    font-family: Verdana;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+    .round-button-circle:hover {
+        background: #ffa000;
+    }
+
+
+
+
+
+
+
+
+
+
+.store-logo {
+    max-height: 50px;
+    max-width: 50px;
+}
+
+.card {
+    width: 100%;
+    height: 200px;
+    background: white;
+    -webkit-transition: all 250ms;
+    -moz-transition: all 250ms;
+    transition: all 250ms;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+    .card:hover {
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        -webkit-transform: translateY(-5px);
+        -moz-transform: translateY(-5px);
+        transform: translateY(-5px);
+    }
+
+    .card:active {
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        -webkit-transform: translateY(-3px);
+        -moz-transform: translateY(-3px);
+        transform: translateY(-3px);
+    }
+
+
+.right-menu {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.26);
+    position: fixed;
+
+}
+
+li {
+    width: 100%;
+}

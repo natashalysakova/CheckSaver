@@ -185,5 +185,11 @@ namespace CheckSaver.Controllers
             ViewBag.Index = Convert.ToInt32(index);
             return PartialView("ProductBox");
         }
+
+        public ActionResult Recalc()
+        {
+            _repository.RecalculateSummas();
+            return RedirectToAction("Index");
+        }
     }
 }

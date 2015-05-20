@@ -9,10 +9,10 @@ namespace CheckSaver.Models.DetailsModels
     {
         public CheckDetailsModel(Check check)
         {
-            Date = check.DateTime.ToShortDateString();
+            Date = check.DateTime;
             Payer = check.Neighbor.Name;
-            Store = check.Store.Title;
-            Summa = check.Summ.ToString();
+            Store = check.Store;
+            Summa = check.Summ;
 
             PurchasesList = new List<PurchaseDetailModel>();
             TotalList=new List<string>();
@@ -22,10 +22,11 @@ namespace CheckSaver.Models.DetailsModels
             {
                 var model = new PurchaseDetailModel()
                 {
-                    Count = purchase.Count.ToString(),
-                    Price = purchase.Product.Price.ToString(),
-                    Summa = purchase.Summa.ToString(),
-                    Title = purchase.Product.Name
+                    Count = purchase.Count,
+                    Price = purchase.Product.Price,
+                    Summa = purchase.Summa,
+                    Title = purchase.Product.Name,
+                    Id = purchase.Id
                 };
 
                 string summary = string.Empty;
@@ -58,22 +59,23 @@ namespace CheckSaver.Models.DetailsModels
 
         }
 
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         public String Payer { get; set; }
-        public String Store { get; set; }
+        public Store Store { get; set; }
         public List<PurchaseDetailModel> PurchasesList { get; set; }
-        public string Summa { get; set; }
+        public decimal Summa { get; set; }
         public List<string> TotalList { get; set; }
 
 
         public class PurchaseDetailModel
         {
             public string Title { get; set; }
-            public string Count { get; set; }
-            public string Price { get; set; }
-            public string Summa { get; set; }
+            public decimal Count { get; set; }
+            public decimal Price { get; set; }
+            public decimal Summa { get; set; }
             public string Summary { get; set; }
             public string PricePerPerson { get; set; }
+            public int Id { get; set; }
         }
     }
 }

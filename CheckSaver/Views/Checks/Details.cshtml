@@ -1,92 +1,63 @@
-﻿@model CheckSaver.Models.DetailsModels.CheckDetailsModel
+﻿@using CheckSaver.Models.DetailsModels
+@model CheckSaver.Models.DetailsModels.CheckDetailsModel
 
 @{
     ViewBag.Title = "Details";
 }
 
 
+<h2>Подробно - @Model.Date.ToString("D")</h2>
 
-<h2>Details</h2>
+<div class="container">
+    <div class="panel check big-check col-xs-12 col-sm-10 col-md-8 col-lg-8">
+        <div class="panel-body">
+            @if (Model.Store.Logo != null)
+            {
+                <img src="@Model.Store.Logo" class="store-logo-big" />
+            }
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h2>@Html.DisplayFor(model => model.Payer)</h2>
+                <div class="item-neighbour">Потрачено: @Model.Summa.ToString("C")</div>
 
-<div>
+                <h2>Итого</h2>
+                @foreach (var s in Model.TotalList)
+                {
+                    <div>@Html.DisplayFor(model => s)</div>
+                }
 
-
-    <h4>Check</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Summa)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Summa)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Payer)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Payer)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Store)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Store)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TotalList)
-        </dt>
-        @foreach (var s in Model.TotalList)
-        {
-            <dd>
-                @Html.DisplayFor(model => s)
-            </dd>
-        }
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PurchasesList)
-        </dt>
-    </dl>
-
-    <table class="table table-bordered">
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.PurchasesList[0].Title)</th>
-            <th>@Html.DisplayNameFor(model => model.PurchasesList[0].Price)</th>
-            <th>@Html.DisplayNameFor(model => model.PurchasesList[0].Count)</th>
-            <th>@Html.DisplayNameFor(model => model.PurchasesList[0].Summa)</th>
-            <th>@Html.DisplayNameFor(model => model.PurchasesList[0].Summary)</th>
-            <th>@Html.DisplayNameFor(model => model.PurchasesList[0].PricePerPerson)</th>
-        </tr>
-        @foreach (var s in Model.PurchasesList)
-        {
-            <tr>
-                <td>@Html.DisplayFor(model => s.Title)</td>
-                <td>@Html.DisplayFor(model => s.Price)</td>
-                <td>@Html.DisplayFor(model => s.Count)</td>
-                <td>@Html.DisplayFor(model => s.Summa)</td>
-                <td>@Html.DisplayFor(model => s.Summary)</td>
-                <td>@Html.DisplayFor(model => s.PricePerPerson)</td>
-            </tr>
-        }
-    </table>
+            </div>
 
 
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h2>Список покупок</h2>
 
+                @foreach (CheckDetailsModel.PurchaseDetailModel s in Model.PurchasesList)
+                {
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 check-hovered" data-toggle="collapse" href="#@s.Id" aria-expanded="false" aria-controls="@s.Id">
+                        <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8 item-title">
+                            <div class="text-center">
+                                <div class="item-price">@s.Count.ToString("##.000") X @s.Price.ToString("C")</div>
+                            </div>
+                            @s.Title
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 item-sum text-right">@s.Summa.ToString("C")</div>
+                    </div>
+                    <div class="collapse col-md-12 col-lg-12 col-sm-12 col-xs-12" id="@s.Id">
+                        <div class="well">
+                            @Html.DisplayFor(model => s.Summary)
+                            @Html.DisplayFor(model => s.PricePerPerson)
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 </div>
+
+
 <p>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", "Checks")
 </p>
+
+<script> setRandomBackground();</script>
 

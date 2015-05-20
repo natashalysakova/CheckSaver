@@ -152,5 +152,15 @@ namespace CheckSaver.Models.Repository
             _db.Check.Remove(check);
             _db.SaveChanges();
         }
+
+        internal void RecalculateSummas()
+        {
+            foreach (Check check in _db.Check)
+            {
+                check.Summ = GetPurchasesSumm(check.Purchase);
+            }
+
+            _db.SaveChanges();
+        }
     }
 }

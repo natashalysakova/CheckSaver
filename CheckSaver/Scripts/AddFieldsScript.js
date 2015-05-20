@@ -1,6 +1,6 @@
 ﻿function autocompleteFirst() {
 
-        var first = $("#Purchases_0__Product_Name");
+    var first = $("#Purchases_0__Product_Name");
     AddAutoComplete(first, 1);
 
     return "Done";
@@ -21,12 +21,12 @@ function AddNewFields() {
     var add_button = $(".add_field_button"); //Add button ID
 
     var x = 0; //initlal text box count
-    $(add_button).click(function(e) { //on add input button click
+    $(add_button).click(function (e) { //on add input button click
         e.preventDefault();
-        if (x < max_fields-1) { //max input box allowed
+        if (x < max_fields - 1) { //max input box allowed
             x++; //text box increment
 
-            var url = "/Checks/ProductBox?index=" + x ;
+            var url = "/Checks/ProductBox?index=" + x;
 
             $.ajax({
                 url: url,
@@ -52,7 +52,7 @@ function AddNewFields() {
         }
     });
 
-    $(wrapper).on("click", ".remove_field", function(e) { //user click on remove text
+    $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
         e.preventDefault();
         $(this).parent('div').remove();
         x--;
@@ -71,4 +71,40 @@ function AddAutoComplete(input, storeId) {
             $("#Purchases_" + ui.item.field + "__Count").val("1");
         }
     });
+}
+
+
+function showOverlay() {
+    $('#overlay')[0].style.display = 'block';
+}
+
+$(function () {
+    var height = $(window).height();
+    $('body')[0].style.minHeight = height + 'px';
+
+    $('.right-menu')[0].style.height = height + 'px';
+
+
+});
+
+$(window).on('resize orientationChanged', function () {
+    var height = $(window).height();
+    $('body')[0].style.minHeight = height + 'px';
+
+    $('.right-menu')[0].style.height = height + 'px';
+});
+
+
+function setBackground(month) {
+    var body = $('body');
+    body[0].id = '_' + month;
+}
+
+function setRandomBackground() {
+    var int = getRandomInt(1, 12);
+    setBackground(int);
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
