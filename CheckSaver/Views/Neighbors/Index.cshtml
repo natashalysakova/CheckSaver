@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CheckSaver.Models.Neighbor>
+﻿@model System.Collections.Generic.IEnumerable<CheckSaver.Models.Neighbor>
 
 @{
     ViewBag.Title = "Соседи";
@@ -24,9 +24,11 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
-            <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> @Html.ActionLink("Статистика", "Details", new { id = item.Id }) |
-            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+            
+            <div class="card-neighbour-photo img-circle" style="background-image: url(@item.Photo);"></div>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> @Html.ActionLink("Редактировать", "Edit", new {id = item.Id}) |
+            <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> @Html.ActionLink("Статистика", "Details", new {id = item.Id}) |
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> @Html.ActionLink("Удалить", "Delete", new {id = item.Id})
         </td>
     </tr>
 }

@@ -1,63 +1,93 @@
-﻿@using CheckSaver.Models.DetailsModels
-@model CheckSaver.Models.DetailsModels.CheckDetailsModel
+﻿@using System.Collections.Generic
+@using System.Linq
+@using System.Web.Caching
+@using CheckSaver.Models
+@using CheckSaver.Models.DetailsModels
+@*@model CheckSaver.Models.DetailsModels.CheckDetailsModel*@
+@model CheckSaver.Models.Check
 
 @{
     ViewBag.Title = "Details";
 }
 
 <script>
-    $('.navbar-brand')[0].innerHTML += 'Подробно - @Model.Date.ToString("D")';
+    $('.navbar-brand')[0].innerHTML += 'Подробно - @Model.DateTime.ToString("D")';
 </script>
-
-    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-sm-offset-1 col-md-offset-2 col-lg-offset-3 card card-big ">
-    @if (Model.Store.Logo != null)
-    {
-        <img src="@Model.Store.Logo" class="store-logo store-logo-big" />
-    }
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h2>@Html.DisplayFor(model => model.Payer)</h2>
-
-    </div>
-
-
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottom-bordered">
-            <h2>Список покупок</h2>
-
-            @foreach (CheckDetailsModel.PurchaseDetailModel s in Model.PurchasesList)
-            {
-                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 check-hovered" data-toggle="collapse" href="#@s.Id" aria-expanded="false" aria-controls="@s.Id">
-                    <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8 item-title">
-                        <div class="text-center">
-                            <div class="item-price">@s.Count.ToString("##.000") X @s.Price.ToString("C")</div>
-                        </div>
-                        @s.Title
-                    </div>
-                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 item-sum text-right">@s.Summa.ToString("C")</div>
-                </div>
-                <div class="collapse col-md-12 col-lg-12 col-sm-12 col-xs-12" id="@s.Id">
-                    <div class="well">
-                        @Html.DisplayFor(model => s.Summary)
-                        @Html.DisplayFor(model => s.PricePerPerson)
-                    </div>
-                </div>
-            }
+<div class="container">
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2 card card-big">
+        <div class="card-image" style="background-image: url(@Model.Store.Logo)">
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class=" col-md-4 col-md-offset-8 col-lg-4 col-lg-offset-8 col-sm-4 col-sm-offset-8 col-xs-4 col-xs-offset-8 item-sum text-right">
-                    @Model.Summa.ToString("C")
+
+        <div class="card-big-title">
+            <div class="main-title">Список покупок </div>
+            <div class="sub-title">@Model.Neighbor.Name - @Model.Store.Title (@Model.DateTime.ToString("d"))</div>
+        </div>
+
+        <div class="card-action">
+            <a href="@Url.Action("Edit", "Checks", new {id = Model.Id})">
+                <div class="card-flat-button">Редактировать</div>
+            </a>
+            <a href="@Url.Action("Delete", "Checks", new {id = Model.Id})">
+                <div class="card-flat-button delete-button">Удалить</div>
+            </a>
+        </div>
+    </div>
+    @foreach (Purchase s in Model.Purchase)
+    {
+        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2 card card-big card-collapsed check-hovered" id="@s.Id"
+             onclick="DetailedInfo(@s.Id, '@s.Product.Name' ); ">
+            <div class=" short-info">
+                <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8 item-title">
+                    <div class="text-center">
+                        <div class="item-price">@s.Count.ToString("##.000") X @s.Product.Price.ToString("C")</div>
+                    </div>
+                    @s.Product.Name
                 </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 item-sum text-right">@s.Summa.ToString("C")</div>
+            </div>
+            <div class="loader8" id="progress-@s.Id"></div>
+
+            <div class="detailed-info">
+
+                <div class="detailed-card-img">
+                    <img id="img-@s.Id">
+                </div>
+
+                <div class="card-collapsed-title">
+                    <div class="main-title">
+                        @s.Product.Name
+                    </div>
+                    <div class="sub-title">@s.Count.ToString("##.000") X @s.Product.Price.ToString("C")</div>
+                </div>
+
+                <div class="card-sub-title">Сумма: @s.Summa.ToString("C")</div>
+
+                <div class="card-sub-title sub-title">Кто платит:</div>
+                @foreach (Currency variable in s.Currency)
+                {
+                    <div class="card-neighbour-photo img-circle" style="background-image: url(@variable.Neighbor.Photo);"></div>
+                }
+                <div class="card-sub-title sub-title">Сколько платит:</div>
+                <div>@s.Currency.First().CurrencyPrice.ToString("C")</div>
+
+            </div>
+        </div>
+    }
+
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2 card card-big">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class=" col-md-4 col-md-offset-8 col-lg-4 col-lg-offset-8 col-sm-4 col-sm-offset-8 col-xs-4 col-xs-offset-8 item-sum text-right">
+                @Model.Summ.ToString("C")
+            </div>
             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
 
                 <h2>Итого</h2>
-                @foreach (var s in Model.TotalList)
+                @foreach (var summa in ViewBag.Summary)
                 {
-                    <div>@Html.DisplayFor(model => s)</div>
+                    <div>@Html.DisplayFor(model => summa)</div>
                 }
             </div>
         </div>
+    </div>
 </div>
-
-
-
-<script> setRandomBackground();</script>
 

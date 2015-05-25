@@ -13,6 +13,7 @@ namespace CheckSaver.Models.DetailsModels
             Payer = check.Neighbor.Name;
             Store = check.Store;
             Summa = check.Summ;
+            Id = check.Id;
 
             PurchasesList = new List<PurchaseDetailModel>();
             TotalList=new List<string>();
@@ -65,7 +66,7 @@ namespace CheckSaver.Models.DetailsModels
         public List<PurchaseDetailModel> PurchasesList { get; set; }
         public decimal Summa { get; set; }
         public List<string> TotalList { get; set; }
-
+        public int Id { get; set; }
 
         public class PurchaseDetailModel
         {

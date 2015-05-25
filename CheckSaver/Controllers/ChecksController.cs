@@ -1,4 +1,5 @@
-﻿using System;
+﻿ using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -28,12 +29,42 @@ namespace CheckSaver.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Check check = _repository.FindCheckById(id);
-            CheckDetailsModel model = new CheckDetailsModel(check);
+            //CheckDetailsModel model = new CheckDetailsModel(check);
             if (check == null)
             {
                 return HttpNotFound();
             }
-            return View(model);
+
+
+            Dictionary<string, decimal> dictonary = new Dictionary<string, decimal>();
+
+            foreach (Purchase purchase in check.Purchase)
+            {
+                string summary = string.Empty;
+                foreach (Currency VARIABLE in purchase.Currency)
+                {
+                    summary += VARIABLE.Neighbor.Name + ",";
+                    if (!dictonary.ContainsKey(VARIABLE.Neighbor.Name))
+                    {
+                        dictonary.Add(VARIABLE.Neighbor.Name, VARIABLE.CurrencyPrice);
+                    }
+                    else
+                    {
+                        dictonary[VARIABLE.Neighbor.Name] += VARIABLE.CurrencyPrice;
+                    }
+                }
+                //model.PricePerPerson = purchase.Currency.First().CurrencyPrice.ToString();
+                //model.Summary = summary;
+            }
+
+            List<string> TotalList = new List<string>();
+            foreach (KeyValuePair<string, decimal> pair in dictonary)
+            {
+                TotalList.Add(pair.Key + " : " + pair.Value);
+            }
+
+            ViewBag.Summary = TotalList;
+            return View(check);
         }
 
         // GET: Checks/Create

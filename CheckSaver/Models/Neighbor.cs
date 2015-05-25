@@ -23,6 +23,7 @@ namespace CheckSaver.Models
     
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Photo { get; set; }
     
         public virtual ICollection<Check> Check { get; set; }
         public virtual ICollection<Currency> Currency { get; set; }

@@ -77,5 +77,3 @@
 /// <reference path="mainsite/cbpanimatedheader.js" />
 /// <reference path="mainsite/agency.js" />
 /// <reference path="mainsite/classie.js" />
-/// <reference path="material.min.js" />
-/// <reference path="ripples.min.js" />

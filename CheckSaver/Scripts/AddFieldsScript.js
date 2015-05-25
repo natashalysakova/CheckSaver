@@ -84,10 +84,19 @@ $(function () {
 
     var rm = $('.right-menu');
     if (rm.length > 0) {
-       rm[0].style.height = height + 'px';
+        rm[0].style.height = height + 'px';
     }
 
+    var card = $('.card-big');
+    if (card.length > 0) {
+        var cardwidth = card.width();
+        var img = card.find('.card-image');
+        if (img.length > 0) {
+            var width = cardwidth / 16 * 9;
+            img[0].style.height = width + 'px';
 
+        }
+    }
 });
 
 $(window).on('resize orientationChanged', function () {
@@ -113,4 +122,167 @@ function setRandomBackground() {
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function DetailedInfo(id, request) {
+
+
+    $('.card-collapsed').each(function () {
+        var idc = $(this).attr('id');
+        if (idc != id) {
+            CloseCard($(this));
+        }
+    });
+
+    $('#progress-' + id).show();
+    var div = $('#' + id);
+    if (div.length > 0) {
+        getimage(0, encodeURIComponent(request), id, div);
+    }
+}
+
+function OpenCard(div) {
+    var col = 0;
+    var colp = "";
+    var off = 0;
+    var newcol = 0;
+    var newoff = 0;
+
+    var width = $(window).width();
+
+    if (width < 768) {
+        col = 12;
+        newcol = 12;
+        colp = 'xs';
+    }
+    else if (width >= 768 && width < 992) {
+        col = 12;
+        newcol = 12;
+        colp = 'xs';
+    }
+    else if (width >= 992 && width < 1200) {
+        col = 10;
+        off = 1;
+        newcol = 12;
+        colp = 'md';
+
+    } else {
+        col = 8;
+        off = 2;
+        newcol = 10;
+        newoff = 1;
+        colp = 'lg';
+    }
+
+    var oldclass = 'col-' + colp + '-' + col;
+    var oldoffset = 'col-' + colp + '-offset-' + off;
+
+    var newclass = 'col-' + colp + '-' + newcol;
+    var newoffset = 'col-' + colp + '-offset-' + newoff;
+
+    if (div.hasClass("detailed-info-card")) {
+        div.removeClass(newclass);
+        div.removeClass(newoffset);
+        div.removeClass("detailed-info-card");
+        div.addClass(oldoffset);
+        div.addClass(oldclass);
+    } else {
+        div.removeClass(oldoffset);
+        div.removeClass(oldclass);
+        div.addClass(newclass);
+        div.addClass(newoffset);
+        div.addClass('detailed-info-card');
+    }
+}
+
+function CloseCard(div) {
+    if (div.hasClass("detailed-info-card")) {
+
+        var col = 0;
+        var colp = "";
+        var off = 0;
+        var newcol = 0;
+        var newoff = 0;
+
+        var width = $(window).width();
+
+        if (width < 768) {
+            col = 12;
+            newcol = 12;
+            colp = 'xs';
+        }
+        else if (width >= 768 && width < 992) {
+            col = 12;
+            newcol = 12;
+            colp = 'xs';
+        }
+        else if (width >= 992 && width < 1200) {
+            col = 10;
+            off = 1;
+            newcol = 12;
+            colp = 'md';
+
+        } else {
+            col = 8;
+            off = 2;
+            newcol = 10;
+            newoff = 1;
+            colp = 'lg';
+        }
+
+        var oldclass = 'col-' + colp + '-' + col;
+        var oldoffset = 'col-' + colp + '-offset-' + off;
+
+        var newclass = 'col-' + colp + '-' + newcol;
+        var newoffset = 'col-' + colp + '-offset-' + newoff;
+
+        div.removeClass(newclass);
+        div.removeClass(newoffset);
+        div.removeClass("detailed-info-card");
+        div.addClass(oldoffset);
+        div.addClass(oldclass);
+    }
+
+}
+
+function getimage(id, image_key, imgid, div) {
+
+    $['getJSON']('http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=' + image_key + '&callback=?', function (json) {
+        var img = new Image();
+        img.src = (json['responseData']['results'][id]['url']);
+        img.onload = function () {
+            setTimeout
+(
+    function () {
+        if (!img.complete) {
+            getimage(id, json['responseData']['results'][++id], imgid, div);
+        }
+    },
+    3000
+);
+            $('#img-' + imgid)['attr']('src', img.src);
+
+            var imgdiv = div.find('.detailed-card-img');
+            imgdiv.height = imgdiv.width();
+
+
+            $('#progress-' + imgid).hide();
+            OpenCard(div);
+
+        };
+        img.onerror = function () {
+            getimage(id, json['responseData']['results'][++id], imgid, div);
+        };
+
+        //$('#' + imgid)['attr']('src', );
+        //$('#' + imgid)['error'](function () {
+        //    if (json['responseData']['results'][++id])
+        //        getimage(id, image_key); //проверка, чтоб небыло бесконечного цикла
+        //});
+    });
+};
+
+function clearImage(imgId) {
+    $('#' + imgId).attr('src', String.empty);
+
 }
