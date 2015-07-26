@@ -171,6 +171,42 @@
     <Compile Include="Models\Neighbor.cs">
       <DependentUpon>CheckSaverModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\NewCheckSaverModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewCheckSaverModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewCheckSaverModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewCheckSaverModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewCheckSaverModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\n_Checks.cs">
+      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\n_Neighbours.cs">
+      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\n_Price.cs">
+      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\n_Products.cs">
+      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\n_Purchases.cs">
+      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\n_Stores.cs">
+      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\n_WhoWillUse.cs">
+      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Product.cs">
       <DependentUpon>CheckSaverModel.tt</DependentUpon>
     </Compile>
@@ -322,6 +358,23 @@
     <Content Include="Content\fonts\font-awesome\scss\_spinning.scss" />
     <Content Include="Content\fonts\font-awesome\scss\_stacked.scss" />
     <Content Include="Content\fonts\font-awesome\scss\_variables.scss" />
+    <EntityDeploy Include="Models\NewCheckSaverModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NewCheckSaverModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\NewCheckSaverModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NewCheckSaverModel.edmx</DependentUpon>
+      <LastGenOutput>NewCheckSaverModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\NewCheckSaverModel.edmx.diagram">
+      <DependentUpon>NewCheckSaverModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\NewCheckSaverModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NewCheckSaverModel.edmx</DependentUpon>
+      <LastGenOutput>NewCheckSaverModel.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\host.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
