@@ -484,7 +484,7 @@ li {
         overflow: hidden;
         object-fit: cover;
         object-position: 25% 50%;
-        transition: width 1s ease 0.5s, height 1s ease 0.5s;/*opacity 0.75s ease 0.6s;
+        transition: width 1s ease 0.5s, height 1s ease 0.5s; /*opacity 0.75s ease 0.6s;
         opacity: 0.5;*/
     }
 
@@ -504,12 +504,45 @@ li {
     margin: 8px;
 }
 
-
-@media (max-width: 767px) {
-    .card-neighbour-photo {
+.card-neighbour-photo-small {
     width: 50px;
     height: 50px;
 }
+
+.total-summ {
+    font-size: 24px;
+}
+
+.summary {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.summary-price-title {
+    top: 16px;
+    position: absolute;
+}
+
+.blur {
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -ms-filter: blur(2px);
+    -o-filter: blur(2px);
+    /* FF doesn't support blur filter, but SVG */
+    filter: url("data:image/svg+xml;utf8,<svg height='0' xmlns='http://www.w3.org/2000/svg'><filter id='svgBlur' x='-5%' y='-5%' width='110%' height='110%'><feGaussianBlur in='SourceGraphic' stdDeviation='5'/></filter></svg>#svgBlur");
+    filter: progid: DXImageTransform.Microsoft.Blur(PixelRadius = '2');
+    filter: blur(2px);
+    overflow: hidden;
+
+}
+
+
+
+@media (max-width: 767px) {
+    .card-neighbour-photo {
+        width: 50px;
+        height: 50px;
+    }
 }
 
 
@@ -581,17 +614,19 @@ li {
 
 
 @media (min-width: 768px) {
-  .container {
-    width: 530px;
-  }
+    .container {
+        width: 530px;
+    }
 }
+
 @media (min-width: 992px) {
-  .container {
-    width: 700px;
-  }
+    .container {
+        width: 700px;
+    }
 }
+
 @media (min-width: 1200px) {
-  .container {
-      width: 970px;
-  }
+    .container {
+        width: 970px;
+    }
 }

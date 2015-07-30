@@ -36,7 +36,7 @@ namespace CheckSaver.Controllers
             }
 
 
-            Dictionary<string, decimal> dictonary = new Dictionary<string, decimal>();
+            Dictionary<Neighbor, decimal> dictonary = new Dictionary<Neighbor, decimal>();
 
             foreach (Purchase purchase in check.Purchase)
             {
@@ -44,24 +44,20 @@ namespace CheckSaver.Controllers
                 foreach (Currency VARIABLE in purchase.Currency)
                 {
                     summary += VARIABLE.Neighbor.Name + ",";
-                    if (!dictonary.ContainsKey(VARIABLE.Neighbor.Name))
+                    if (!dictonary.ContainsKey(VARIABLE.Neighbor))
                     {
-                        dictonary.Add(VARIABLE.Neighbor.Name, VARIABLE.CurrencyPrice);
+                        dictonary.Add(VARIABLE.Neighbor, VARIABLE.CurrencyPrice);
                     }
                     else
                     {
-                        dictonary[VARIABLE.Neighbor.Name] += VARIABLE.CurrencyPrice;
+                        dictonary[VARIABLE.Neighbor] += VARIABLE.CurrencyPrice;
                     }
                 }
                 //model.PricePerPerson = purchase.Currency.First().CurrencyPrice.ToString();
                 //model.Summary = summary;
             }
 
-            List<string> TotalList = new List<string>();
-            foreach (KeyValuePair<string, decimal> pair in dictonary)
-            {
-                TotalList.Add(pair.Key + " : " + pair.Value);
-            }
+            List<KeyValuePair<Neighbor, decimal>> TotalList = dictonary.ToList();
 
             ViewBag.Summary = TotalList;
             return View(check);

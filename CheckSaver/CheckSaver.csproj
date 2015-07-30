@@ -375,6 +375,7 @@
       <DependentUpon>NewCheckSaverModel.edmx</DependentUpon>
       <LastGenOutput>NewCheckSaverModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Content\css\AdvancedStyles.less" />
     <None Include="Properties\PublishProfiles\host.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />

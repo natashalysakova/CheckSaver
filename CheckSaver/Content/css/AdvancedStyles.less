@@ -1,0 +1,85 @@
+﻿@import "compass/css3";
+
+$border_color: #107177;
+$image_bg: 'http://farm9.static.flickr.com/8535/8700600857_5ba981d073.jpg';
+$margin_top: 10em;
+
+body {
+  text-align: center;
+  background: url($image_bg) no-repeat;
+  background-size: cover;
+}
+
+//Blur background, just for fun
+
+$blur: 4px;
+
+.blur_bg {
+  padding: 4em 0;
+  margin-top: $margin_top;
+  position: relative;
+  background: #000;
+  &:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background:  url($image_bg) no-repeat;
+    background-size: cover;
+    background-position: 0 (-$margin_top);
+    @include filter(blur($blur));
+    
+    opacity: 0.6;
+    
+    // To eliminate the blur borders
+    padding: $blur * 2;
+    top: -($blur * 2);
+    left: -($blur * 2);
+   
+  }
+}
+
+select {
+  @include appearance(none);
+  // Remove Arrow in FF, thanks to @joaocunha
+  text-indent: 0.01px;
+  text-overflow: '';
+  
+  padding: 1em 0 1em 1em;
+  /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding.
+  via: http://cssdeck.com/labs/styling-select-box-with-css3 */
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+    padding-right:1em;
+  }
+  border: 1px solid $border_color;
+  border-radius: 0;
+  position: relative;
+  border-right-width: 20px;
+  background-color: rgba(#000, 0.5);
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  &:focus {
+    outline: none;
+    border-color: lighten($border_color, 10%);
+  }
+}
+label {
+  position: relative;
+  // For FF alignment
+  display: inline-block;
+  
+  &:after {
+    display: block;
+    content: "▾";
+    font-size: 20px;
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    top: 50%;
+    margin-top: -14px;
+    right: 0;
+    color: #fff;
+    pointer-events: none;
+  }
+}
