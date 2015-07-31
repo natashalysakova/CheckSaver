@@ -144,34 +144,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Check.cs">
-      <DependentUpon>CheckSaverModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CheckSaverModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CheckSaverModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CheckSaverModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CheckSaverModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CheckSaverModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CheckSaverModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Currency.cs">
-      <DependentUpon>CheckSaverModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\DetailsModels\CheckDetailsModel.cs" />
     <Compile Include="Models\InputModels\CheckInputModel.cs" />
     <Compile Include="Models\InputModels\ProductInputModel.cs" />
     <Compile Include="Models\InputModels\PurchaseInputModel.cs" />
-    <Compile Include="Models\Neighbor.cs">
-      <DependentUpon>CheckSaverModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\NewCheckSaverModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -211,23 +187,11 @@
     <Compile Include="Models\n_WhoWillUse.cs">
       <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Product.cs">
-      <DependentUpon>CheckSaverModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Purchase.cs">
-      <DependentUpon>CheckSaverModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Repository\CheckSaveDbRepositoryProducts.cs" />
     <Compile Include="Models\Repository\CheckSaveDbRepositoryStores.cs" />
     <Compile Include="Models\Repository\CheckSaveDbRepositoryChecks.cs" />
     <Compile Include="Models\Repository\CheckSaveDbRepositoryNeighbours.cs" />
     <Compile Include="Models\Repository\CheckSaveDbRepositoryGeneral.cs" />
-    <Compile Include="Models\Store.cs">
-      <DependentUpon>CheckSaverModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\WhoWillUse.cs">
-      <DependentUpon>CheckSaverModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -311,23 +275,6 @@
     <Content Include="Scripts\MainSite\cbpAnimatedHeader.js" />
     <Content Include="Scripts\MainSite\cbpAnimatedHeader.min.js" />
     <Content Include="Scripts\FileUpload.js" />
-    <EntityDeploy Include="Models\CheckSaverModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CheckSaverModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\CheckSaverModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CheckSaverModel.edmx</DependentUpon>
-      <LastGenOutput>CheckSaverModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\CheckSaverModel.edmx.diagram">
-      <DependentUpon>CheckSaverModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\CheckSaverModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CheckSaverModel.edmx</DependentUpon>
-      <LastGenOutput>CheckSaverModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\fonts\font-awesome\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\font-awesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\font-awesome\fonts\fontawesome-webfont.woff" />
