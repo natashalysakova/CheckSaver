@@ -20,6 +20,9 @@
         <AssociationConnector Association="uh357966_db2Model1.FK_n_Price_Stores" ManuallyRouted="false" />
         <AssociationConnector Association="uh357966_db2Model1.FK_n_Purchases_Products" ManuallyRouted="false" />
         <AssociationConnector Association="uh357966_db2Model1.FK_n_WhoWillUse_Purchase" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="uh357966_db2Model1.n_Transactions" Width="1.5" PointX="3" PointY="8" />
+        <AssociationConnector Association="uh357966_db2Model1.FK_n_Transactions_FromNeighbor" />
+        <AssociationConnector Association="uh357966_db2Model1.FK_n_Transactions_ToNeighbor" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

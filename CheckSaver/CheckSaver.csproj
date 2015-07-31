@@ -205,6 +205,9 @@
     <Compile Include="Models\n_Stores.cs">
       <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\n_Transactions.cs">
+      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\n_WhoWillUse.cs">
       <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
     </Compile>

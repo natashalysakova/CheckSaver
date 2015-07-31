@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="uh357966_db2Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="uh357966_db2Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="n_Checks">
           <Key>
             <PropertyRef Name="Id" />
@@ -56,6 +56,18 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Photo" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="n_Transactions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FromNeighbourId" Type="int" Nullable="false" />
+          <Property Name="ToNeighbourId" Type="int" Nullable="false" />
+          <Property Name="Summa" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Caption" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="IsDebitOff" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="n_WhoWillUse">
           <Key>
@@ -137,6 +149,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_n_Transactions_FromNeighbor">
+          <End Role="n_Neighbours" Type="Self.n_Neighbours" Multiplicity="1" />
+          <End Role="n_Transactions" Type="Self.n_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="n_Neighbours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="n_Transactions">
+              <PropertyRef Name="FromNeighbourId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_Transactions_ToNeighbor">
+          <End Role="n_Neighbours" Type="Self.n_Neighbours" Multiplicity="1" />
+          <End Role="n_Transactions" Type="Self.n_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="n_Neighbours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="n_Transactions">
+              <PropertyRef Name="ToNeighbourId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_n_WhoWillUse_Neighbour">
           <End Role="n_Neighbours" Type="Self.n_Neighbours" Multiplicity="1" />
           <End Role="n_WhoWillUse" Type="Self.n_WhoWillUse" Multiplicity="*" />
@@ -168,6 +204,7 @@
           <EntitySet Name="n_Products" EntityType="Self.n_Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="n_Purchases" EntityType="Self.n_Purchases" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="n_Stores" EntityType="Self.n_Stores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="n_Transactions" EntityType="Self.n_Transactions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="n_WhoWillUse" EntityType="Self.n_WhoWillUse" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_n_Checks_Neighbour" Association="Self.FK_n_Checks_Neighbour">
             <End Role="n_Neighbours" EntitySet="n_Neighbours" />
@@ -193,6 +230,14 @@
             <End Role="n_Products" EntitySet="n_Products" />
             <End Role="n_Purchases" EntitySet="n_Purchases" />
           </AssociationSet>
+          <AssociationSet Name="FK_n_Transactions_FromNeighbor" Association="Self.FK_n_Transactions_FromNeighbor">
+            <End Role="n_Neighbours" EntitySet="n_Neighbours" />
+            <End Role="n_Transactions" EntitySet="n_Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_Transactions_ToNeighbor" Association="Self.FK_n_Transactions_ToNeighbor">
+            <End Role="n_Neighbours" EntitySet="n_Neighbours" />
+            <End Role="n_Transactions" EntitySet="n_Transactions" />
+          </AssociationSet>
           <AssociationSet Name="FK_n_WhoWillUse_Neighbour" Association="Self.FK_n_WhoWillUse_Neighbour">
             <End Role="n_Neighbours" EntitySet="n_Neighbours" />
             <End Role="n_WhoWillUse" EntitySet="n_WhoWillUse" />
@@ -202,8 +247,7 @@
             <End Role="n_WhoWillUse" EntitySet="n_WhoWillUse" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="uh357966_db2Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -228,6 +272,8 @@
           <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="n_Checks" Relationship="Self.FK_n_Checks_Neighbour" FromRole="n_Neighbours" ToRole="n_Checks" />
           <NavigationProperty Name="n_WhoWillUse" Relationship="Self.FK_n_WhoWillUse_Neighbour" FromRole="n_Neighbours" ToRole="n_WhoWillUse" />
+          <NavigationProperty Name="n_Transactions" Relationship="uh357966_db2Model1.FK_n_Transactions_FromNeighbor" FromRole="n_Neighbours" ToRole="n_Transactions" />
+          <NavigationProperty Name="n_Transactions1" Relationship="uh357966_db2Model1.FK_n_Transactions_ToNeighbor" FromRole="n_Neighbours" ToRole="n_Transactions" />
         </EntityType>
         <EntityType Name="n_Price">
           <Key>
@@ -419,7 +465,54 @@
             <End Role="n_Purchases" EntitySet="n_Purchases" />
             <End Role="n_WhoWillUse" EntitySet="n_WhoWillUse" />
           </AssociationSet>
+          <EntitySet Name="n_Transactions" EntityType="uh357966_db2Model1.n_Transactions" />
+          <AssociationSet Name="FK_n_Transactions_FromNeighbor" Association="uh357966_db2Model1.FK_n_Transactions_FromNeighbor">
+            <End Role="n_Neighbours" EntitySet="n_Neighbours" />
+            <End Role="n_Transactions" EntitySet="n_Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_Transactions_ToNeighbor" Association="uh357966_db2Model1.FK_n_Transactions_ToNeighbor">
+            <End Role="n_Neighbours" EntitySet="n_Neighbours" />
+            <End Role="n_Transactions" EntitySet="n_Transactions" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="n_Transactions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FromNeighbourId" Type="Int32" Nullable="false" />
+          <Property Name="ToNeighbourId" Type="Int32" Nullable="false" />
+          <Property Name="Summa" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Caption" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsDebitOff" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="n_FromNeighbours" Relationship="uh357966_db2Model1.FK_n_Transactions_FromNeighbor" FromRole="n_Transactions" ToRole="n_Neighbours" />
+          <NavigationProperty Name="n_ToNeighbours" Relationship="uh357966_db2Model1.FK_n_Transactions_ToNeighbor" FromRole="n_Transactions" ToRole="n_Neighbours" />
+        </EntityType>
+        <Association Name="FK_n_Transactions_FromNeighbor">
+          <End Type="uh357966_db2Model1.n_Neighbours" Role="n_Neighbours" Multiplicity="1" />
+          <End Type="uh357966_db2Model1.n_Transactions" Role="n_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="n_Neighbours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="n_Transactions">
+              <PropertyRef Name="FromNeighbourId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_Transactions_ToNeighbor">
+          <End Type="uh357966_db2Model1.n_Neighbours" Role="n_Neighbours" Multiplicity="1" />
+          <End Type="uh357966_db2Model1.n_Transactions" Role="n_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="n_Neighbours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="n_Transactions">
+              <PropertyRef Name="ToNeighbourId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -490,6 +583,19 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="NeighbourId" ColumnName="NeighbourId" />
                 <ScalarProperty Name="PurchaseId" ColumnName="PurchaseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="n_Transactions">
+            <EntityTypeMapping TypeName="uh357966_db2Model1.n_Transactions">
+              <MappingFragment StoreEntitySet="n_Transactions">
+                <ScalarProperty Name="IsDebitOff" ColumnName="IsDebitOff" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Caption" ColumnName="Caption" />
+                <ScalarProperty Name="Summa" ColumnName="Summa" />
+                <ScalarProperty Name="ToNeighbourId" ColumnName="ToNeighbourId" />
+                <ScalarProperty Name="FromNeighbourId" ColumnName="FromNeighbourId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

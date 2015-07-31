@@ -12,15 +12,17 @@ namespace CheckSaver.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class n_Price
+    public partial class n_Transactions
     {
         public int Id { get; set; }
-        public int ProductId { get; set; }
-        public int StoreId { get; set; }
-        public decimal Cost { get; set; }
+        public int FromNeighbourId { get; set; }
+        public int ToNeighbourId { get; set; }
+        public decimal Summa { get; set; }
+        public string Caption { get; set; }
         public System.DateTime Date { get; set; }
+        public bool IsDebitOff { get; set; }
     
-        public virtual n_Products n_Products { get; set; }
-        public virtual n_Stores n_Stores { get; set; }
+        public virtual n_Neighbours n_FromNeighbours { get; set; }
+        public virtual n_Neighbours n_ToNeighbours { get; set; }
     }
 }
