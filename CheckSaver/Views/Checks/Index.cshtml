@@ -1,5 +1,5 @@
 ﻿@using System.Linq
-@model System.Collections.Generic.IEnumerable<CheckSaver.Models.Check>
+@model System.Collections.Generic.IEnumerable<CheckSaver.Models.Checks>
 
 @{
     ViewBag.Title = "Index";
@@ -12,7 +12,7 @@
 
 <div class="container">
 
-    @foreach (var item in Model.OrderByDescending(x => x.DateTime))
+    @foreach (var item in Model.OrderByDescending(x => x.Date))
     {
         <div class="col-md-4 col-sm-6 col-xs-12 col-lg-3 nopaddiing">
             @{ Html.RenderPartial("Card", item); }

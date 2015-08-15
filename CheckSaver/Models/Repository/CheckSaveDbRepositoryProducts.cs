@@ -8,51 +8,39 @@ namespace CheckSaver.Models.Repository
 {
     public partial class CheckSaveDbRepository 
     {
-        public IEnumerable<Product> GetAllProducts()
+        public IEnumerable<Products> GetAllProducts()
         {
-            return _db.Product.Include(p => p.Store).ToList();
+            return _db.Products.ToList();
         }
 
-        internal Product FindProductById(int? id)
+        internal Products FindProductById(int? id)
         {
-            return _db.Product.Find(id);
+            return _db.Products.Find(id);
         }
 
 
-        public int AddNewProduct(Product product)
+        public int AddNewProduct(Products product)
         {
-            _db.Product.Add(product);
+            _db.Products.Add(product);
             _db.SaveChanges();
             return product.Id;
         }
 
-        public Product AddNewOrGetExistProduct(ProductInputModel product, int storeId)
+        public Products AddNewOrGetExistProduct(ProductInputModel product)
         {
-            decimal price = Convert.ToDecimal(product.Price.Replace(".", ","));
-
-
-            Product exist = (from p in _db.Product where p.Name == product.Name select p).FirstOrDefault();
+            Products exist = (from p in _db.Products where p.Title == product.Name select p).FirstOrDefault();
 
             if (exist == null)
             {
-                exist = new Product { Name = product.Name, Price = price, StoreId = storeId };
-                _db.Product.Add(exist);
+                exist = new Products { Title = product.Name};
+                _db.Products.Add(exist);
                 _db.SaveChanges();
-            }
-            else
-            {
-                if (exist.Price != price)
-                {
-                    exist.Price = price;
-                    _db.Entry(exist).State = EntityState.Modified;
-                    _db.SaveChanges();
-                }
             }
 
             return exist;
         }
 
-        public void EditProduct(Product product)
+        public void EditProduct(Products product)
         {
             _db.Entry(product).State = EntityState.Modified;
             _db.SaveChanges();
@@ -60,22 +48,22 @@ namespace CheckSaver.Models.Repository
 
         public void RemoveProduct(int id)
         {
-            Product product = FindProductById(id);
-            while (product.Purchase.Any())
+            Products product = FindProductById(id);
+            while (product.Purchases.Any())
             {
-                while (product.Purchase.Last().Currency.Any())
+                //while (product.Purchase.Last().Currency.Any())
+                //    {
+                //        _db.Currency.Remove(product.Purchase.Last().Currency.Last());
+                //    }
+
+                while (product.Purchases.Last().WhoWillUse.Any())
                     {
-                        _db.Currency.Remove(product.Purchase.Last().Currency.Last());
+                        _db.WhoWillUse.Remove(product.Purchases.Last().WhoWillUse.Last());
                     }
 
-                while (product.Purchase.Last().WhoWillUse.Any())
-                    {
-                        _db.WhoWillUse.Remove(product.Purchase.Last().WhoWillUse.Last());
-                    }
-
-                _db.Purchase.Remove(product.Purchase.Last());
+                _db.Purchases.Remove(product.Purchases.Last());
             }
-            _db.Product.Remove(product);
+            _db.Products.Remove(product);
             _db.SaveChanges();
         }
     }

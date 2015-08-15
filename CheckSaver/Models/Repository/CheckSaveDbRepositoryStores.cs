@@ -6,35 +6,35 @@ namespace CheckSaver.Models.Repository
 {
     public partial class CheckSaveDbRepository
     {
-        public IEnumerable<Store> GetAllStores()
+        public IEnumerable<Stores> GetAllStores()
         {
-            return _db.Store.ToList();
+            return _db.Stores.ToList();
         }
 
-        internal Store FindStoreById(int? id)
+        internal Stores FindStoreById(int? id)
         {
-            return _db.Store.Find(id);
+            return _db.Stores.Find(id);
         }
 
 
-        public int AddNewStore(Store store)
+        public int AddNewStore(Stores Stores)
         {
-            _db.Store.Add(store);
+            _db.Stores.Add(Stores);
             _db.SaveChanges();
-            return store.Id;
+            return Stores.Id;
         }
 
 
-        public void EditStore(Store store)
+        public void EditStore(Stores Stores)
         {
-            _db.Entry(store).State = EntityState.Modified;
+            _db.Entry(Stores).State = EntityState.Modified;
             _db.SaveChanges();
         }
 
-        public void RemoveStore(int id)
+        public void RemoveStore (int id)
         {
-            Store store = FindStoreById(id);
-            _db.Store.Remove(store);
+            Stores Stores = FindStoreById(id);
+            _db.Stores.Remove(Stores);
             _db.SaveChanges();
         }
     }

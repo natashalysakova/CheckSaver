@@ -7,43 +7,42 @@ namespace CheckSaver.Models.DetailsModels
 {
     public class CheckDetailsModel
     {
-        public CheckDetailsModel(Check check)
+        public CheckDetailsModel(Checks check)
         {
-            Date = check.DateTime;
-            Payer = check.Neighbor.Name;
-            Store = check.Store;
-            Summa = check.Summ;
+            Date = check.Date;
+            Payer = check.Neighbours.Name;
+            Store = check.Stores;
             Id = check.Id;
 
             PurchasesList = new List<PurchaseDetailModel>();
             TotalList=new List<string>();
             Dictionary<string, decimal> dictonary = new Dictionary<string, decimal>();
 
-            foreach (Purchase purchase in check.Purchase)
+            foreach (Purchases purchase in check.Purchases)
             {
                 var model = new PurchaseDetailModel()
                 {
                     Count = purchase.Count,
-                    Price = purchase.Product.Price,
-                    Summa = purchase.Summa,
-                    Title = purchase.Product.Name,
+                    Price = purchase.Products.GetPrice(check.StoreId),
+                    Summa = purchase.Summ,
+                    Title = purchase.Products.Title,
                     Id = purchase.Id
                 };
 
                 string summary = string.Empty;
-                foreach (Currency VARIABLE in purchase.Currency)
-                {
-                    summary += VARIABLE.Neighbor.Name + ",";
-                    if (!dictonary.ContainsKey(VARIABLE.Neighbor.Name))
-                    {
-                        dictonary.Add(VARIABLE.Neighbor.Name, VARIABLE.CurrencyPrice);
-                    }
-                    else
-                    {
-                        dictonary[VARIABLE.Neighbor.Name] += VARIABLE.CurrencyPrice;
-                    }
-                }
-                model.PricePerPerson = purchase.Currency.First().CurrencyPrice.ToString();
+                //foreach (Currency VARIABLE in purchase.Currency)
+                //{
+                //    summary += VARIABLE.Neighbor.Name + ",";
+                //    if (!dictonary.ContainsKey(VARIABLE.Neighbor.Name))
+                //    {
+                //        dictonary.Add(VARIABLE.Neighbor.Name, VARIABLE.CurrencyPrice);
+                //    }
+                //    else
+                //    {
+                //        dictonary[VARIABLE.Neighbor.Name] += VARIABLE.CurrencyPrice;
+                //    }
+                //}
+                //model.PricePerPerson = purchase.Currency.First().CurrencyPrice.ToString();
                 model.Summary = summary;
 
                 
@@ -62,7 +61,7 @@ namespace CheckSaver.Models.DetailsModels
 
         public DateTime Date { get; set; }
         public String Payer { get; set; }
-        public Store Store { get; set; }
+        public Stores Store { get; set; }
         public List<PurchaseDetailModel> PurchasesList { get; set; }
         public decimal Summa { get; set; }
         public List<string> TotalList { get; set; }

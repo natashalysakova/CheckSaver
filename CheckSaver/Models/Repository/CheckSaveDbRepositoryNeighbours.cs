@@ -1,31 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Globalization;
 
 namespace CheckSaver.Models.Repository
 {
     public partial class CheckSaveDbRepository
     {
-        internal IEnumerable<Neighbor> GetAllNeighbours()
+        internal IEnumerable<Neighbours> GetAllNeighbours()
         {
-            return _db.Neighbor.ToList();
+            return _db.Neighbours.ToList();
         }
 
 
-        internal Neighbor FindNeighbourById(int? id)
+        internal Neighbours FindNeighbourById(int? id)
         {
-            return _db.Neighbor.Find(id);
+            return _db.Neighbours.Find(id);
         }
 
 
-        public int AddNewNeighbour(Neighbor neighbor)
+        public int AddNewNeighbour(Neighbours Neighbours)
         {
-            _db.Neighbor.Add(neighbor);
+            _db.Neighbours.Add(Neighbours);
             _db.SaveChanges();
-            return neighbor.Id;
+            return Neighbours.Id;
         }
 
-        public void EditNeighbour(Neighbor check)
+        public void EditNeighbour(Neighbours check)
         {
             _db.Entry(check).State = EntityState.Modified;
             _db.SaveChanges();
@@ -33,10 +35,42 @@ namespace CheckSaver.Models.Repository
 
         public void RemoveNeighbour(int id)
         {
-            Neighbor neighbor = _db.Neighbor.Find(id);
-            _db.Neighbor.Remove(neighbor);
+            Neighbours Neighbours = _db.Neighbours.Find(id);
+            _db.Neighbours.Remove(Neighbours);
             _db.SaveChanges();
 
+        }
+
+        internal List<string> GetMonthPays(int? id)
+        {
+            Neighbours n = FindNeighbourById(id);
+
+            Dictionary<DateTime, decimal> myPurchase = new Dictionary<DateTime, decimal>();
+
+            foreach (var check in _db.Checks)
+            {
+                foreach (var purchase in check.Purchases)
+                {
+                    foreach (var wwuse in purchase.WhoWillUse)
+                    {
+                        if(wwuse.Neighbours == n)
+                        {
+                            if (!myPurchase.ContainsKey(check.Date))
+                            {
+                                myPurchase.Add(check.Date, purchase.CostPerPerson);
+                            }
+                            else
+                            {
+                                myPurchase[check.Date] += purchase.CostPerPerson;
+                            }
+                        }
+                    }
+                }
+            }
+
+            var grouped = (from d in myPurchase group d by d.Key.Month into t select  CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(t.Key) + ": " + t.Sum(x => x.Value).ToString("C")).ToList();
+
+            return grouped;
         }
     }
 }

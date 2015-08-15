@@ -12,19 +12,23 @@ namespace CheckSaver.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Product
+    public partial class Neighbours
     {
-        public Product()
+        public Neighbours()
         {
-            this.Purchase = new HashSet<Purchase>();
+            this.Checks = new HashSet<Checks>();
+            this.WhoWillUse = new HashSet<WhoWillUse>();
+            this.MyPaysNP = new HashSet<Transactions>();
+            this.PaysForMeNP = new HashSet<Transactions>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public decimal Price { get; set; }
-        public Nullable<int> StoreId { get; set; }
+        public string Photo { get; set; }
     
-        public virtual Store Store { get; set; }
-        public virtual ICollection<Purchase> Purchase { get; set; }
+        public virtual ICollection<Checks> Checks { get; set; }
+        public virtual ICollection<WhoWillUse> WhoWillUse { get; set; }
+        public virtual ICollection<Transactions> MyPaysNP { get; set; }
+        public virtual ICollection<Transactions> PaysForMeNP { get; set; }
     }
 }

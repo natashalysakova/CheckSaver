@@ -21,6 +21,25 @@ namespace CheckSaver.Controllers
             return View(check);
         }
 
+
+        public ActionResult Update(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Checks check = _repository.FindCheckById(id);
+            //CheckDetailsModel model = new CheckDetailsModel(check);
+            if (check == null)
+            {
+                return HttpNotFound();
+            }
+
+            _repository.UpdateCheck(check);
+
+            return RedirectToAction("Details", new { id = check.Id });
+        }
+
         // GET: Checks/Details/5
         public ActionResult Details(int? id)
         {
@@ -28,7 +47,7 @@ namespace CheckSaver.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Check check = _repository.FindCheckById(id);
+            Checks check = _repository.FindCheckById(id);
             //CheckDetailsModel model = new CheckDetailsModel(check);
             if (check == null)
             {
@@ -36,28 +55,27 @@ namespace CheckSaver.Controllers
             }
 
 
-            Dictionary<Neighbor, decimal> dictonary = new Dictionary<Neighbor, decimal>();
+            Dictionary<Neighbours, decimal> dictonary = new Dictionary<Neighbours, decimal>();
 
-            foreach (Purchase purchase in check.Purchase)
+            foreach (Purchases purchase in check.Purchases)
             {
                 string summary = string.Empty;
-                foreach (Currency VARIABLE in purchase.Currency)
+                foreach (WhoWillUse VARIABLE in purchase.WhoWillUse)
                 {
-                    summary += VARIABLE.Neighbor.Name + ",";
-                    if (!dictonary.ContainsKey(VARIABLE.Neighbor))
+                    summary += VARIABLE.Neighbours.Name + ",";
+                    if (!dictonary.ContainsKey(VARIABLE.Neighbours))
                     {
-                        dictonary.Add(VARIABLE.Neighbor, VARIABLE.CurrencyPrice);
+                        dictonary.Add(VARIABLE.Neighbours, purchase.CostPerPerson);
                     }
                     else
                     {
-                        dictonary[VARIABLE.Neighbor] += VARIABLE.CurrencyPrice;
+                        dictonary[VARIABLE.Neighbours] += purchase.CostPerPerson;
                     }
                 }
-                //model.PricePerPerson = purchase.Currency.First().CurrencyPrice.ToString();
-                //model.Summary = summary;
+
             }
 
-            List<KeyValuePair<Neighbor, decimal>> TotalList = dictonary.ToList();
+            List<KeyValuePair<Neighbours, decimal>> TotalList = dictonary.ToList();
 
             ViewBag.Summary = TotalList;
             return View(check);
@@ -106,12 +124,12 @@ namespace CheckSaver.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Check check = _repository.FindCheckById(id);
+            Checks check = _repository.FindCheckById(id);
             if (check == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.NeighborId = new SelectList(_repository.GetNeighborsList(), "Id", "Name", check.NeighborId);
+            ViewBag.NeighborId = new SelectList(_repository.GetNeighborsList(), "Id", "Name", check.NeighbourId);
             ViewBag.StoreId = new SelectList(_repository.GetStoresList(), "Id", "Title", check.StoreId);
             ViewBag.Names = _repository.GetNeighboursNames();
             ViewBag.Index = 0;
@@ -124,7 +142,7 @@ namespace CheckSaver.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,DateTime,Summ,StoreId,NeighborId")] Check check)
+        public ActionResult Edit(CheckInputModel check)
         {
             if (ModelState.IsValid)
             {
@@ -146,7 +164,7 @@ namespace CheckSaver.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Check check = _repository.FindCheckById(id);
+            Checks check = _repository.FindCheckById(id);
             if (check == null)
             {
                 return HttpNotFound();
@@ -174,36 +192,41 @@ namespace CheckSaver.Controllers
 
         public ActionResult FindProducts(string term, int storeId, string fieldId)
         {
-            var products = _repository.FindProductsinDb(term, storeId);
+            var products = _repository.FindProductsinDb(term);
+            var prices = _repository.FindProductPrice(products, storeId);
 
-            //if (storeId != "all")
-            //{
-                var projection = from product in products
-                                 select new
-                                 {
-                                     id = product.Id,
-                                     value = product.Name,
-                                     price = product.Price,
-                                     field = fieldId
-                                 };
-                return Json(projection.ToList(),
-              JsonRequestBehavior.AllowGet);
-            //}
-            //else
-            //{
-            //    var projection = from product in products
-            //                     select new
-            //                     {
-            //                         id = product.Id,
-            //                         value = string.Format("{0} ({1})", product.Name, product.Store.Title),
-            //                         price = product.Price,
-            //                         field = fieldId
-            //                     };
-            //    return Json(projection.ToList(),
-            //  JsonRequestBehavior.AllowGet);
-            //}
+            if (prices.Any())
+            {
+                if (prices.First() != null)
+                {
+                    var projection = from price in prices  where price!=null
+                                     select new
+                                     {
+                                         id = price.Id,
+                                         value = price.Products.Title,
+                                         price = price.Cost,
+                                         field = fieldId
+                                     };
 
+                    return Json(projection.ToList(),
+                  JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    var projection = from product in products
+                                     select new
+                                     {
+                                         id = product.Id,
+                                         value = product.Title,
+                                         field = fieldId
+                                     };
+                    return Json(projection.ToList(),
+                  JsonRequestBehavior.AllowGet);
+                }
+            }
 
+            return null;
+            
         }
 
         public ActionResult ProductBox(string index)
@@ -215,7 +238,7 @@ namespace CheckSaver.Controllers
 
         public ActionResult Recalc()
         {
-            _repository.RecalculateSummas();
+            //_repository.RecalculateSummas();
             return RedirectToAction("Index");
         }
     }

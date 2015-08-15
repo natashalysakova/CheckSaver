@@ -1,4 +1,4 @@
-﻿@model CheckSaver.Models.Store
+﻿@model CheckSaver.Models.Stores
 
 @{
     ViewBag.Title = "Details";
@@ -27,13 +27,13 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Logo)
+            @Html.DisplayNameFor(model => model.Photo)
         </dt>
 
         <dd>
-            @if (Model.Logo != null)
+            @if (Model.Photo != null)
             {
-                <img src="@Url.Content(Model.Logo)" alt="IMAGES" height="50px" />
+                <img src="@Url.Content(Model.Photo)" alt="IMAGES" height="50px" />
             }
         </dd>
 

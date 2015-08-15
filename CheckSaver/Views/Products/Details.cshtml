@@ -1,4 +1,4 @@
-﻿@model CheckSaver.Models.Product
+﻿@model CheckSaver.Models.Products
 
 @{
     ViewBag.Title = "Details";
@@ -7,31 +7,15 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Product</h4>
+    <h4>Products</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Store.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Store.Title)
+            @Html.DisplayFor(model => model.Title)
         </dd>
 
     </dl>

@@ -1,0 +1,72 @@
+﻿@model CheckSaver.Models.Transactions
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Transactions</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Summa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Summa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Caption)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Caption)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDebitOff)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDebitOff)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FromNeighbours.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FromNeighbours.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ToNeighbours.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ToNeighbours.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

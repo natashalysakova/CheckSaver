@@ -13,5 +13,7 @@ namespace CheckSaver.Models.InputModels
 
         [DisplayName("Кто будет использовать")]
         public List<object> WhoWillUse { set; get; }
+
+        public int Id { get; set; }
     }
 }

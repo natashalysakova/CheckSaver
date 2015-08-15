@@ -41,11 +41,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -139,15 +141,31 @@
     <Compile Include="Controllers\ChecksController.cs" />
     <Compile Include="Controllers\MainSiteController.cs" />
     <Compile Include="Controllers\NeighborsController.cs" />
+    <Compile Include="Controllers\PricesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\StoresController.cs" />
+    <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Checks.cs">
+      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DetailsModels\CheckDetailsModel.cs" />
+    <Compile Include="Models\ExtentionsModels\Neghbours.cs" />
+    <Compile Include="Models\ExtentionsModels\Products.cs" />
+    <Compile Include="Models\ExtentionsModels\Stores.cs" />
+    <Compile Include="Models\ExtentionsModels\Transactions.cs" />
     <Compile Include="Models\InputModels\CheckInputModel.cs" />
     <Compile Include="Models\InputModels\ProductInputModel.cs" />
     <Compile Include="Models\InputModels\PurchaseInputModel.cs" />
+    <Compile Include="Models\Metadata\NeighboursMetadata.cs" />
+    <Compile Include="Models\Metadata\ProductsMetadata.cs" />
+    <Compile Include="Models\Metadata\StoresMetadata.cs" />
+    <Compile Include="Models\Metadata\TransactionsMetadata.cs" />
+    <Compile Include="Models\Neighbours.cs">
+      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\NewCheckSaverModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -163,35 +181,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NewCheckSaverModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\n_Checks.cs">
+    <Compile Include="Models\Price.cs">
       <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\n_Neighbours.cs">
+    <Compile Include="Models\Products.cs">
       <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\n_Price.cs">
+    <Compile Include="Models\Purchases.cs">
       <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\n_Products.cs">
-      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\n_Purchases.cs">
-      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\n_Stores.cs">
-      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\n_Transactions.cs">
-      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\n_WhoWillUse.cs">
-      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Repository\CheckSaveDbRepositoryPrices.cs" />
     <Compile Include="Models\Repository\CheckSaveDbRepositoryProducts.cs" />
     <Compile Include="Models\Repository\CheckSaveDbRepositoryStores.cs" />
     <Compile Include="Models\Repository\CheckSaveDbRepositoryChecks.cs" />
     <Compile Include="Models\Repository\CheckSaveDbRepositoryNeighbours.cs" />
     <Compile Include="Models\Repository\CheckSaveDbRepositoryGeneral.cs" />
+    <Compile Include="Models\Repository\CheckSaveDbRepositoryTransactions.cs" />
+    <Compile Include="Models\Stores.cs">
+      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Transactions.cs">
+      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WhoWillUse.cs">
+      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -323,6 +337,7 @@
       <LastGenOutput>NewCheckSaverModel.cs</LastGenOutput>
     </Content>
     <Content Include="Content\css\AdvancedStyles.less" />
+    <None Include="Properties\PublishProfiles\fs.pubxml" />
     <None Include="Properties\PublishProfiles\host.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
@@ -442,11 +457,6 @@
     <Content Include="Views\Stores\Details.cshtml" />
     <Content Include="Views\Stores\Edit.cshtml" />
     <Content Include="Views\Stores\Index.cshtml" />
-    <Content Include="Views\Products\Create.cshtml" />
-    <Content Include="Views\Products\Delete.cshtml" />
-    <Content Include="Views\Products\Details.cshtml" />
-    <Content Include="Views\Products\Edit.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Neighbors\Create.cshtml" />
     <Content Include="Views\Neighbors\Delete.cshtml" />
     <Content Include="Views\Neighbors\Details.cshtml" />
@@ -459,6 +469,21 @@
     <Content Include="Views\Checks\Index.cshtml" />
     <Content Include="Views\Checks\ProductBox.cshtml" />
     <Content Include="Views\MainSite\Index.cshtml" />
+    <Content Include="Views\Prices\Create.cshtml" />
+    <Content Include="Views\Prices\Delete.cshtml" />
+    <Content Include="Views\Prices\Details.cshtml" />
+    <Content Include="Views\Prices\Edit.cshtml" />
+    <Content Include="Views\Prices\Index.cshtml" />
+    <Content Include="Views\Transactions\Create.cshtml" />
+    <Content Include="Views\Transactions\Delete.cshtml" />
+    <Content Include="Views\Transactions\Details.cshtml" />
+    <Content Include="Views\Transactions\Edit.cshtml" />
+    <Content Include="Views\Transactions\Index.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

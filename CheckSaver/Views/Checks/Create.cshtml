@@ -37,7 +37,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.NeighborId, "NeighborId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("NeighborId", null, htmlAttributes: new { @class = "form-control", name="Neighbor" })
+                @Html.DropDownList("NeighborId", null, htmlAttributes: new { @class = "form-control", name="Neighbours" })
                 @Html.ValidationMessageFor(model => model.NeighborId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -47,7 +47,7 @@
 
         <div class="form-group col-xs-12">
             <div class="col-xs-3">
-                @Html.LabelFor(model => model.Purchases[0].Product.Name)
+                 @Html.LabelFor(model => model.Purchases[0].Product.Name)
             </div>
             <div class="col-xs-2">
                 @Html.LabelFor(model => model.Purchases[0].Product.Price)
@@ -75,7 +75,6 @@
 
 <div class="round-button">
     <div class="add_field_button round-button-circle">+</div>
-
 </div>
 
 @section Scripts {

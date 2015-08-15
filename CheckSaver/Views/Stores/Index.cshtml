@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CheckSaver.Models.Store>
+﻿@model IEnumerable<CheckSaver.Models.Stores>
 
 @{
     ViewBag.Title = "Index";
@@ -14,11 +14,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
+  
         <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Logo)
+            @Html.DisplayNameFor(model => model.Photo)
         </th>
         <th></th>
     </tr>
@@ -32,9 +30,9 @@
             @Html.DisplayFor(modelItem => item.Address)
         </td>
         <td>
-            @if (item.Logo != null)
+            @if (item.Photo != null)
             {
-                <img src="@Url.Content(item.Logo)" alt="IMAGES" height="50px"/>
+                <img src="@Url.Content(item.Photo)" alt="IMAGES" height="50px"/>
             }
         </td>
         <td>
@@ -43,6 +41,17 @@
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
+    <tr>
+        
+    </tr>
 }
 
 </table>
+
+
+<div id="delete">
+    @{
+        Html.RenderPartial("Delete", new CheckSaver.Models.Stores() {Address = "fdfs", Title = "fdsfdsfsfadad" });
+    }
+
+</div>

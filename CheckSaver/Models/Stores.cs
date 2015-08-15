@@ -12,21 +12,20 @@ namespace CheckSaver.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Check
+    public partial class Stores
     {
-        public Check()
+        public Stores()
         {
-            this.Purchase = new HashSet<Purchase>();
+            this.Checks = new HashSet<Checks>();
+            this.Price = new HashSet<Price>();
         }
     
         public int Id { get; set; }
-        public System.DateTime DateTime { get; set; }
-        public decimal Summ { get; set; }
-        public Nullable<int> StoreId { get; set; }
-        public Nullable<int> NeighborId { get; set; }
+        public string Title { get; set; }
+        public string Photo { get; set; }
+        public string Address { get; set; }
     
-        public virtual Neighbor Neighbor { get; set; }
-        public virtual Store Store { get; set; }
-        public virtual ICollection<Purchase> Purchase { get; set; }
+        public virtual ICollection<Checks> Checks { get; set; }
+        public virtual ICollection<Price> Price { get; set; }
     }
 }

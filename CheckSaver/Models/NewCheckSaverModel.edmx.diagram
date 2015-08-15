@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="81d3f217c5344a0ea06573c567f13298" Name="Diagram1">
-        <EntityTypeShape EntityType="uh357966_db2Model1.n_Checks" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="uh357966_db2Model1.n_Neighbours" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="uh357966_db2Model1.n_Price" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="uh357966_db2Model1.n_Products" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="uh357966_db2Model1.n_Purchases" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="uh357966_db2Model1.n_Stores" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="uh357966_db2Model1.n_WhoWillUse" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
+      <Diagram DiagramId="81d3f217c5344a0ea06573c567f13298" Name="Diagram1" ZoomLevel="94">
+        <EntityTypeShape EntityType="uh357966_db2Model1.Checks" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="uh357966_db2Model1.Neighbours" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="uh357966_db2Model1.Price" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="uh357966_db2Model1.Products" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="uh357966_db2Model1.Purchases" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="uh357966_db2Model1.Stores" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="uh357966_db2Model1.WhoWillUse" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
         <AssociationConnector Association="uh357966_db2Model1.FK_n_Checks_Neighbour" ManuallyRouted="false" />
         <AssociationConnector Association="uh357966_db2Model1.FK_n_Checks_Stores" ManuallyRouted="false" />
         <AssociationConnector Association="uh357966_db2Model1.FK_n_Purchases_Checks" ManuallyRouted="false" />
@@ -20,7 +20,8 @@
         <AssociationConnector Association="uh357966_db2Model1.FK_n_Price_Stores" ManuallyRouted="false" />
         <AssociationConnector Association="uh357966_db2Model1.FK_n_Purchases_Products" ManuallyRouted="false" />
         <AssociationConnector Association="uh357966_db2Model1.FK_n_WhoWillUse_Purchase" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="uh357966_db2Model1.n_Transactions" Width="1.5" PointX="3" PointY="8" />
+        <EntityTypeShape EntityType="uh357966_db2Model1.Transactions" Width="1.5" PointX="7.625" PointY="4" />
+        <AssociationConnector Association="uh357966_db2Model1.FK_n_Transactions_FromChecks" />
         <AssociationConnector Association="uh357966_db2Model1.FK_n_Transactions_FromNeighbor" />
         <AssociationConnector Association="uh357966_db2Model1.FK_n_Transactions_ToNeighbor" />
       </Diagram>

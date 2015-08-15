@@ -4,26 +4,31 @@
 @using CheckSaver.Models
 @using CheckSaver.Models.DetailsModels
 @*@model CheckSaver.Models.DetailsModels.CheckDetailsModel*@
-@model CheckSaver.Models.Check
+@model CheckSaver.Models.Checks
 
 @{
     ViewBag.Title = "Details";
 }
 
 <script>
-    $('.navbar-brand')[0].innerHTML += 'Подробно - @Model.DateTime.ToString("D")';
+    $('.navbar-brand')[0].innerHTML += 'Подробно - @Model.Date.ToString("D")';
 </script>
 <div class="container">
     <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2 card card-big">
-        <div class="card-image" style="background: url(@Model.Store.Logo); background-size: cover; background-position: center center;"></div>
-        <div class="card-neighbour-photo img-circle" style="background-image: url(@Model.Neighbor.Photo); bottom: 170px; left: 24px; position: absolute;"></div>
+        <div class="card-image" style="background: url(@Model.Stores.Photo); background-size: cover; background-position: center center;"></div>
+        <div class="card-neighbour-photo img-circle" style="background-image: url(@Model.Neighbours.Photo); bottom: 170px; left: 24px; position: absolute;"></div>
 
         <div class="card-big-title">
             <div class="main-title">Список покупок </div>
-            <div class="sub-title">@Model.Store.Title - @Model.Store.Address (@Model.DateTime.ToString("d"))</div>
+            <div class="sub-title">@Model.Stores.Title - @Model.Stores.Address (@Model.Date.ToString("d"))</div>
         </div>
 
         <div class="card-action">
+
+            <a href="@Url.Action("Update", "Checks", new {id = Model.Id})">
+                <div class="card-flat-button temp-btn">Обновить</div>
+            </a>
+
             <a href="@Url.Action("Edit", "Checks", new {id = Model.Id})">
                 <div class="card-flat-button">Редактировать</div>
             </a>
@@ -32,18 +37,18 @@
             </a>
         </div>
     </div>
-    @foreach (Purchase s in Model.Purchase)
+    @foreach (Purchases s in Model.Purchases)
     {
         <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2 card card-big card-collapsed check-hovered" id="@s.Id"
-             onclick="DetailedInfo(@s.Id, '@s.Product.Name' ); ">
+             onclick="DetailedInfo(@s.Id, '@s.Products.Title' ); ">
             <div class=" short-info">
                 <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8 item-title">
                     <div class="text-center">
-                        <div class="item-price">@s.Count.ToString("##.000") X @s.Product.Price.ToString("C")</div>
+                        <div class="item-price">@s.Count.ToString("##.000") X @s.Cost.ToString("C")</div>
                     </div>
-                    @s.Product.Name
+                    @s.Products.Title
                 </div>
-                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 item-sum text-right">@s.Summa.ToString("C")</div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 item-sum text-right">@s.Summ.ToString("C")</div>
             </div>
             <div class="loader8" id="progress-@s.Id"></div>
 
@@ -55,20 +60,22 @@
 
                 <div class="card-collapsed-title">
                     <div class="main-title">
-                        @s.Product.Name
+                        @s.Products.Title
                     </div>
-                    <div class="sub-title">@s.Count.ToString("##.000") X @s.Product.Price.ToString("C")</div>
+
+                    <div class="sub-title">@s.Count.ToString("##.000") X @s.Products.Price.FirstOrDefault(x => x.StoreId == Model.StoreId).Cost.ToString("C")</div>
                 </div>
 
-                <div class="card-sub-title">Сумма: @s.Summa.ToString("C")</div>
+                <div class="card-sub-title">Сумма: @s.Summ.ToString("C")</div>
 
                 <div class="card-sub-title sub-title">Кто платит:</div>
-                @foreach (Currency variable in s.Currency)
+
+                @foreach (WhoWillUse variable in s.WhoWillUse)
                 {
-                    <div class="card-neighbour-photo img-circle" style="background-image: url(@variable.Neighbor.Photo);"></div>
+                    <div class="card-neighbour-photo img-circle" style="background-image: url(@variable.Neighbours.Photo);"></div>
                 }
                 <div class="card-sub-title sub-title">Сколько платит:</div>
-                <div>@s.Currency.First().CurrencyPrice.ToString("C")</div>
+                <div>@s.CostPerPerson.ToString("C")</div>
 
             </div>
         </div>
@@ -78,12 +85,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="col-md-6 col-md-offset-6 col-lg-6 col-lg-offset-6 col-sm-6 col-sm-offset-6 col-xs-6 col-xs-offset-6 item-sum text-right">
                 <div class="total-summ">
-                    Сумма @Model.Summ.ToString("C")
+                    Сумма @Model.Purchases.Sum(x=>x.Summ).ToString("C")
                 </div>
             </div>
             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 summary">
 
                 <div class="main-title">К оплате</div>
+
                 @foreach (var summa in ViewBag.Summary)
                 {
                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">

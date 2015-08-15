@@ -21,7 +21,7 @@ namespace CheckSaver.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Store store = _repository.FindStoreById(id);
+            Stores store = _repository.FindStoreById(id);
             if (store == null)
             {
                 return HttpNotFound();
@@ -40,7 +40,7 @@ namespace CheckSaver.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Address,Logo")] Store store)
+        public ActionResult Create([Bind(Include = "Id,Title,Address,Photo")] Stores store)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +58,7 @@ namespace CheckSaver.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Store store = _repository.FindStoreById(id);
+            Stores store = _repository.FindStoreById(id);
             if (store == null)
             {
                 return HttpNotFound();
@@ -71,7 +71,7 @@ namespace CheckSaver.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Address,Logo")] Store store)
+        public ActionResult Edit([Bind(Include = "Id,Title,Address,Photo")] Stores store)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace CheckSaver.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Store store = _repository.FindStoreById(id);
+            Stores store = _repository.FindStoreById(id);
             if (store == null)
             {
                 return HttpNotFound();

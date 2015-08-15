@@ -17,5 +17,8 @@ namespace CheckSaver.Models.InputModels
 
         [DisplayName("Покупки")]
         public List<PurchaseInputModel> Purchases { set; get; }
+
+
+        public int Id { get; set; }
     }
 }

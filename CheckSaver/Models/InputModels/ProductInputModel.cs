@@ -1,13 +1,19 @@
+п»їusing System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Web;
 
 namespace CheckSaver.Models.InputModels
 {
     public class ProductInputModel
     {
-        [DisplayName("Продукт")]
+
+        [DisplayName("РќР°Р·РІР°РЅРёРµ")]
         public string Name { get; set; }
 
-        [DisplayName("Цена")]
+        [DisplayName("Р¦РµРЅР°")]
         public string Price { get; set; }
+
     }
 }

@@ -1,19 +1,23 @@
-﻿using System.Net;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using CheckSaver.Models;
-using CheckSaver.Models.Repository;
 
 namespace CheckSaver.Controllers
 {
     public class ProductsController : Controller
     {
-        readonly CheckSaveDbRepository _repository = new CheckSaveDbRepository();
+        private uh357966_db2Entities1 db = new uh357966_db2Entities1();
 
         // GET: Products
         public ActionResult Index()
         {
-            var product = _repository.GetAllProducts();
-            return View(product);
+            return View(db.Products.ToList());
         }
 
         // GET: Products/Details/5
@@ -23,18 +27,17 @@ namespace CheckSaver.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = _repository.FindProductById(id);
-            if (product == null)
+            Products products = db.Products.Find(id);
+            if (products == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            return View(products);
         }
 
         // GET: Products/Create
         public ActionResult Create()
         {
-            ViewBag.StoreId = new SelectList(_repository.GetStoresList(), "Id", "Title");
             return View();
         }
 
@@ -43,17 +46,19 @@ namespace CheckSaver.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Price,StoreId")] Product product)
+        public ActionResult Create([Bind(Include = "Id,Title")] Products products)
         {
             if (ModelState.IsValid)
             {
-                _repository.AddNewProduct(product);
+                db.Products.Add(products);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.StoreId = new SelectList(_repository.GetStoresList(), "Id", "Title", product.StoreId);
-            return View(product);
+            return View(products);
         }
+
+        
 
         // GET: Products/Edit/5
         public ActionResult Edit(int? id)
@@ -62,13 +67,12 @@ namespace CheckSaver.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = _repository.FindProductById(id);
-            if (product == null)
+            Products products = db.Products.Find(id);
+            if (products == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.StoreId = new SelectList(_repository.GetStoresList(), "Id", "Title", product.StoreId);
-            return View(product);
+            return View(products);
         }
 
         // POST: Products/Edit/5
@@ -76,15 +80,15 @@ namespace CheckSaver.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Price,StoreId")] Product product)
+        public ActionResult Edit([Bind(Include = "Id,Title")] Products products)
         {
             if (ModelState.IsValid)
             {
-                _repository.EditProduct(product);
+                db.Entry(products).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.StoreId = new SelectList(_repository.GetStoresList(), "Id", "Title", product.StoreId);
-            return View(product);
+            return View(products);
         }
 
         // GET: Products/Delete/5
@@ -94,12 +98,12 @@ namespace CheckSaver.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = _repository.FindProductById(id);
-            if (product == null)
+            Products products = db.Products.Find(id);
+            if (products == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            return View(products);
         }
 
         // POST: Products/Delete/5
@@ -107,7 +111,9 @@ namespace CheckSaver.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            _repository.RemoveProduct(id);
+            Products products = db.Products.Find(id);
+            db.Products.Remove(products);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -115,7 +121,7 @@ namespace CheckSaver.Controllers
         {
             if (disposing)
             {
-                _repository.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }

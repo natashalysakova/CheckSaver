@@ -1,48 +1,109 @@
-﻿@model CheckSaver.Models.Store
+﻿@model CheckSaver.Models.Stores
 
 @{
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="dialog">
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Store</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+    <div class="main-title">
+        Удалить магазин?
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+    <div class="sub-title">
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Logo)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Logo)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Photo)
+            </dt>
 
-    </dl>
+            <dd>
+                <img src="@Model.Photo" class="img-responsive" />
+            </dd>
 
-    @using (Html.BeginForm()) {
+        </dl>
+    </div>
+
+
+    @using (Html.BeginForm("Delete", "Stores", FormMethod.Post))
+            {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+            <input type="submit" value="Удалить" class="card-flat-button delete-button" />
+        <a href="@Url.Action("Index", "Stores", new {id = Model.Id})">
+            <div class="card-flat-button">Отмена</div>
+        </a>
+
+    </div>
+
+
+
     }
-</div>
+    </div>
+
+
+
+    @*<div class="card">
+            <h2>Delete</h2>
+
+            <h3>Are you sure you want to delete this?</h3>
+            <div>
+                <h4>Store</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Title)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Address)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Photo)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Photo)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-default" /> |
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                }
+            </div>
+
+
+
+        </div>*@

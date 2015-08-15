@@ -1,4 +1,4 @@
-﻿@model CheckSaver.Models.Check
+﻿@model CheckSaver.Models.Checks
 
 @{
     ViewBag.Title = "Delete";
@@ -12,35 +12,36 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.DateTime)
+            @Html.DisplayNameFor(model => model.Date)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DateTime)
+            @Html.DisplayFor(model => model.Date)
         </dd>
 
-        <dt>
+        //TODO: Fix
+        @*<dt>
             @Html.DisplayNameFor(model => model.Summ)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Summ)
-        </dd>
+        </dd>*@
 
         <dt>
-            @Html.DisplayNameFor(model => model.Neighbor.Name)
+            @Html.DisplayNameFor(model => model.Neighbours.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Neighbor.Name)
+            @Html.DisplayFor(model => model.Neighbours.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Store.Title)
+            @Html.DisplayNameFor(model => model.Stores.Title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Store.Title)
+            @Html.DisplayFor(model => model.Stores.Title)
         </dd>
 
     </dl>

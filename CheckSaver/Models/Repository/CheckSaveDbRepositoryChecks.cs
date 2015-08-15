@@ -8,49 +8,87 @@ namespace CheckSaver.Models.Repository
 {
     public partial class CheckSaveDbRepository
     {
-        public IEnumerable<Check> GetAllChecks()
+        public IEnumerable<Checks> GetAllChecks()
         {
-            return _db.Check.Include(c => c.Neighbor).Include(c => c.Store).ToList();
+            return _db.Checks.Include(c => c.Neighbours).Include(c => c.Stores).ToList();
         }
 
-        internal Check FindCheckById(int? id)
+        internal Checks FindCheckById(int? id)
         {
-            return _db.Check.Find(id);
+            return _db.Checks.Find(id);
         }
 
 
         public int AddNewCheck(CheckInputModel check)
         {
-            Check tmp = new Check
+            Checks tmp = new Checks
             {
-                DateTime = check.DateTime,
-                NeighborId = Convert.ToInt32(check.NeighborId),
+                Date = check.DateTime,
+                NeighbourId = Convert.ToInt32(check.NeighborId),
                 StoreId = Convert.ToInt32(check.StoreId)
             };
 
-            _db.Check.Add(tmp);
+            _db.Checks.Add(tmp);
             _db.SaveChanges();
+
+
+            Dictionary<int, decimal> dictonary = new Dictionary<int, decimal>();
+            List<int> neighboursFromCheck= new List<int>();
 
 
             foreach (PurchaseInputModel variableModel in check.Purchases)
             {
                 if (variableModel.Count != null)
                 {
-                    int purchase = CreatePurchases(tmp.Id, Convert.ToInt32(check.StoreId), variableModel);
-                    AddWhoWillUse(purchase, variableModel.WhoWillUse);
+                    int purchaseId = CreatePurchases(tmp.Id, Convert.ToInt32(check.StoreId), variableModel);
+                    AddWhoWillUse(purchaseId, variableModel.WhoWillUse);
+
+                    Purchases purchase = _db.Purchases.Find(purchaseId);
+                    purchase.CostPerPerson = purchase.Summ / purchase.WhoWillUse.Count;
+
+                    foreach (WhoWillUse user in purchase.WhoWillUse)
+                    {
+                        if (!neighboursFromCheck.Contains(user.NeighbourId))
+                        {
+                            neighboursFromCheck.Add(user.NeighbourId);
+                        }
+
+                        if (!dictonary.ContainsKey(user.NeighbourId))
+                        {
+                            dictonary.Add(user.NeighbourId, purchase.CostPerPerson);
+                        }
+                        else
+                        {
+                            dictonary[user.NeighbourId] += purchase.CostPerPerson;
+                        }
+                    }
+
+                    _db.Entry(purchase).State = EntityState.Modified;
                 }
             }
 
-            tmp.Summ = GetPurchasesSumm(tmp.Purchase);
             _db.Entry(tmp).State = EntityState.Modified;
+
+
+            foreach (int neighbour in neighboursFromCheck)
+            {
+                if(neighbour!= tmp.NeighbourId)
+                {
+                    Transactions t = new Transactions { Caption = string.Format("From Check {0} - {1}", tmp.Id, tmp.Date.ToShortDateString()), Date = tmp.Date, WhoPay = tmp.NeighbourId, IsDebitOff = false, ForWhom = neighbour, Summa = dictonary[neighbour], CheckId = tmp.Id};
+
+                    _db.Transactions.Add(t);
+                }
+            }
+            
+
             _db.SaveChanges();
 
             return tmp.Id;
         }
 
-        private decimal GetPurchasesSumm(ICollection<Purchase> collection)
+        private decimal GetPurchasesSumm(ICollection<Purchases> collection)
         {
-            return collection.Sum(variable => variable.Summa);
+            return collection.Sum(variable => variable.Cost);
         }
 
         public void AddWhoWillUse(int purchaseId, List<object> model)
@@ -60,39 +98,17 @@ namespace CheckSaver.Models.Repository
                 foreach (object whoWillUseInputModel in model)
                 {
                     _db.WhoWillUse.Add(CreateWhoWillUse(whoWillUseInputModel, purchaseId));
-                    _db.Currency.Add(CreateCurrency(purchaseId, whoWillUseInputModel, model.Count));
                 }
             }
             else
             {
-                foreach (Neighbor neighbor in _db.Neighbor)
+                foreach (Neighbours neighbor in _db.Neighbours)
                 {
                     _db.WhoWillUse.Add(CreateWhoWillUse(neighbor.Id, purchaseId));
-                    _db.Currency.Add(CreateCurrency(purchaseId, neighbor.Id, _db.Neighbor.Count()));
                 }
             }
             _db.SaveChanges();
         }
-
-        private Currency CreateCurrency(int purchaseId, object whoWillUseInputModel, int countInPurchase)
-        {
-            return CreateCurrency(purchaseId, Convert.ToInt32(whoWillUseInputModel), countInPurchase);
-        }
-
-        private Currency CreateCurrency(int purchaseId, int neighborId, int countInPurchase)
-        {
-            Purchase purchase = _db.Purchase.Find(purchaseId);
-
-            Currency tmp = new Currency()
-            {
-                NeighborId = neighborId,
-                PurchaseId = purchaseId,
-                CurrencyPrice = purchase.Summa/countInPurchase
-            };
-
-            return tmp;
-        }
-
 
         private WhoWillUse CreateWhoWillUse(object whoWillUseInputModel, int purchaseId)
         {
@@ -102,65 +118,198 @@ namespace CheckSaver.Models.Repository
 
         private WhoWillUse CreateWhoWillUse(int neighborId, int purchaseId)
         {
-            WhoWillUse tmp = new WhoWillUse {NeighborId = neighborId, PurchaseId = purchaseId};
+            WhoWillUse tmp = new WhoWillUse {NeighbourId = neighborId, PurchaseId = purchaseId};
             return tmp;
         }
 
         public int CreatePurchases(int checkId, int storeId, PurchaseInputModel purchase)
         {
-            Purchase tmp = new Purchase {CheckId = checkId};
+            Purchases tmp = new Purchases {CheckId = checkId};
 
-            Product product = AddNewOrGetExistProduct(purchase.Product, storeId);
+            Products product = AddNewOrGetExistProduct(purchase.Product);
+            Price price = AddNewOrGetExistPrice(product, storeId);
+            tmp.Cost = Convert.ToDecimal(purchase.Product.Price.Replace(".", ","));
+
+
+
+            if (price.Cost != 0)
+            {
+                product.Price.Add(new Price() { Cost = tmp.Cost, Date = DateTime.Now, ProductId = product.Id, StoreId = storeId });
+                _db.Entry(price).State = EntityState.Modified;
+            }
+            else
+            {
+                price.Cost = tmp.Cost;
+            }
 
             tmp.ProductId = product.Id;
 
             string forDecimal = purchase.Count.Replace(".", ",");
-            tmp.Count = Decimal.Parse(forDecimal);
-            tmp.Summa = tmp.Count * product.Price;
+            tmp.Count = Convert.ToDecimal(forDecimal);
+            tmp.Summ = tmp.Count * tmp.Cost;
 
-            _db.Purchase.Add(tmp);
+            _db.Purchases.Add(tmp);
             _db.SaveChanges();
             return tmp.Id;
 
         }
 
-        public void EditCheck(Check check)
+        public void UpdateCheck(Checks check)
         {
+            Dictionary<int, decimal> dictonary = new Dictionary<int, decimal>();
+            List<int> neighboursFromCheck = new List<int>();
+
+            foreach (var item in check.Purchases)
+            {
+
+                Price price = AddNewOrGetExistPrice(item.Products, check.StoreId);
+
+                item.Cost = price.Cost;
+                item.Summ = item.Cost * item.Count;
+                item.CostPerPerson = item.Summ / item.WhoWillUse.Count();
+
+
+                foreach (WhoWillUse user in item.WhoWillUse)
+                {
+                    if (!neighboursFromCheck.Contains(user.NeighbourId))
+                    {
+                        neighboursFromCheck.Add(user.NeighbourId);
+                    }
+
+                    if (!dictonary.ContainsKey(user.NeighbourId))
+                    {
+                        dictonary.Add(user.NeighbourId, item.CostPerPerson);
+                    }
+                    else
+                    {
+                        dictonary[user.NeighbourId] += item.CostPerPerson;
+                    }
+                }
+            }
+
+            foreach (int neighbour in neighboursFromCheck)
+            {
+                if (neighbour != check.NeighbourId)
+                {
+                    Transactions t = new Transactions { Caption = string.Format("From Check {0} - {1}", check.Id, check.Date.ToShortDateString()), Date = check.Date, WhoPay = check.NeighbourId, IsDebitOff = false, ForWhom = neighbour, Summa = dictonary[neighbour] };
+
+                    _db.Transactions.Add(t);
+                }
+            }
+
+
             _db.Entry(check).State = EntityState.Modified;
             _db.SaveChanges();
         }
 
+
+
+
+
+        public void EditCheck(CheckInputModel model)
+        {
+            //Checks check = FindCheckById(model.Id);
+            //if (check == null)
+            //    return;
+
+            //check.Date = check.Date;
+            //check.NeighbourId = Convert.ToInt32(check.NeighbourId);
+            //check.StoreId = Convert.ToInt32(check.StoreId);
+
+            //_db.Entry(check).State = EntityState.Modified;
+            //_db.SaveChanges();
+
+
+            //Dictionary<int, decimal> dictonary = new Dictionary<int, decimal>();
+            //List<int> neighboursFromCheck = new List<int>();
+
+
+            //foreach (PurchaseInputModel variableModel in model.Purchases)
+            //{
+            //    if (variableModel.Count != null)
+            //    {
+            //        int purchaseId = CreatePurchases(tmp.Id, Convert.ToInt32(check.StoreId), variableModel);
+            //        AddWhoWillUse(purchaseId, variableModel.WhoWillUse);
+
+            //        Purchases purchase = _db.Purchases.Find(purchaseId);
+            //        purchase.CostPerPerson = purchase.Summ / purchase.WhoWillUse.Count;
+
+            //        foreach (WhoWillUse user in purchase.WhoWillUse)
+            //        {
+            //            if (!neighboursFromCheck.Contains(user.NeighbourId))
+            //            {
+            //                neighboursFromCheck.Add(user.NeighbourId);
+            //            }
+
+            //            if (!dictonary.ContainsKey(user.NeighbourId))
+            //            {
+            //                dictonary.Add(user.NeighbourId, purchase.CostPerPerson);
+            //            }
+            //            else
+            //            {
+            //                dictonary[user.NeighbourId] += purchase.CostPerPerson;
+            //            }
+            //        }
+
+            //        _db.Entry(purchase).State = EntityState.Modified;
+            //    }
+            //}
+
+            //_db.Entry(tmp).State = EntityState.Modified;
+
+
+            //foreach (int neighbour in neighboursFromCheck)
+            //{
+            //    if (neighbour != tmp.NeighbourId)
+            //    {
+            //        Transactions t = new Transactions { Caption = string.Format("From Check {0} - {1}", tmp.Id, tmp.Date.ToShortDateString()), Date = tmp.Date, FromNeighbourId = tmp.NeighbourId, IsDebitOff = false, ToNeighbourId = neighbour, Summa = dictonary[neighbour] };
+
+            //        _db.Transactions.Add(t);
+            //    }
+            //}
+
+
+            //_db.SaveChanges();
+
+            //_db.Entry(check).State = EntityState.Modified;
+            //_db.SaveChanges();
+        }
+
         public void RemoveCheck(int id)
         {
-            Check check = FindCheckById(id);
+            Checks check = FindCheckById(id);
 
-            while (check.Purchase.Any())
+            while (check.Purchases.Any())
             {
-                while (check.Purchase.Last().Currency.Any())
-                {
-                    _db.Currency.Remove(check.Purchase.Last().Currency.Last());
-                }
+                //while (check.Purchases.Last().Currency.Any())
+                //{
+                //    _db.Currency.Remove(check.Purchases.Last().Currency.Last());
+                //}
 
-                while (check.Purchase.Last().WhoWillUse.Any())
+                while (check.Purchases.Last().WhoWillUse.Any())
                 {
-                    _db.WhoWillUse.Remove(check.Purchase.Last().WhoWillUse.Last());
+                    _db.WhoWillUse.Remove(check.Purchases.Last().WhoWillUse.Last());
                 }
-
-                _db.Purchase.Remove(check.Purchase.Last());
+                _db.Purchases.Remove(check.Purchases.Last());
             }
 
-            _db.Check.Remove(check);
+            while(check.Transactions.Any())
+            {
+                _db.Transactions.Remove(check.Transactions.Last());
+            }
+
+            _db.Checks.Remove(check);
             _db.SaveChanges();
         }
 
-        internal void RecalculateSummas()
-        {
-            foreach (Check check in _db.Check)
-            {
-                check.Summ = GetPurchasesSumm(check.Purchase);
-            }
+        //internal void RecalculateSummas()
+        //{
+        //    foreach (Checks check in _db.Checks)
+        //    {
+        //        check.Summ = GetPurchasesSumm(check.Purchase);
+        //    }
 
-            _db.SaveChanges();
-        }
+        //    _db.SaveChanges();
+        //}
     }
 }

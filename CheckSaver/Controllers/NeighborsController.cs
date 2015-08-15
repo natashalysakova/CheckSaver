@@ -22,11 +22,13 @@ namespace CheckSaver.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Neighbor neighbor = _repository.FindNeighbourById(id);
+            Neighbours neighbor = _repository.FindNeighbourById(id);
             if (neighbor == null)
             {
                 return HttpNotFound();
             }
+
+            ViewBag.MonthPay = _repository.GetMonthPays(id);
             return View(neighbor);
         }
 
@@ -41,7 +43,7 @@ namespace CheckSaver.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Photo")] Neighbor neighbor)
+        public ActionResult Create([Bind(Include = "Id,Name,Photo")] Neighbours neighbor)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +61,7 @@ namespace CheckSaver.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Neighbor neighbor = _repository.FindNeighbourById(id);
+            Neighbours neighbor = _repository.FindNeighbourById(id);
             if (neighbor == null)
             {
                 return HttpNotFound();
@@ -72,7 +74,7 @@ namespace CheckSaver.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Photo")] Neighbor neighbor)
+        public ActionResult Edit([Bind(Include = "Id,Name,Photo")] Neighbours neighbor)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +91,7 @@ namespace CheckSaver.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Neighbor neighbor = _repository.FindNeighbourById(id);
+            Neighbours neighbor = _repository.FindNeighbourById(id);
             if (neighbor == null)
             {
                 return HttpNotFound();

@@ -1,33 +1,8 @@
-﻿@model CheckSaver.Models.Check
-
-@*<div class="card card-small" onclick="location.href = '@Url.Action("Details", "Checks", new { id = Model.Id })'; ">
-        @if (Model.Store.Logo != null)
-        {
-            <img src="@Model.Store.Logo" class="store-logo" />
-        }
-        <span class="date-day">@Model.DateTime.ToString("dd")</span>
-        <br />
-        <span class="date-month">@Model.DateTime.ToString("MMMM")</span>
-        <br />
-        <span class="summa">@Model.Summ.ToString("C")</span>
-    </div>*@
-
-@*<div class="btn-group detail-button">
-        <button type="button" class="btn dots" data-toggle="dropdown" aria-expanded="false">
-            <div class="icon-bar"></div>
-            <div class="icon-bar"></div>
-            <div class="icon-bar"></div>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-right " role="menu">
-            <li><a href="@Url.Action("Details", "Checks", new { id = Model.Id })">Action</a></li>
-            <li><a href="@Url.Action("Delete", "Checks", new { id = Model.Id })">Another action</a></li>
-        </ul>
-
-    </div>*@
+﻿@model CheckSaver.Models.Checks
 
 <div class="card card-small">
-    <div class="card-image" style="background-image: url(@Model.Store.Logo)">
-        <div class="card-title">@Model.DateTime.ToString("dd") @Model.DateTime.ToString("MMMM")</div>
+    <div class="card-image" style="background-image: url(@Model.Stores.Photo)">
+        <div class="card-title">@Model.Date.ToString("dd") @Model.Date.ToString("MMMM")</div>
     </div>
     <div class="card-action">
         <a href="@Url.Action("Details", "Checks", new {id = Model.Id})">

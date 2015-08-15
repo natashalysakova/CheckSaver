@@ -1,5 +1,5 @@
 ﻿@using CheckSaver.Models
-@model CheckSaver.Models.Neighbor
+@model CheckSaver.Models.Neighbours
 
 @{
     ViewBag.Title = "Details";
@@ -19,12 +19,64 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
 
-        @foreach (Check check in Model.Check)
+       <h2>Оплачено</h2>
+        @foreach (Checks check in Model.Checks)
         {
             <dd>
-                @Html.Display(check.DateTime.ToLongDateString())
+                @check.Date - @check.Stores.Title
             </dd>
         }
+
+        <h2>Должны @Model.Name</h2>
+        @foreach (Transactions transaction in Model.MyPaysNP)
+        {
+            if (!@transaction.IsDebitOff)
+            {
+
+            <dd>
+               @transaction.Date.ToShortDateString() - @transaction.Caption - @transaction.ForWhomNP.Name: @transaction.Summa.ToString("C");
+            </dd>
+            }
+        }
+
+        @{ 
+            var summ = (from t in Model.MyPaysNP where !t.IsDebitOff group t by t.ForWhomNP.Name into groups select groups).ToList();
+            foreach (var item in summ)
+            {
+                <dd>@item.Key: @item.Sum(x => x.Summa).ToString("C")</dd>
+
+            }
+        }
+
+        <h2>@Model.Name Должен</h2>
+        @foreach (Transactions transaction in Model.PaysForMeNP)
+        {
+            if (!@transaction.IsDebitOff)
+            {
+            <dd>
+                @transaction.Date.ToShortDateString() - @transaction.Caption - @transaction.WhoPayNP.Name: @transaction.Summa.ToString("C");
+            </dd>
+            }
+        }
+
+        @{
+            var summ2 = (from t in Model.PaysForMeNP where !t.IsDebitOff group t by t.WhoPayNP.Name into groups select groups).ToList();
+            foreach (var item in summ2)
+            {
+                <dd>@item.Key: @item.Sum(x => x.Summa).ToString("C")</dd>
+
+            }
+        }
+
+
+        <h2>Растраты</h2>
+        @{ 
+            foreach (var item in ViewBag.MonthPay)
+            {
+                <dd>@item</dd>
+            }
+        }
+
     </dl>
 </div>
 <p>

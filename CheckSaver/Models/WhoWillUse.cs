@@ -15,10 +15,10 @@ namespace CheckSaver.Models
     public partial class WhoWillUse
     {
         public int Id { get; set; }
-        public Nullable<int> PurchaseId { get; set; }
-        public Nullable<int> NeighborId { get; set; }
+        public int NeighbourId { get; set; }
+        public int PurchaseId { get; set; }
     
-        public virtual Neighbor Neighbor { get; set; }
-        public virtual Purchase Purchase { get; set; }
+        public virtual Neighbours Neighbours { get; set; }
+        public virtual Purchases Purchases { get; set; }
     }
 }
