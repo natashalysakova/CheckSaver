@@ -159,6 +159,7 @@
     <Compile Include="Models\InputModels\CheckInputModel.cs" />
     <Compile Include="Models\InputModels\ProductInputModel.cs" />
     <Compile Include="Models\InputModels\PurchaseInputModel.cs" />
+    <Compile Include="Models\InputModels\TransactionInputModel.cs" />
     <Compile Include="Models\Metadata\NeighboursMetadata.cs" />
     <Compile Include="Models\Metadata\ProductsMetadata.cs" />
     <Compile Include="Models\Metadata\StoresMetadata.cs" />

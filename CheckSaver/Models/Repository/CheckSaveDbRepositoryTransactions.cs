@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
+using CheckSaver.Models.InputModels;
 
 namespace CheckSaver.Models.Repository
 {
@@ -25,11 +26,20 @@ namespace CheckSaver.Models.Repository
             return _db.Transactions.Find(id);
         }
 
-        internal void AddNewTransaction(Transactions transactions)
+        internal void AddNewTransaction(TransactionsInputModel transactionsInput)
         {
             try
             {
-                _db.Transactions.Add(transactions);
+                Transactions t = new Transactions();
+                t.Caption = transactionsInput.Caption;
+                t.CheckId = transactionsInput.CheckId;
+                t.Date = transactionsInput.Date;
+                t.ForWhom = transactionsInput.ForWhom;
+                t.IsDebitOff = t.IsDebitOff;
+                t.Summa = Convert.ToDecimal(transactionsInput.Summa.Replace(".", ","));
+                t.WhoPay = transactionsInput.WhoPay;
+
+                _db.Transactions.Add(t);
                 _db.SaveChanges();
             }
             catch (DbEntityValidationException e)
@@ -90,9 +100,9 @@ namespace CheckSaver.Models.Repository
                 if (other != null)
                 {
                     if (c.GetSumm() > other.GetSumm())
-                        result.Add(string.Format("{0} -> {1} = {2}", other.From.Name, c.From.Name, c.GetSumm() - other.GetSumm()));
+                        result.Add(string.Format("{0} -> {1} = {2}", other.From.Name, c.From.Name, (c.GetSumm() - other.GetSumm()).ToString("C")));
                     else
-                        result.Add(string.Format("{0} -> {1} = {2}", other.To.Name, c.To.Name, other.GetSumm() - c.GetSumm()));
+                        result.Add(string.Format("{0} -> {1} = {2}", other.To.Name, c.To.Name, (other.GetSumm() - c.GetSumm()).ToString("C")));
 
                     credits.Remove(other);
                 }

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using CheckSaver.Models.Repository;
 using CheckSaver.Models;
+using CheckSaver.Models.InputModels;
 
 namespace CheckSaver.Controllers
 {
@@ -54,7 +55,7 @@ namespace CheckSaver.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,WhoPay,ForWhom,Summa,Caption,Date,IsDebitOff")] Transactions transactions)
+        public ActionResult Create(TransactionsInputModel transactions)
         {
             if (ModelState.IsValid)
             {
