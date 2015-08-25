@@ -41,3 +41,14 @@ $('body').scrollspy({
 $('.navbar-collapse ul li a').click(function() {
     $('.navbar-toggle:visible').click();
 });
+
+
+function ShowOverlay(videoUrl) {
+    $('.overlay').show();
+    $('.embed-responsive-item')[0].src = videoUrl + '?rel=0&amp;showinfo=0';
+}
+
+function closeOverlay() {
+    $('.overlay').hide();
+    $('.embed-responsive-item')[0].src = '';
+}

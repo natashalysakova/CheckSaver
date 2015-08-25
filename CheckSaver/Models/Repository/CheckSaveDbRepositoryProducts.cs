@@ -51,10 +51,6 @@ namespace CheckSaver.Models.Repository
             Products product = FindProductById(id);
             while (product.Purchases.Any())
             {
-                //while (product.Purchase.Last().Currency.Any())
-                //    {
-                //        _db.Currency.Remove(product.Purchase.Last().Currency.Last());
-                //    }
 
                 while (product.Purchases.Last().WhoWillUse.Any())
                     {
@@ -63,6 +59,13 @@ namespace CheckSaver.Models.Repository
 
                 _db.Purchases.Remove(product.Purchases.Last());
             }
+
+            while (product.Price.Any())
+            {
+                product.Price.Remove(product.Price.Last());
+            }
+
+
             _db.Products.Remove(product);
             _db.SaveChanges();
         }

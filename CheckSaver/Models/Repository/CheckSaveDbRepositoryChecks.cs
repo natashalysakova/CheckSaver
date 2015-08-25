@@ -187,6 +187,11 @@ namespace CheckSaver.Models.Repository
                 }
             }
 
+            while (check.Transactions.Any())
+            {
+                _db.Transactions.Remove(check.Transactions.Last());
+            }
+
             foreach (int neighbour in neighboursFromCheck)
             {
                 if (neighbour != check.NeighbourId)

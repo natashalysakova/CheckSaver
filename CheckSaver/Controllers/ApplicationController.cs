@@ -6,7 +6,7 @@ namespace CheckSaver.Controllers
     {
         public ActionResult Diagnostika()
         {
-            throw new System.NotImplementedException();
+            return View();
         }
 
         public ActionResult Semki()

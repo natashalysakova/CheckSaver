@@ -25,13 +25,13 @@
 
         <div class="card-action">
 
-            <a href="@Url.Action("Update", "Checks", new {id = Model.Id})">
+            @*<a href="@Url.Action("Update", "Checks", new {id = Model.Id})">
                 <div class="card-flat-button temp-btn">Обновить</div>
-            </a>
+            </a>*@
 
-            <a href="@Url.Action("Edit", "Checks", new {id = Model.Id})">
+            @*<a href="@Url.Action("Edit", "Checks", new {id = Model.Id})">
                 <div class="card-flat-button">Редактировать</div>
-            </a>
+            </a>*@
             <a href="@Url.Action("Delete", "Checks", new {id = Model.Id})">
                 <div class="card-flat-button delete-button">Удалить</div>
             </a>
@@ -81,7 +81,7 @@
         </div>
     }
 
-    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2 card card-big">
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2 card card-big card-down-bordered">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="col-md-6 col-md-offset-6 col-lg-6 col-lg-offset-6 col-sm-6 col-sm-offset-6 col-xs-6 col-xs-offset-6 item-sum text-right">
                 <div class="total-summ">

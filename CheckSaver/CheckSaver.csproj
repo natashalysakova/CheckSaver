@@ -226,6 +226,17 @@
     <Content Include="Content\fonts\font-awesome\css\font-awesome.css" />
     <Content Include="Content\fonts\font-awesome\css\font-awesome.min.css" />
     <Content Include="Content\fonts\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\images\2015-05-21_181157.png" />
+    <Content Include="Content\images\2015-05-21_181211.png" />
+    <Content Include="Content\images\2015-05-27_143302.png" />
+    <Content Include="Content\images\2015-05-27_232859.png" />
+    <Content Include="Content\images\2015-05-27_232909.png" />
+    <Content Include="Content\images\2015-05-27_232919.png" />
+    <Content Include="Content\images\2015-05-27_232930.png" />
+    <Content Include="Content\images\2015-05-27_233121.png" />
+    <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\combination.png" />
+    <Content Include="Content\images\DSC_7659.png" />
     <Content Include="Content\images\icon %282%29.png" />
     <Content Include="Content\images\icon.png" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
@@ -235,6 +246,7 @@
     <Content Include="Content\images\flags.png" />
     <Content Include="Content\images\google-logo-874x288.png" />
     <Content Include="Content\images\lwow3.jpeg" />
+    <Content Include="Content\images\map-image.png" />
     <Content Include="Content\images\mnu.png" />
     <Content Include="Content\images\w512h5121339248515check512.png" />
     <Content Include="Content\images\yandex_logo_en-svg.png" />
@@ -484,6 +496,8 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Stores\Store.cshtml" />
+    <Content Include="Views\Neighbors\Neighbour.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
