@@ -291,3 +291,8 @@ function StateStoreImage(textbox) {
     var img = new Image()
     $('#storePhoto').attr('src', textbox.value);
 }
+
+function StateNeighbourImage(textbox) {
+    var img = new Image()
+    $('#neighbourPhoto').attr('src', textbox.value);
+}
