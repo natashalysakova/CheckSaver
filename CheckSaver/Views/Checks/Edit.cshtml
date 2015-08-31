@@ -1,10 +1,12 @@
 ﻿@model CheckSaver.Models.InputModels.CheckInputModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Редактировать чек";
 }
 
-<h2>Edit</h2>
+<script>
+    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
+</script>
 
 
 @using (Html.BeginForm())

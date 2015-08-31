@@ -1,7 +1,11 @@
 ﻿@model CheckSaver.Models.Stores
 
+@{
+    ViewBag.Title = "Создание магазина";
+}
+
 <script>
-    $('.navbar-brand')[0].innerHTML += 'Создание магазина';
+    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
 </script>
 
 

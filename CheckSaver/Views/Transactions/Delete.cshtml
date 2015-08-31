@@ -1,8 +1,12 @@
 ﻿@model CheckSaver.Models.Transactions
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Удалить транзакцию";
 }
+
+<script>
+    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
+</script>
 
 <div class="dialog">
 

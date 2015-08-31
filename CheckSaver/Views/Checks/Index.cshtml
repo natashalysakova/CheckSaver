@@ -2,11 +2,11 @@
 @model System.Collections.Generic.IEnumerable<CheckSaver.Models.Checks>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Чеки";
 }
 
 <script>
-    $('.navbar-brand')[0].innerHTML += "Чеки";
+    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
 </script>
 
 

@@ -10,11 +10,11 @@
 }
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Редактировать магазин " + Model.Title;
 }
 
 <script>
-    $('.navbar-brand')[0].innerHTML += 'Редактирование магазина';
+    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
 </script>
 
 

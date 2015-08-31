@@ -7,12 +7,14 @@
 @model CheckSaver.Models.Checks
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Подробно о чеке за " + @Model.Date.ToString("D");
 }
 
 <script>
-    $('.navbar-brand')[0].innerHTML += 'Подробно - @Model.Date.ToString("D")';
+    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
 </script>
+
+
 <div class="container">
     <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2 card card-big">
         <div class="card-image" style="background: url(@Model.Stores.Photo); background-size: cover; background-position: center center;"></div>

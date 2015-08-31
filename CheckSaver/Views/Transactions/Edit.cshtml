@@ -1,11 +1,11 @@
 ﻿@model CheckSaver.Models.Transactions
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Редактирование транзакции";
 }
 
 <script>
-    $('.navbar-brand')[0].innerHTML += 'Редактирование транзакции';
+    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
 </script>
 
 @using (Html.BeginForm())

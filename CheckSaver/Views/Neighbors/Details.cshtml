@@ -2,11 +2,11 @@
 @model CheckSaver.Models.Neighbours
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Статистика по " + Model.Name;
 }
 
 <script>
-    $('.navbar-brand')[0].innerHTML += "Cтатистика";
+    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
 </script>
 
 <div class="card card-big card-big-full-bordered">

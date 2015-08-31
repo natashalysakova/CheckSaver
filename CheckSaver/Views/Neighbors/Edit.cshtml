@@ -1,11 +1,11 @@
 ﻿@model CheckSaver.Models.Neighbours
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Редактирование соседа " + Model.Name;
 }
 
 <script>
-    $('.navbar-brand')[0].innerHTML += 'Редактирование соседа';
+    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
 </script>
 
 
