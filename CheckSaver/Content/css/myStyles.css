@@ -681,6 +681,10 @@ input {
     padding-top: 20px;
 }
 
+.card-padded {
+    padding: 20px;
+}
+
 
 /*.group 			  { 
   position:relative; 

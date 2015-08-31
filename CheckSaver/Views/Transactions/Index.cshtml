@@ -1,74 +1,153 @@
 ﻿@model IEnumerable<CheckSaver.Models.Transactions>
 
 @{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-@foreach(var credit in ViewBag.Credits)
-{
-    <p>@credit</p>
+    ViewBag.Title = "Транзакции";
 }
 
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Summa)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Caption)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsDebitOff)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WhoPayNP.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ForWhomNP.Name)
-        </th>
-        <th></th>
-    </tr>
+<script>
+    $('.navbar-brand')[0].innerHTML += "Транзакции";
+</script>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Summa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Caption)
-            @if(item.CheckId!= null)
+
+
+<div class="form-horizontal col-xs-12 col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2 card card-big card-big-full-bordered card-padded">
+    <div class="card-big-title">
+        <div class="main-title">Информация о долгах</div>
+        <div class="sub-title"></div>
+    </div>
+    <hr />
+
+    @foreach (var credit in ViewBag.Credits)
+    {
+        <p>@credit</p>
+    }
+
+    <hr />
+    <div class="card-big-title">
+        <div class="main-title">Список несвязанных транзакции</div>
+        <div class="sub-title"></div>
+    </div>
+    <hr />
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Кто платил")
+            </th>
+            <th>
+                @Html.DisplayName("За кого платили")
+            </th>
+            <th>
+                @Html.DisplayName("Дата")
+            </th>
+
+            <th>
+                @Html.DisplayName("Сумма")
+            </th>
+            <th>
+                @Html.DisplayName("Описание")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (item.CheckId == null && !item.IsDebitOff)
             {
-                @Html.ActionLink("Посмотреть чек", "Details", "Checks", new { id = item.CheckId }, new { })
-            }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsDebitOff)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WhoPayNP.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ForWhomNP.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WhoPayNP.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ForWhomNP.Name)
+                </td>
+                <td>
+                    @item.Date.ToShortDateString()
+                </td>
 
-</table>
+                <td>
+                    @item.Summa.ToString("C")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Caption)
+                </td>
+                <td>
+                    @Html.ActionLink("Изменить", "Edit", new { id = item.Id }) |
+                    @*@Html.ActionLink("Подробности", "Details", new { id=item.Id }) |*@
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+            }
+        }
+
+    </table>
+
+
+    <hr />
+    <div class="card-big-title">
+        <div class="main-title">Список связанных транзакции</div>
+        <div class="sub-title"></div>
+    </div>
+    <hr />
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Кто платил")
+            </th>
+            <th>
+                @Html.DisplayName("За кого платили")
+            </th>
+            <th>
+                @Html.DisplayName("Дата")
+            </th>
+
+            <th>
+                @Html.DisplayName("Сумма")
+            </th>
+            <th>
+                @Html.DisplayName("Просмотр чека")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (item.CheckId != null)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WhoPayNP.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ForWhomNP.Name)
+                    </td>
+                    <td>
+                        @item.Date.ToShortDateString()
+                    </td>
+
+                    <td>
+                        @item.Summa.ToString("C")
+                    </td>
+                    <td>
+                            @Html.ActionLink("Посмотреть чек", "Details", "Checks", new { id = item.CheckId }, new { })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Изменить", "Edit", new { id = item.Id }) |
+                        @*@Html.ActionLink("Подробности", "Details", new { id=item.Id }) |*@
+                        @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+
+</div>
+
+<div class="round-button">
+    <div class="round-button-circle" onclick="location.href = '@Url.Action("Create")'; ">
+        +
+    </div>
+</div>
