@@ -23,7 +23,7 @@ namespace CheckSaver.Models.Repository
 
         public Dictionary<int, string> GetNeighboursNames()
         {
-            return _db.Neighbours.Select(t => new { t.Id, t.Name })
+            return _db.Neighbours.OrderBy(x => x.Name).Select(t => new { t.Id, t.Name })
                    .ToDictionary(t => t.Id, t => t.Name);
         }
 
