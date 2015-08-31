@@ -74,7 +74,8 @@ namespace CheckSaver.Models.Repository
             {
                 if(neighbour!= tmp.NeighbourId)
                 {
-                    Transactions t = new Transactions { Caption = string.Format("From Check {0} - {1}", tmp.Id, tmp.Date.ToShortDateString()), Date = tmp.Date, WhoPay = tmp.NeighbourId, IsDebitOff = false, ForWhom = neighbour, Summa = dictonary[neighbour], CheckId = tmp.Id};
+                    Transactions t = new Transactions { Caption = string.Format("За чек  #{0}", tmp.Id), Date = tmp.Date, WhoPay = tmp.NeighbourId, IsDebitOff = false, ForWhom = neighbour, Summa = dictonary[neighbour], CheckId = tmp.Id };
+
 
                     _db.Transactions.Add(t);
                 }
