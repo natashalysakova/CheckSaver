@@ -9,79 +9,95 @@
     $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
 </script>
 
-<div class="card card-big card-big-full-bordered">
-    <h4>Сосед</h4>
+<div class="form-horizontal col-xs-12 col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2 card card-big card-big-full-bordered">
+    <div class="card-big-title">
+        <div class="main-title">@ViewBag.Title</div>
+        <div class="sub-title"></div>
+    </div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-offset-0 col-lg-offset-0">
+        <div class="main-title">
+            Растраты
+        </div>
+        @{
+            foreach (var item in ViewBag.MonthPay)
+            {
+                @item<br />
+            }
+        }
+        <hr />
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-offset-0 col-lg-offset-0">
+        <div class="main-title">
+            Оплачено
+        </div>
 
-       <h2>Оплачено</h2>
         @foreach (Checks check in Model.Checks)
         {
-            <dd>
-                @check.Date - @check.Stores.Title
-            </dd>
-        }
+            <div class="col-md-4 col-xs-12 col-sm-6 col-lg-3">
+                @{
+                    Html.RenderPartial("~/Views/Checks/Card.cshtml", check);
+                }
+            </div>
+                    }    
+        <hr />
 
-        <h2>Должны @Model.Name</h2>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+            <hr />
+        </div>
+    </div>
+        @*    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-offset-0 col-lg-offset-0">
+
+        <div class="main-title">
+            Должны @Model.Name
+        </div>
+
         @foreach (Transactions transaction in Model.MyPaysNP)
-        {
-            if (!@transaction.IsDebitOff)
             {
+                if (!@transaction.IsDebitOff)
+                {
 
-            <dd>
-               @transaction.Date.ToShortDateString() - @transaction.Caption - @transaction.ForWhomNP.Name: @transaction.Summa.ToString("C");
-            </dd>
-            }
-        }
-
-        @{ 
-            var summ = (from t in Model.MyPaysNP where !t.IsDebitOff group t by t.ForWhomNP.Name into groups select groups).ToList();
-            foreach (var item in summ)
-            {
-                <dd>@item.Key: @item.Sum(x => x.Summa).ToString("C")</dd>
-
-            }
-        }
-
-        <h2>@Model.Name Должен</h2>
-        @foreach (Transactions transaction in Model.PaysForMeNP)
-        {
-            if (!@transaction.IsDebitOff)
-            {
-            <dd>
-                @transaction.Date.ToShortDateString() - @transaction.Caption - @transaction.WhoPayNP.Name: @transaction.Summa.ToString("C");
-            </dd>
+                <p>
+                    @transaction.Date.ToShortDateString() - @transaction.Caption - @transaction.ForWhomNP.Name: @transaction.Summa.ToString("C");
+                </p>
             }
         }
 
         @{
-            var summ2 = (from t in Model.PaysForMeNP where !t.IsDebitOff group t by t.WhoPayNP.Name into groups select groups).ToList();
-            foreach (var item in summ2)
+            var summ = (from t in Model.MyPaysNP where !t.IsDebitOff group t by t.ForWhomNP.Name into groups select groups).ToList();
+            foreach (var item in summ)
             {
-                <dd>@item.Key: @item.Sum(x => x.Summa).ToString("C")</dd>
+                <p>
+                    @item.Key: @item.Sum(x => x.Summa).ToString("C")
+                </p>
 
             }
         }
 
-
-        <h2>Растраты</h2>
-        @{ 
-            foreach (var item in ViewBag.MonthPay)
+        <hr />
+        <div class="main-title">
+            @Model.Name Должeн
+        </div>
+        @foreach (Transactions transaction in Model.PaysForMeNP)
+        {
+            if (!@transaction.IsDebitOff)
             {
-                <dd>@item</dd>
+                <p>@transaction.Date.ToShortDateString() - @transaction.Caption - @transaction.WhoPayNP.Name: @transaction.Summa.ToString("C")</p>
             }
         }
 
-    </dl>
-</div>
-<p>
-    <button class="btn btn-default" onclick="location.href='@Url.Action("Edit", "Neighbors", new {id = Model.Id})'">Реактировать</button>
-    <button class="btn btn-default" onclick="location.href = '@Url.Action("Index", "Neighbors")' ">Назад к списку соседей</button>
-</p>
+        <hr />
+    </div>*@
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-offset-0 col-lg-offset-0">
+            <div class="form-group">
+                <div class="col-md-offset-3 ">
+                    <input type="button" value="Реактировать" class="card-flat-button delete-button" onclick="location.href='@Url.Action("Edit", new { id = Model.Id })'" />
+                    <input type="button" value="Назад к списку соседей" class="card-flat-button" onclick="location.href='@Url.Action("Index")'" />
+                </div>
+            </div>
+        </div>
+    </div>
