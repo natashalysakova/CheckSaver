@@ -17,9 +17,9 @@
     <div class="form-horizontal col-xs-12 col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2 card card-big card-big-full-bordered">
         <div class="card-big-title">
             <div class="main-title">Новый чек</div>
-            <div class="sub-title">Some text here</div>
+            <div class="sub-title">@*Some text here*@</div>
         </div>
-
+        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.DateTime, htmlAttributes: new { @class = "control-label col-md-3" })
@@ -51,6 +51,7 @@
                 @Html.ValidationMessageFor(model => model.NeighborId, "", new { @class = "text-danger" })
             </div>
         </div>
+        <hr />
 
         <div role="form" class="input_fields_wrap">
 
@@ -68,20 +69,23 @@
                     @Html.LabelFor(model => model.Purchases[0].WhoWillUse)
                 </div>
             </div>
-
             @{
                 Html.RenderPartial("ProductBox");
             }
-
-
         </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+                <hr />
             </div>
         </div>
-    </div>
+        <div class="form-group">
+            <div class="col-md-offset-3 ">
+                <input type="submit" value="Создать" class="card-flat-button delete-button" />
+                <input type="button" value="Отмена" class="card-flat-button" onclick="location.href='@Url.Action("Index")'" />
+            </div>
+        </div>
 
+    </div>
                 }
 
 <div class="round-button">
