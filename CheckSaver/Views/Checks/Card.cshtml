@@ -1,8 +1,10 @@
-﻿@model CheckSaver.Models.Checks
+﻿@using System.Globalization;
+
+@model CheckSaver.Models.Checks
 
 <div class="card card-small">
     <div class="card-image" style="background-image: url(@Model.Stores.Photo)">
-        <div class="card-title">@Model.Date.ToString("dd") @Model.Date.ToString("MMMM")</div>
+        <div class="card-title">@Model.Date.ToString("d MMM", CultureInfo.CreateSpecificCulture("ru-RU"))</div>
     </div>
     <div class="card-action">
         <a href="@Url.Action("Details", "Checks", new {id = Model.Id})">
