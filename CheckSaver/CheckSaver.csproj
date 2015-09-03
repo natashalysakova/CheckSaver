@@ -436,6 +436,7 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Application\Semki.cshtml" />
     <Content Include="Views\Checks\Card.cshtml" />
+    <Content Include="Views\Checks\_checks.cshtml" />
     <None Include="Views\MainSite\en\footer.cshtml" />
     <None Include="Views\MainSite\en\navbar.cshtml" />
     <None Include="Views\MainSite\en\referat.cshtml" />
@@ -502,7 +503,6 @@
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Stores\Store.cshtml" />
     <Content Include="Views\Neighbors\Neighbour.cshtml" />
-    <Content Include="Views\Transactions\IndexPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

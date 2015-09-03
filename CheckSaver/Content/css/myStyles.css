@@ -685,6 +685,17 @@ input {
     padding: 20px;
 }
 
+.pager{
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.pager li>a, .pager li>span{
+    border-radius: 2px;
+    font-size: 20px;
+    color: #00796b;
+        padding-bottom: 7px;
+}
 
 /*.group 			  { 
   position:relative; 

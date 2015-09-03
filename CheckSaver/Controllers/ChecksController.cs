@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,12 +13,24 @@ namespace CheckSaver.Controllers
     public class ChecksController : Controller
     {
         private readonly CheckSaveDbRepository _repository = new CheckSaveDbRepository();
-
+        private int pageSize = 12;
         // GET: Checks
-        public ActionResult Index()
+        public ActionResult Index(int pageNum = 0)
         {
-            var check = _repository.GetAllChecks();
-            return View(check);
+            var check = _repository.GetChecks(pageSize, pageNum);
+            ViewData["PageNum"] = pageNum;
+            ViewData["PageCount"] = _repository.GetChecksCount() / pageSize;
+
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_checks", check);
+            }
+            else
+            {
+                return View(check);
+            }
+
         }
 
 
@@ -199,7 +211,8 @@ namespace CheckSaver.Controllers
             {
                 if (prices.First() != null)
                 {
-                    var projection = from price in prices  where price!=null
+                    var projection = from price in prices
+                                     where price != null
                                      select new
                                      {
                                          id = price.Id,
@@ -226,7 +239,7 @@ namespace CheckSaver.Controllers
             }
 
             return null;
-            
+
         }
 
         public ActionResult ProductBox(string index)

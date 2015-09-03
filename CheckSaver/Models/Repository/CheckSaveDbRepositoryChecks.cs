@@ -8,9 +8,14 @@ namespace CheckSaver.Models.Repository
 {
     public partial class CheckSaveDbRepository
     {
-        public IEnumerable<Checks> GetAllChecks()
+        public IEnumerable<Checks> GetChecks(int pageSize, int pageNumber)
         {
-            return _db.Checks.Include(c => c.Neighbours).Include(c => c.Stores).ToList();
+            return _db.Checks.OrderByDescending(x => x.Date).Skip(pageSize * pageNumber).Take(pageSize).Include(c => c.Neighbours).Include(c => c.Stores).ToList();
+        }
+
+        internal int GetChecksCount()
+        {
+            return _db.Checks.Count();
         }
 
         internal Checks FindCheckById(int? id)

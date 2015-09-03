@@ -1,5 +1,6 @@
 ﻿@using System.Linq
-@model System.Collections.Generic.IEnumerable<CheckSaver.Models.Checks>
+@using CheckSaver.Helpers;
+@model IEnumerable<CheckSaver.Models.Checks>
 
 @{
     ViewBag.Title = "Чеки";
@@ -10,17 +11,12 @@
 </script>
 
 
-<div class="container">
+<div class="container" id="loadedChecks">
 
-    @foreach (var item in Model.OrderByDescending(x => x.Date))
-    {
-        <div class="col-md-4 col-sm-6 col-xs-12 col-lg-3 nopaddiing">
-            @{ Html.RenderPartial("Card", item); }
-        </div>
-
+    @{ 
+        Html.RenderPartial("_checks", Model, ViewData);
     }
 </div>
-
 <div class="round-button">
     <div class="round-button-circle" onclick="location.href = '@Url.Action("Create", "Checks")'; ">
         +

@@ -13,8 +13,8 @@ namespace CheckSaver.Helpers
     {
         public static MvcHtmlString PagedNavigatorFirst(this HtmlHelper helper, int pageNumber, int maxPage, int secondPagenumber)
         {
-           string minus = "Transactions?pageNum=" + (pageNumber - 1) + "&pageNum2=" + secondPagenumber; 
-           string plus = "Transactions?pageNum=" + (pageNumber + 1) + "&pageNum2=" + secondPagenumber;
+            string minus = "Transactions?pageNum=" + (pageNumber - 1) + "&pageNum2=" + secondPagenumber;
+            string plus = "Transactions?pageNum=" + (pageNumber + 1) + "&pageNum2=" + secondPagenumber;
             return GetString(plus, minus, pageNumber, maxPage);
         }
 
@@ -61,38 +61,81 @@ namespace CheckSaver.Helpers
         }
 
 
-        public static MvcHtmlString PageNavigator(this AjaxHelper helper, int pageNumber, int maxPage, string target)
+        //public static MvcHtmlString PageNavigator(this AjaxHelper helper, int pageNumber, int maxPage, string target)
+        //{
+        //    AjaxOptions options = new AjaxOptions();
+        //    options.UpdateTargetId = target;
+        //    options.InsertionMode = InsertionMode.Replace;
+
+
+        //    StringBuilder s = new StringBuilder();
+        //    s.Append("<nav><ul class=\"pager\">");
+
+        //    if (pageNumber == 0)
+        //    {
+        //        s.Append("<li class=\"previous disabled\"><a href = \"#\" ><span aria-hidden=\"true\">←</span></a></li>");
+        //    }
+        //    else
+        //    {
+        //        s.Append("<li class=\"next\">" + helper.ActionLink("<span aria-hidden=\"true\">←</span>", "Index", new { pageNum = pageNumber - 1 }, options) + "</li>");
+        //    }
+        //    if (pageNumber == maxPage)
+        //    {
+        //        s.Append("<li class=\"next disabled\"><a href = \"#\" ><span aria-hidden=\"true\">→</span></a></li>");
+        //    }
+        //    else
+        //    {
+        //        s.Append("<li class=\"next\">" + helper.ActionLink("→", "Index", new { pageNum = pageNumber + 1 }, options) + "</li>");
+        //    }
+
+        //    s.Append("</ul></nav>");
+
+
+        //    return MvcHtmlString.Create(s.ToString());
+        //}
+
+
+        public static MvcHtmlString PageNavigator(this AjaxHelper helper, int pageNumber, int maxPageNumber)
         {
-            AjaxOptions options = new AjaxOptions();
-            options.UpdateTargetId = target;
-            options.InsertionMode = InsertionMode.Replace;
+            StringBuilder sb = new StringBuilder();
+            AjaxOptions ao = new AjaxOptions()
+            {
+                UpdateTargetId = "loadedChecks",
+            };
 
+            sb.Append("<nav><ul class=\"pager\">");
 
-            StringBuilder s = new StringBuilder();
-            s.Append("<nav><ul class=\"pager\">");
 
             if (pageNumber == 0)
             {
-                s.Append("<li class=\"previous disabled\"><a href = \"#\" ><span aria-hidden=\"true\">←</span></a></li>");
+                sb.Append("<li class=\"previous disabled\"><a href = \"#\" ><span aria-hidden=\"true\">&larr;</span></a></li>");
+
+                sb.Append("<li class=\"next\">");
+                sb.Append(helper.ActionLink("→", "Index", new { pageNum = pageNumber + 1 }, ao));
+                sb.Append("</li>");
+
+            }
+            else if (pageNumber == maxPageNumber)
+            {
+                sb.Append("<li class=\"previous\">");
+                sb.Append(helper.ActionLink("←", "Index", new { pageNum = pageNumber - 1 }, ao));
+                sb.Append("</li>");
+
+
+                sb.Append("<li class=\"next disabled\"><a href = \"#\" ><span aria-hidden=\"true\">&rarr;</span></a></li>");
+
             }
             else
             {
-                s.Append("<li class=\"next\">" + helper.ActionLink("<span aria-hidden=\"true\">←</span>", "Index", new { pageNum = pageNumber - 1 }, options) + "</li>");
-            }
-            if (pageNumber == maxPage)
-            {
-                s.Append("<li class=\"next disabled\"><a href = \"#\" ><span aria-hidden=\"true\">→</span></a></li>");
-            }
-            else
-            {
-                s.Append("<li class=\"next\">" + helper.ActionLink("→", "Index", new { pageNum = pageNumber + 1 }, options) + "</li>");
+                sb.Append("<li class=\"previous\">");
+                sb.Append(helper.ActionLink("←", "Index", new { pageNum = pageNumber - 1 }, ao));
+                sb.Append("</li>");
+                sb.Append("<li class=\"next\">");
+                sb.Append(helper.ActionLink("→", "Index", new { pageNum = pageNumber + 1 }, ao));
+                sb.Append("</li>");
             }
 
-            s.Append("</ul></nav>");
-
-
-            return MvcHtmlString.Create(s.ToString());
+            return MvcHtmlString.Create(sb.ToString());
         }
-
     }
 }
