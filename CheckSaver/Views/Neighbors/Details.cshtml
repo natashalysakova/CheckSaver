@@ -40,7 +40,12 @@
                     Html.RenderPartial("~/Views/Checks/Card.cshtml", check);
                 }
             </div>
-                    }    
+                    }
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="main-title">
+                Сумма чеков - @Model.Checks.Sum(x => x.Purchases.Sum(y => y.Summ)).ToString("C")
+            </div>
+        </div>
         <hr />
 
     </div>
