@@ -147,6 +147,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Pager.cs" />
     <Compile Include="Models\Checks.cs">
       <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
     </Compile>
@@ -501,6 +502,7 @@
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Stores\Store.cshtml" />
     <Content Include="Views\Neighbors\Neighbour.cshtml" />
+    <Content Include="Views\Transactions\IndexPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

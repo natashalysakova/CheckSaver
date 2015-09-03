@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<CheckSaver.Models.Transactions>
+@using CheckSaver.Helpers;
 
 @{
     ViewBag.Title = "Транзакции";
@@ -55,34 +56,58 @@
         {
             if (item.CheckId == null && !item.IsDebitOff)
             {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WhoPayNP.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ForWhomNP.Name)
-                </td>
-                <td>
-                    @item.Date.ToShortDateString()
-                </td>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WhoPayNP.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ForWhomNP.Name)
+                    </td>
+                    <td>
+                        @item.Date.ToShortDateString()
+                    </td>
 
-                <td>
-                    @item.Summa.ToString("C")
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Caption)
-                </td>
-                <td>
-                    @Html.ActionLink("Изменить", "Edit", new { id = item.Id }) |
-                    @*@Html.ActionLink("Подробности", "Details", new { id=item.Id }) |*@
-                    @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
-                </td>
-            </tr>
+                    <td>
+                        @item.Summa.ToString("C")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Caption)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Изменить", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
             }
         }
 
     </table>
 
+    @*<nav>
+        <ul class="pager">
+            @if ((int)ViewData["PageNum"] == 0)
+            {
+                <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span></a></li>
+            }
+            else
+            {
+                <li class="previous "><a href="@Url.Action("Index", new { pageNum = (int)ViewData["PageNum"] - 1, pageNum2 = (int)ViewData["PageNum2"] })"><span aria-hidden="true">&larr;</span></a></li>
+            }
+
+
+
+            @if ((int)ViewData["PageNum"] == (int)ViewData["PageWithoutCount"])
+            {
+            <li class="next disabled"><a href="#"><span aria-hidden="true">&rarr;</span></a></li>
+            }
+            else
+            {
+                <li class="next"><a href="@Url.Action("Index", new { pageNum = (int)ViewData["PageNum"] + 1, pageNum2 = (int)ViewData["PageNum2"] })"><span aria-hidden="true">&rarr;</span></a></li>
+            }
+        </ul>
+    </nav>*@
+
+    @Html.PagedNavigatorFirst((int)ViewData["PageNum"], (int)ViewData["PageWithoutCount"], (int)ViewData["PageNum2"])
 
     <hr />
     <div class="card-big-title">
@@ -114,36 +139,35 @@
 
         @foreach (var item in Model)
         {
-            if (item.CheckId != null)
+            if (item.Checks != null)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.WhoPayNP.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ForWhomNP.Name)
-                    </td>
-                    <td>
-                        @item.Date.ToShortDateString()
-                    </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WhoPayNP.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ForWhomNP.Name)
+                </td>
+                <td>
+                    @item.Date.ToShortDateString()
+                </td>
 
-                    <td>
-                        @item.Summa.ToString("C")
-                    </td>
-                    <td>
-                            @Html.ActionLink("Посмотреть чек", "Details", "Checks", new { id = item.CheckId }, new { })
-                    </td>
-                    <td>
-                        @Html.ActionLink("Изменить", "Edit", new { id = item.Id }) |
-                        @*@Html.ActionLink("Подробности", "Details", new { id=item.Id }) |*@
-                        @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
-                    </td>
-                </tr>
+                <td>
+                    @item.Summa.ToString("C")
+                </td>
+                <td>
+                    @Html.ActionLink("Посмотреть чек", "Details", "Checks", new { id = item.CheckId }, new { })
+                </td>
+                <td>
+                    @Html.ActionLink("Изменить", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                </td>
+            </tr>
             }
         }
 
     </table>
-
+    @Html.PagedNavigatorSecond((int)ViewData["PageNum2"], (int)ViewData["PageWithCount"], (int)ViewData["PageNum"])
 </div>
 
 <div class="round-button">

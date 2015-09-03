@@ -15,14 +15,26 @@ namespace CheckSaver.Controllers
     public class TransactionsController : Controller
     {
         CheckSaveDbRepository _repository = new CheckSaveDbRepository();
-
+        private int pageSize = 10;
         // GET: Transactions
-        public ActionResult Index()
+        public ActionResult Index(int pageNum = 0, int pageNum2 = 0)
         {
             ViewBag.Credits = _repository.GetCreditsHistory();
+            int withCount, withoutCount;
+            var transactions = _repository.GetTransactions(pageNum, pageNum2, pageSize, out withCount, out withoutCount);
 
 
-            var transactions = _repository.GetTransactions();
+            ViewData["PageNum"] = pageNum;
+            ViewData["PageNum2"] = pageNum2;
+
+            ViewData["PageWithCount"] = withCount;
+            ViewData["PageWithoutCount"] = withoutCount;
+
+            if(Request.IsAjaxRequest())
+            {
+                return PartialView("IndexPage", transactions);
+            }
+
             return View(transactions.ToList());
         }
 

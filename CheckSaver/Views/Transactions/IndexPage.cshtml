@@ -1,0 +1,54 @@
+﻿@model IEnumerable<CheckSaver.Models.Transactions>
+@using CheckSaver.Helpers;
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Кто платил")
+            </th>
+            <th>
+                @Html.DisplayName("За кого платили")
+            </th>
+            <th>
+                @Html.DisplayName("Дата")
+            </th>
+
+            <th>
+                @Html.DisplayName("Сумма")
+            </th>
+            <th>
+                @Html.DisplayName("Просмотр чека")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WhoPayNP.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ForWhomNP.Name)
+                </td>
+                <td>
+                    @item.Date.ToShortDateString()
+                </td>
+
+                <td>
+                    @item.Summa.ToString("C")
+                </td>
+                <td>
+                    @Html.ActionLink("Посмотреть чек", "Details", "Checks", new { id = item.CheckId }, new { })
+                </td>
+                <td>
+                    @Html.ActionLink("Изменить", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+@Ajax.PageNavigator((int)ViewData["PageNum2"], (int)ViewData["PageWithCount"], "transactionsWithCheck");

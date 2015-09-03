@@ -16,9 +16,20 @@ namespace CheckSaver.Models.Repository
         //    return _db.Transactions;
         //}
 
-        internal IEnumerable<Transactions> GetTransactions()
+        internal IEnumerable<Transactions> GetTransactions(int pageNum, int pageNum2, int pageSize, out int withCount, out int withoutCount)
         {
-            return _db.Transactions.Include(x => x.WhoPayNP).Include(x => x.ForWhomNP);
+            var transactionWithoutCheck = _db.Transactions.Where(x => x.Checks == null).OrderByDescending(x => x.Date).Skip(pageNum * pageSize).Take(pageSize);
+            var transactionWithCheck = _db.Transactions.Where(x => x.Checks != null).OrderByDescending(x => x.Date).Skip(pageNum2 * pageSize).Take(pageSize);
+
+            List<Transactions> result = new List<Transactions>();
+            result.AddRange(transactionWithCheck);
+            result.AddRange(transactionWithoutCheck);
+
+            withCount = _db.Transactions.Where(x => x.Checks != null).Count() / pageSize;
+            withoutCount = _db.Transactions.Where(x => x.Checks == null).Count() / pageSize;
+
+
+            return result;
         }
 
         internal Transactions FindTransactionById(int? id)
