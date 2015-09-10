@@ -33,7 +33,7 @@
             Оплачено
         </div>
 
-        @foreach (Checks check in Model.Checks)
+        @foreach (Checks check in Model.Checks.OrderByDescending(x => x.Date))
         {
             <div class="col-md-4 col-xs-12 col-sm-6 col-lg-3">
                 @{
