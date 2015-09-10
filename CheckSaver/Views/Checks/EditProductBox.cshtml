@@ -1,0 +1,63 @@
+﻿@model CheckSaver.Models.Purchases
+@{
+    int i = ViewBag.Index;
+}
+
+
+@{
+    string s = string.Format("Purchases[{0}].Id", i);
+}
+<input data-val="true" data-val-number="The field Id must be a number." data-val-required="The Id field is required." id="Id" name="@s" type="hidden" value="@Model.Id">
+
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-big card-no-shadows">
+    <div class="col-xs-3">
+        @{ 
+            s = string.Format("Purchases[{0}].Product.Name", i);
+        }
+        <input class="form-control name text-box single-line valid" data-val="true" data-val-required="The Title field is required." id="Products_Title" index="@i" name="@s" type="text" value="@Model.Products.Title" style="cursor: auto;" />
+        @Html.ValidationMessageFor(model => model.Products.Title, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="col-xs-2">
+        @{
+            s = string.Format("Purchases[{0}].Count", i);
+        }
+        <input class="form-control count text-box single-line valid" data-val="true" data-val-required="The Count field is required." id="Products_Count" index="@i" name="@s" type="text" value="@Model.Count.ToString("G3")" style="cursor: auto;" />
+        @Html.ValidationMessageFor(model => model.Count, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="col-xs-2">
+        @{
+            s = string.Format("Purchases[{0}].Product.Price", i);
+        }
+        <input class="form-control cost text-box single-line valid" data-val="true" data-val-required="The Cost field is required." id="Products_Cost" index="@i" name="@s" type="text" value="@Model.Cost.ToString("##.00")" style="cursor: auto;" />
+        @Html.ValidationMessageFor(model => model.Cost, "", new { @class = "text-danger" })
+    </div>
+    <div class=" col-xs-5">
+        @{
+
+            foreach (var c in ViewBag.Names)
+            {
+                var who = (from w in Model.WhoWillUse where w.NeighbourId == c.Key select w).FirstOrDefault();
+                if (who != null)
+                {
+                    <div class="checkbox-inline">
+                        <input type="checkbox" value="@c.Key" name="Purchases[@i].WhoWillUse" checked="" />
+                        @c.Value
+                    </div>
+
+                }
+                else
+                {
+                    <div class="checkbox-inline">
+                        <input type="checkbox" value="@c.Key" name="Purchases[@i].WhoWillUse" />
+                        @c.Value
+                    </div>
+
+                }
+            }
+        }
+    </div>
+
+</div>
+

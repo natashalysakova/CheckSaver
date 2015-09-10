@@ -153,16 +153,20 @@
       <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DetailsModels\CheckDetailsModel.cs" />
+    <Compile Include="Models\ExtentionsModels\Checks.cs" />
     <Compile Include="Models\ExtentionsModels\Neghbours.cs" />
     <Compile Include="Models\ExtentionsModels\Products.cs" />
+    <Compile Include="Models\ExtentionsModels\Purchase.cs" />
     <Compile Include="Models\ExtentionsModels\Stores.cs" />
     <Compile Include="Models\ExtentionsModels\Transactions.cs" />
     <Compile Include="Models\InputModels\CheckInputModel.cs" />
     <Compile Include="Models\InputModels\ProductInputModel.cs" />
     <Compile Include="Models\InputModels\PurchaseInputModel.cs" />
     <Compile Include="Models\InputModels\TransactionInputModel.cs" />
+    <Compile Include="Models\Metadata\ChecksMetadata.cs" />
     <Compile Include="Models\Metadata\NeighboursMetadata.cs" />
     <Compile Include="Models\Metadata\ProductsMetadata.cs" />
+    <Compile Include="Models\Metadata\PurchaseMetadata.cs" />
     <Compile Include="Models\Metadata\StoresMetadata.cs" />
     <Compile Include="Models\Metadata\TransactionsMetadata.cs" />
     <Compile Include="Models\Neighbours.cs">
@@ -438,6 +442,7 @@
     <Content Include="Views\Application\Semki.cshtml" />
     <Content Include="Views\Checks\Card.cshtml" />
     <Content Include="Views\Checks\_checks.cshtml" />
+    <Content Include="Views\Checks\EditProductBox.cshtml" />
     <None Include="Views\MainSite\en\footer.cshtml" />
     <None Include="Views\MainSite\en\navbar.cshtml" />
     <None Include="Views\MainSite\en\referat.cshtml" />

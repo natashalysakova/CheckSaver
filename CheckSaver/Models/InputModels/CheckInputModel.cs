@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace CheckSaver.Models.InputModels
 {
     public class CheckInputModel
     {
         [DisplayName("Дата покупки")]
-        public DateTime DateTime { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime Date { get; set; }
 
         [DisplayName("Магазин")]
         public string StoreId { get; set; }

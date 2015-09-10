@@ -31,9 +31,9 @@
                 <div class="card-flat-button temp-btn">Обновить</div>
             </a>*@
 
-            @*<a href="@Url.Action("Edit", "Checks", new {id = Model.Id})">
+            <a href="@Url.Action("Edit", "Checks", new {id = Model.Id})">
                 <div class="card-flat-button">Редактировать</div>
-            </a>*@
+            </a>
             <a href="@Url.Action("Delete", "Checks", new {id = Model.Id})">
                 <div class="card-flat-button delete-button">Удалить</div>
             </a>
@@ -65,7 +65,7 @@
                         @s.Products.Title
                     </div>
 
-                    <div class="sub-title">@s.Count.ToString("##.000") X @s.Products.Price.FirstOrDefault(x => x.StoreId == Model.StoreId).Cost.ToString("C")</div>
+                    <div class="sub-title">@s.Count.ToString("##.000") X @s.Cost.ToString("C")</div>
                 </div>
 
                 <div class="card-sub-title">Сумма: @s.Summ.ToString("C")</div>

@@ -159,14 +159,15 @@ namespace CheckSaver.Controllers
             if (ModelState.IsValid)
             {
                 _repository.EditCheck(check);
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new {id = check.Id});
             }
+
             ViewBag.NeighborId = new SelectList(_repository.GetNeighborsList(), "Id", "Name", check.NeighborId);
             ViewBag.StoreId = new SelectList(_repository.GetStoresList(), "Id", "Title", check.StoreId);
             ViewBag.Names = _repository.GetNeighboursNames();
             ViewBag.Index = 0;
-
-            return View(check);
+            Checks c = _repository.FindCheckById(check.Id);
+            return View(c);
         }
 
         // GET: Checks/Delete/5
@@ -247,6 +248,20 @@ namespace CheckSaver.Controllers
             ViewBag.Names = _repository.GetNeighboursNames();
             ViewBag.Index = Convert.ToInt32(index);
             return PartialView("ProductBox");
+        }
+
+        public ActionResult EditProductBox(string index)
+        {
+            ViewBag.Names = _repository.GetNeighboursNames();
+            ViewBag.Index = Convert.ToInt32(index);
+            Purchases p = new Purchases()
+            {
+                Id = 0,
+                Products = new Products() { Title = "" },
+                Count = 0,
+                Cost = 0
+            };
+            return PartialView("EditProductBox", p);
         }
 
         public ActionResult Recalc()
