@@ -13,6 +13,11 @@ namespace CheckSaver.Models.Repository
             return _db.Checks.OrderByDescending(x => x.Date).Skip(pageSize * pageNumber).Take(pageSize).Include(c => c.Neighbours).Include(c => c.Stores).ToList();
         }
 
+        public IEnumerable<Checks> GetChecks()
+        {
+            return _db.Checks.ToList();
+        }
+
         internal int GetChecksCount()
         {
             return _db.Checks.Count();

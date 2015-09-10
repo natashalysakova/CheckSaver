@@ -15,6 +15,11 @@ namespace CheckSaver
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            var formatter = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
+            GlobalConfiguration.Configuration.Formatters.Clear();
+            GlobalConfiguration.Configuration.Formatters.Add(formatter);
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
     }
 }
