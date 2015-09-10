@@ -12,12 +12,12 @@ namespace CheckSaver.Models.Repository
 
         internal IEnumerable GetStoresList()
         {
-            return (from store in _db.Stores select new {Id = store.Id, Title = store.Title});
+            return (from store in _db.Stores orderby store.Title select new { Id = store.Id, Title = store.Title + " (" + store.Address + ")" });
         }
 
         internal IEnumerable GetNeighborsList()
         {
-            return (from neighbor in _db.Neighbours select new { Id = neighbor.Id, Name = neighbor.Name });
+            return (from neighbor in _db.Neighbours orderby neighbor.Name select new { Id = neighbor.Id, Name = neighbor.Name });
         }
 
 
