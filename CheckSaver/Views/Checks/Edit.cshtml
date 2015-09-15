@@ -62,10 +62,15 @@
                     @Html.Label("Кто использует")
                 </div>
             </div>
+            @{
+                int x = 0;
 
+            }
             @foreach (var purchase in Model.Purchases)
             {
-                Html.RenderPartial("EditProductBox", purchase);
+                ViewData["number"] = x;
+                Html.RenderPartial("EditProductBox", purchase, ViewData);
+                x++;
             }
         </div>
 

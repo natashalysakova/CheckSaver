@@ -727,6 +727,14 @@ a {
     color: white;
 }
 
+.card-neighbour-photo-xsmall {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    bottom: 30px;
+    left: 10px;
+}
+
 /*.group 			  { 
   position:relative; 
   margin-bottom:45px; 

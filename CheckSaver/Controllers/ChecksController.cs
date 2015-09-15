@@ -47,7 +47,7 @@ namespace CheckSaver.Controllers
                 return HttpNotFound();
             }
 
-            _repository.UpdateCheck(check);
+            ///_repository.UpdateCheck(check);
 
             return RedirectToAction("Details", new { id = check.Id });
         }
@@ -109,7 +109,7 @@ namespace CheckSaver.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,DateTime,StoreId,NeighborId,Purchases")] CheckInputModel check)
+        public ActionResult Create(CheckInputModel check)
         {
             if (ModelState.IsValid)
             {

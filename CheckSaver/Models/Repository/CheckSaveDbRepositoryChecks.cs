@@ -80,16 +80,7 @@ namespace CheckSaver.Models.Repository
             _db.Entry(tmp).State = EntityState.Modified;
 
 
-            foreach (int neighbour in neighboursFromCheck)
-            {
-                if (neighbour != tmp.NeighbourId)
-                {
-                    Transactions t = new Transactions { Caption = string.Format("За чек  #{0}", tmp.Id), Date = tmp.Date, WhoPay = tmp.NeighbourId, IsDebitOff = false, ForWhom = neighbour, Summa = dictonary[neighbour], CheckId = tmp.Id };
-
-
-                    _db.Transactions.Add(t);
-                }
-            }
+            AddTransactions(neighboursFromCheck, tmp, dictonary);
 
 
             _db.SaveChanges();
@@ -165,67 +156,8 @@ namespace CheckSaver.Models.Repository
 
         }
 
-        public void UpdateCheck(Checks check)
-        {
-            Dictionary<int, decimal> dictonary = new Dictionary<int, decimal>();
-            List<int> neighboursFromCheck = new List<int>();
-
-            foreach (var item in check.Purchases)
-            {
-
-                Price price = AddNewOrGetExistPrice(item.Products, check.StoreId);
-
-                item.Cost = price.Cost;
-                item.Summ = item.Cost * item.Count;
-                item.CostPerPerson = item.Summ / item.WhoWillUse.Count();
-
-
-                foreach (WhoWillUse user in item.WhoWillUse)
-                {
-                    if (!neighboursFromCheck.Contains(user.NeighbourId))
-                    {
-                        neighboursFromCheck.Add(user.NeighbourId);
-                    }
-
-                    if (!dictonary.ContainsKey(user.NeighbourId))
-                    {
-                        dictonary.Add(user.NeighbourId, item.CostPerPerson);
-                    }
-                    else
-                    {
-                        dictonary[user.NeighbourId] += item.CostPerPerson;
-                    }
-                }
-            }
-
-            while (check.Transactions.Any())
-            {
-                _db.Transactions.Remove(check.Transactions.Last());
-            }
-
-            foreach (int neighbour in neighboursFromCheck)
-            {
-                if (neighbour != check.NeighbourId)
-                {
-                    Transactions t = new Transactions { Caption = string.Format("From Check {0} - {1}", check.Id, check.Date.ToShortDateString()), Date = check.Date, WhoPay = check.NeighbourId, IsDebitOff = false, ForWhom = neighbour, Summa = dictonary[neighbour] };
-
-                    _db.Transactions.Add(t);
-                }
-            }
-
-
-            _db.Entry(check).State = EntityState.Modified;
-            _db.SaveChanges();
-        }
-
-
-
-
-
         public void EditCheck(CheckInputModel model)
         {
-
-
 
             Checks c = FindCheckById(model.Id);
             if (c == null)
@@ -288,20 +220,24 @@ namespace CheckSaver.Models.Repository
                 _db.Transactions.Remove(c.Transactions.Last());
             }
 
-            //TODO: add new Transactions
+            AddTransactions(neighboursFromCheck, c, dictonary);
 
+
+            _db.SaveChanges();
+        }
+
+        private void AddTransactions(List<int> neighboursFromCheck, Checks c, Dictionary<int, decimal> dictonary)
+        {
             foreach (int neighbour in neighboursFromCheck)
             {
                 if (neighbour != c.NeighbourId)
                 {
-                    Transactions t = new Transactions { Caption = string.Format("From Check {0} - {1}", c.Id, c.Date.ToShortDateString()), Date = c.Date, WhoPay = c.NeighbourId, IsDebitOff = false, ForWhom = neighbour, Summa = dictonary[neighbour] };
+                    Transactions t = new Transactions { Caption = string.Format("За чек  #{0}", c.Id), Date = c.Date, WhoPay = c.NeighbourId, IsDebitOff = false, ForWhom = neighbour, Summa = dictonary[neighbour], CheckId = c.Id };
+
 
                     _db.Transactions.Add(t);
                 }
             }
-
-
-            _db.SaveChanges();
         }
 
         private void UpdatePurchase(Purchases purchases, Checks c, PurchaseInputModel purchaseInput)
