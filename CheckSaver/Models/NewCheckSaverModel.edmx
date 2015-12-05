@@ -21,6 +21,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Photo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsDefault" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="n_Price">
           <Key>
@@ -295,6 +296,7 @@
           <NavigationProperty Name="WhoWillUse" Relationship="Self.FK_n_WhoWillUse_Neighbour" FromRole="n_Neighbours" ToRole="n_WhoWillUse" />
           <NavigationProperty Name="MyPaysNP" Relationship="uh357966_db2Model1.FK_n_Transactions_FromNeighbor" FromRole="Neighbours" ToRole="n_Transactions" />
           <NavigationProperty Name="PaysForMeNP" Relationship="uh357966_db2Model1.FK_n_Transactions_ToNeighbor" FromRole="Neighbours" ToRole="n_Transactions" />
+          <Property Name="IsDefault" Type="Boolean" Nullable="false" />
           </EntityType>
         <EntityType Name="Price">
           <Key>
@@ -574,6 +576,7 @@
           <EntitySetMapping Name="Neighbours">
             <EntityTypeMapping TypeName="uh357966_db2Model1.Neighbours">
               <MappingFragment StoreEntitySet="n_Neighbours">
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Photo" ColumnName="Photo" />
