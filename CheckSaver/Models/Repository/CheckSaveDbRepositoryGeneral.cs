@@ -21,10 +21,20 @@ namespace CheckSaver.Models.Repository
         }
 
 
-        public Dictionary<int, string> GetNeighboursNames()
+        public List<NeighbourNames> GetNeighboursNames()
         {
-            return _db.Neighbours.OrderBy(x => x.Name).Select(t => new { t.Id, t.Name })
-                   .ToDictionary(t => t.Id, t => t.Name);
+
+            return (
+                from neighbour in _db.Neighbours
+                orderby  neighbour.IsDefault descending, neighbour.Name
+                select new NeighbourNames { id = neighbour.Id, name = neighbour.Name, isDefault = neighbour.IsDefault }).ToList();
+        }
+
+        public class NeighbourNames
+        {
+            public int id;
+            public string name;
+            public bool isDefault;
         }
 
         public List<Products> FindProductsinDb(string term)
