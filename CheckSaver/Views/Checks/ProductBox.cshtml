@@ -21,10 +21,20 @@
 
             foreach (var c in ViewBag.Names)
             {
-                <div class="checkbox-inline">
-                    <input type="checkbox" value="@c.Key" name="Purchases[@i].WhoWillUse" />
-                    @c.Value
-                </div>
+                if (c.isDefault)
+                {
+                    <div class="checkbox-inline">
+                        <input type="checkbox" value="@c.id" name="Purchases[@i].WhoWillUse" />
+                        @c.name
+                    </div>
+                }
+                else
+                {
+                    <div class="checkbox-inline not-default-neghbour">
+                        <input type="checkbox" value="@c.id" name="Purchases[@i].WhoWillUse" />
+                        @c.name
+                    </div>
+                }
             }
         }
     </div>

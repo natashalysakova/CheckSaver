@@ -34,22 +34,40 @@
 
             foreach (var c in ViewBag.Names)
             {
-                var who = (from w in Model.WhoWillUse where w.NeighbourId == c.Key select w).FirstOrDefault();
+                var who = (from w in Model.WhoWillUse where w.NeighbourId == c.id select w).FirstOrDefault();
                 if (who != null)
                 {
-                    <div class="checkbox-inline">
-                        <input type="checkbox" value="@c.Key" name="Purchases[@ViewData["number"]].WhoWillUse" checked="" />
-                        @c.Value
-                    </div>
-
+                    if (c.isDefault)
+                    {
+                        <div class="checkbox-inline">
+                            <input type="checkbox" value="@c.id" name="Purchases[@ViewData["number"]].WhoWillUse"  checked="" />
+                            @c.name
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="checkbox-inline not-default-neghbour">
+                            <input type="checkbox" value="@c.id" name="Purchases[@ViewData["number"]].WhoWillUse"  checked="" />
+                            @c.name
+                        </div>
+                    }
                 }
                 else
                 {
-                    <div class="checkbox-inline">
-                        <input type="checkbox" value="@c.Key" name="Purchases[@ViewData["number"]].WhoWillUse" />
-                        @c.Value
-                    </div>
-
+                    if (c.isDefault)
+                    {
+                        <div class="checkbox-inline">
+                            <input type="checkbox" value="@c.id" name="Purchases[@ViewData["number"]].WhoWillUse" />
+                            @c.name
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="checkbox-inline not-default-neghbour">
+                            <input type="checkbox" value="@c.id" name="Purchases[@ViewData["number"]].WhoWillUse" />
+                            @c.name
+                        </div>
+                    }
                 }
             }
         }

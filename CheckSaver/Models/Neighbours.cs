@@ -25,6 +25,7 @@ namespace CheckSaver.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Photo { get; set; }
+        public bool IsDefault { get; set; }
     
         public virtual ICollection<Checks> Checks { get; set; }
         public virtual ICollection<WhoWillUse> WhoWillUse { get; set; }
