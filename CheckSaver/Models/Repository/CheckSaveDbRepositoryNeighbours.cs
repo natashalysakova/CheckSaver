@@ -68,7 +68,7 @@ namespace CheckSaver.Models.Repository
                 }
             }
 
-            var grouped = (from d in myPurchase group d by d.Key.Month into t select  CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(t.Key) + ": " + t.Sum(x => x.Value).ToString("C")).ToList();
+            var grouped = (from d in myPurchase orderby d.Key group d by d.Key.Month into t select  CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(t.Key) + ": " + t.Sum(x => x.Value).ToString("C")).ToList();
 
             return grouped;
         }
