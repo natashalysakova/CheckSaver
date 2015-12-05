@@ -14,6 +14,12 @@
         <div class="main-title">@ViewBag.Title</div>
         <div class="sub-title"></div>
     </div>
+    <div class="form-group" >
+        @Html.Label("Сосед по умолчанию?", htmlAttributes: new { @class = "control-label col-md-3"})
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.IsDefault, new { htmlAttributes = new { @class = "form-control", @disabled="disabled"} })
+        </div>
+    </div>
     <hr />
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-offset-0 col-lg-offset-0">
         <div class="main-title">
@@ -28,9 +34,29 @@
         <hr />
 
     </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+            <hr />
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-offset-0 col-lg-offset-0">
+        <div class="form-group">
+            <div class="col-md-offset-3 ">
+                <input type="button" value="Реактировать" class="card-flat-button delete-button" onclick="location.href='@Url.Action("Edit", new { id = Model.Id })'" />
+                <input type="button" value="Назад к списку соседей" class="card-flat-button" onclick="location.href='@Url.Action("Index")'" />
+            </div>
+        </div>
+    </div>
+
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-offset-0 col-lg-offset-0">
         <div class="main-title">
             Оплачено
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="main-title">
+                Сумма чеков - @Model.Checks.Sum(x => x.Purchases.Sum(y => y.Summ)).ToString("C")
+            </div>
         </div>
 
         @foreach (Checks check in Model.Checks.OrderByDescending(x => x.Date))
@@ -41,19 +67,11 @@
                 }
             </div>
                     }
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="main-title">
-                Сумма чеков - @Model.Checks.Sum(x => x.Purchases.Sum(y => y.Summ)).ToString("C")
-            </div>
-        </div>
+        
         <hr />
 
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="row">
-            <hr />
-        </div>
-    </div>
+    
         @*    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-offset-0 col-lg-offset-0">
 
         <div class="main-title">
@@ -97,12 +115,5 @@
         <hr />
     </div>*@
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-offset-0 col-lg-offset-0">
-            <div class="form-group">
-                <div class="col-md-offset-3 ">
-                    <input type="button" value="Реактировать" class="card-flat-button delete-button" onclick="location.href='@Url.Action("Edit", new { id = Model.Id })'" />
-                    <input type="button" value="Назад к списку соседей" class="card-flat-button" onclick="location.href='@Url.Action("Index")'" />
-                </div>
-            </div>
-        </div>
+       
     </div>
