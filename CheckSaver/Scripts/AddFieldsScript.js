@@ -125,28 +125,15 @@ function showOverlay() {
 
 $(function () {
     var height = $(window).height();
-    $('body')[0].style.minHeight = height + 'px';
 
     var rm = $('.right-menu');
     if (rm.length > 0) {
         rm[0].style.height = height + 'px';
     }
-
-    //var card = $('.card-big');
-    //if (card.length > 0) {
-    //    var cardwidth = card.width();
-    //    var img = card.find('.card-image');
-    //    if (img.length > 0) {
-    //        var width = cardwidth / 16 * 9;
-    //        img[0].style.height = width + 'px';
-
-    //    }
-    //}
 });
 
 $(window).on('resize orientationChanged', function () {
     var height = $(window).height();
-    $('body')[0].style.minHeight = height + 'px';
 
     var rm = $('.right-menu');
     if (rm.length > 0) {
