@@ -106,7 +106,8 @@ namespace CheckSaver.Models.Repository
             {
                 foreach (Neighbours neighbor in _db.Neighbours)
                 {
-                    _db.WhoWillUse.Add(CreateWhoWillUse(neighbor.Id, purchaseId));
+                    if(neighbor.IsDefault)
+                        _db.WhoWillUse.Add(CreateWhoWillUse(neighbor.Id, purchaseId));
                 }
             }
             _db.SaveChanges();
