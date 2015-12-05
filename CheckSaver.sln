@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckSaver", "CheckSaver\Ch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiClient", "WebApiClient\WebApiClient.csproj", "{FCEEE292-E23A-4930-926B-505A01EF4196}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckSaverService", "CheckSaverService\CheckSaverService.csproj", "{57585605-A093-40E8-AAEB-42229A7E97CE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckSaverTestProjects", "CheckSaverTestProjects\CheckSaverTestProjects.csproj", "{A19993F7-125F-4747-9CBA-CABD914300A1}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{FCEEE292-E23A-4930-926B-505A01EF4196}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCEEE292-E23A-4930-926B-505A01EF4196}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCEEE292-E23A-4930-926B-505A01EF4196}.Release|Any CPU.Build.0 = Release|Any CPU
-		{57585605-A093-40E8-AAEB-42229A7E97CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{57585605-A093-40E8-AAEB-42229A7E97CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{57585605-A093-40E8-AAEB-42229A7E97CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{57585605-A093-40E8-AAEB-42229A7E97CE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A19993F7-125F-4747-9CBA-CABD914300A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A19993F7-125F-4747-9CBA-CABD914300A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A19993F7-125F-4747-9CBA-CABD914300A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
