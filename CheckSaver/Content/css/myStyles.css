@@ -735,6 +735,10 @@ a {
     left: 10px;
 }
 
+.not-default-neghbour{
+    color: dimgrey;
+}
+
 /*.group 			  { 
   position:relative; 
   margin-bottom:45px; 
