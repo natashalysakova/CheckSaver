@@ -1,45 +1,45 @@
-﻿@model CheckSaver.Models.Stores
+﻿@using CheckSaver.Models
+@model CheckSaver.Models.Stores
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Магазин " + Model.Title;
 }
 
-<h2>Details</h2>
+<script>
+    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
+</script>
 
-<div>
-    <h4>Store</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+<div class="form-horizontal col-xs-12 col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2 card card-big card-big-full-bordered">
+    <div class="card-big-title">
+        <div class="main-title">@ViewBag.Title</div>
+        <div class="sub-title"> Общая сумма: @Model.Checks.Sum(x => x.Purchases.Sum(y => y.Cost));</div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2 store-image">
+            <img id="storePhoto" class="img-responsive img-thumbnail" src="@Url.Content(Model.Photo)" />
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+            <hr />
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-offset-0 col-lg-offset-0">
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Photo)
-        </dt>
-
-        <dd>
-            @if (Model.Photo != null)
+        @foreach (Checks check in Model.Checks.OrderByDescending(x => x.Date))
             {
-                <img src="@Url.Content(Model.Photo)" alt="IMAGES" height="50px" />
-            }
-        </dd>
+            <div class="col-md-4 col-xs-12 col-sm-6 col-lg-3">
+                @{
+                    Html.RenderPartial("~/Views/Checks/Card.cshtml", check);
+                }
+            </div>
+                    }
+    </div>
 
-    </dl>
+    <div class="round-button">
+        <div class="round-button-circle" onclick="location.href = '@Url.Action("Create", "Stores")'; ">
+            +
+        </div>
+    </div>
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

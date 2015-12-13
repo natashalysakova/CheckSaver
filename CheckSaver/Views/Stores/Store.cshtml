@@ -5,9 +5,9 @@
         <div class="card-title">@Model.Title</div>
     </div>
     <div class="card-action">
-        @*<a href="@Url.Action("Details", "Stores", new {id = Model.Id})">
+        <a href="@Url.Action("Details", "Stores", new {id = Model.Id})">
             <div class="card-flat-icon"><span class="glyphicon glyphicon-eye-open"></span></div>
-        </a>*@
+        </a>
         <a href="@Url.Action("Edit", "Stores", new {id = Model.Id})">
                 <div class="card-flat-icon"><span class="glyphicon glyphicon-edit"></span></div>
             </a>
