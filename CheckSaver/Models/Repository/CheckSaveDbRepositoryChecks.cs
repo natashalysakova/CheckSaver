@@ -252,7 +252,8 @@ namespace CheckSaver.Models.Repository
             {
                 foreach (Neighbours neighbour in _db.Neighbours)
                 {
-                    purchases.WhoWillUse.Add(new WhoWillUse() {NeighbourId = neighbour.Id, Purchases = purchases});
+                    if(neighbour.IsDefault)
+                        purchases.WhoWillUse.Add(new WhoWillUse() {NeighbourId = neighbour.Id, Purchases = purchases});
                 }
             }
             else

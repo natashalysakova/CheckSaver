@@ -20,9 +20,9 @@ function AddNewEditFields() {
     var wrapper = $(".input_fields_wrap"); //Fields wrapper
     var add_button = $(".add_field_button"); //Add button ID
 
-    var x = 0; //initlal text box count
     $(add_button).click(function (e) { //on add input button click
         e.preventDefault();
+        var x = getExistingFieldsCount();
         if (x < max_fields - 1) { //max input box allowed
             x++; //text box increment
 
@@ -57,6 +57,15 @@ function AddNewEditFields() {
         $(this).parent('div').remove();
         x--;
     });
+}
+
+function getExistingFieldsCount() {
+    var wrap = $(".input_fields_wrap");
+    var fields = wrap.find(".card-big");
+    var last = fields.last();
+    var input = last.find("input");
+    var size = input.attr("index");
+    return size;
 }
 
 

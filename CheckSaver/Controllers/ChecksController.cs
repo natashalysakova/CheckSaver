@@ -254,6 +254,7 @@ namespace CheckSaver.Controllers
         {
             ViewBag.Names = _repository.GetNeighboursNames();
             ViewBag.Index = Convert.ToInt32(index);
+            ViewData["number"] = index;
             Purchases p = new Purchases()
             {
                 Id = 0,
