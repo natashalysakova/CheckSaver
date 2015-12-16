@@ -35,7 +35,8 @@ namespace CheckSaver.Models.Repository
             {
                 Date = check.Date,
                 NeighbourId = Convert.ToInt32(check.NeighborId),
-                StoreId = Convert.ToInt32(check.StoreId)
+                StoreId = Convert.ToInt32(check.StoreId),
+                CreationDate = DateTime.Now
             };
 
             _db.Checks.Add(tmp);

@@ -24,6 +24,7 @@ namespace CheckSaver.Models
         public int NeighbourId { get; set; }
         public int StoreId { get; set; }
         public System.DateTime Date { get; set; }
+        public System.DateTime CreationDate { get; set; }
     
         public virtual Neighbours Neighbours { get; set; }
         public virtual Stores Stores { get; set; }

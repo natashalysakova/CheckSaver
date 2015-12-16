@@ -13,6 +13,7 @@
           <Property Name="NeighbourId" Type="int" Nullable="false" />
           <Property Name="StoreId" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="n_Neighbours">
           <Key>
@@ -284,6 +285,7 @@
           <NavigationProperty Name="Stores" Relationship="Self.FK_n_Checks_Stores" FromRole="n_Checks" ToRole="n_Stores" />
           <NavigationProperty Name="Purchases" Relationship="Self.FK_n_Purchases_Checks" FromRole="n_Checks" ToRole="n_Purchases" />
           <NavigationProperty Name="Transactions" Relationship="uh357966_db2Model1.FK_n_Transactions_FromChecks" FromRole="Checks" ToRole="n_Transactions" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Neighbours">
           <Key>
@@ -566,6 +568,7 @@
           <EntitySetMapping Name="Checks">
             <EntityTypeMapping TypeName="uh357966_db2Model1.Checks">
               <MappingFragment StoreEntitySet="n_Checks">
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="NeighbourId" ColumnName="NeighbourId" />
                 <ScalarProperty Name="StoreId" ColumnName="StoreId" />
