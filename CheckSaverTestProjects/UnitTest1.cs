@@ -17,10 +17,10 @@ namespace CheckSaverTestProjects
 
             foreach (var item in res)
             {
-                Debug.WriteLine(string.Format("{0}: {1}", item.name, item.isDefault));
+                Debug.WriteLine(string.Format("{0}: {1}", item.Name, item.IsDefault));
             }
 
-            Assert.AreEqual(true, res[0].isDefault);
+            Assert.AreEqual(true, res[0].IsDefault);
             
         }
     }

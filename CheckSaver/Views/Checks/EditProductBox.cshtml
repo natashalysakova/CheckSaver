@@ -1,4 +1,5 @@
-﻿@model CheckSaver.Models.Purchases
+﻿@using CheckSaver.Models
+@model CheckSaver.Models.Purchases
 
 @{
     string s = string.Format("Purchases[{0}].Id", ViewData["number"]);
@@ -32,40 +33,40 @@
     <div class=" col-xs-5">
         @{
 
-            foreach (var c in ViewBag.Names)
+            foreach (Neighbours c in ViewBag.Names)
             {
-                var who = (from w in Model.WhoWillUse where w.NeighbourId == c.id select w).FirstOrDefault();
+                var who = (from w in Model.WhoWillUse where w.NeighbourId == c.Id select w).FirstOrDefault();
                 if (who != null)
                 {
-                    if (c.isDefault)
+                    if (c.IsDefault)
                     {
-                        <div class="checkbox-inline">
-                            <input type="checkbox" value="@c.id" name="Purchases[@ViewData["number"]].WhoWillUse"  checked="" />
-                            @c.name
+                        <div class="checkbox-inline cb_@c.Id"  id="@c.Id">
+                            <input type="checkbox" value="@c.Id" name="Purchases[@ViewData["number"]].WhoWillUse"  checked="" />
+                            @c.Name
                         </div>
                     }
                     else
                     {
-                        <div class="checkbox-inline not-default-neghbour">
-                            <input type="checkbox" value="@c.id" name="Purchases[@ViewData["number"]].WhoWillUse"  checked="" />
-                            @c.name
+                        <div class="checkbox-inline not-default-neghbour hidden cb_@c.Id"  id="@c.Id">
+                            <input type="checkbox" value="@c.Id" name="Purchases[@ViewData["number"]].WhoWillUse"  checked="" />
+                            @c.Name
                         </div>
                     }
                 }
                 else
                 {
-                    if (c.isDefault)
+                    if (c.IsDefault)
                     {
-                        <div class="checkbox-inline">
-                            <input type="checkbox" value="@c.id" name="Purchases[@ViewData["number"]].WhoWillUse" />
-                            @c.name
+                        <div class="checkbox-inline hidden cb_@c.Id"  id="@c.Id">
+                            <input type="checkbox" value="@c.Id" name="Purchases[@ViewData["number"]].WhoWillUse" />
+                            @c.Name
                         </div>
                     }
                     else
                     {
-                        <div class="checkbox-inline not-default-neghbour">
-                            <input type="checkbox" value="@c.id" name="Purchases[@ViewData["number"]].WhoWillUse" />
-                            @c.name
+                        <div class="checkbox-inline not-default-neghbour hidden cb_@c.Id"  id="@c.Id">
+                            <input type="checkbox" value="@c.Id" name="Purchases[@ViewData["number"]].WhoWillUse" />
+                            @c.Name
                         </div>
                     }
                 }

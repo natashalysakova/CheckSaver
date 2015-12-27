@@ -739,6 +739,25 @@ a {
     color: dimgrey;
 }
 
+.add-neighbours-menu{
+    position: absolute;
+        right: 40px;
+    top: 20px;
+}
+
+#dropdownMenu1{
+    border-radius: 50%;
+}
+
+.dropdown-menu{
+    min-width: 0;
+}
+
+.small-image{
+    width: 50px;
+    height: 50px;
+}
+
 /*.group 			  { 
   position:relative; 
   margin-bottom:45px; 

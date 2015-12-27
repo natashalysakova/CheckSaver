@@ -40,7 +40,7 @@ function AddNewEditFields() {
                     var input = newItem.find('input#Products_Title');
                     var storeId = $("#StoreId").val();
                     AddAutoComplete(input, storeId);
-
+                    ChangeVisibility();
 
                 },
                 error: function (reponse) {
@@ -94,7 +94,7 @@ function AddNewFields() {
                     var input = newItem.find('input#Purchases_' + x + '__Product_Name');
                     var storeId = $("#StoreId").val();
                     AddAutoComplete(input, storeId);
-
+                    ChangeVisibility();
 
                 },
                 error: function (reponse) {
@@ -328,7 +328,7 @@ function clearImage(imgId) {
 
 }
 
-function StateStoreImage(textbox) {  
+function StateStoreImage(textbox) {
     var img = new Image()
     $('#storePhoto').attr('src', textbox.value);
 }
@@ -337,3 +337,17 @@ function StateNeighbourImage(textbox) {
     var img = new Image()
     $('#neighbourPhoto').attr('src', textbox.value);
 }
+
+function SetVisible(id) {
+    var cbid = "cb_" + id;
+    $('.' + cbid).removeClass("hidden");
+    users.push(id);
+}
+
+function ChangeVisibility() {
+    for (var i = 0; i < users.length; i++) {
+        var cbid = "cb_" + users[i];
+        $('.' + cbid).removeClass("hidden");
+    }
+}
+

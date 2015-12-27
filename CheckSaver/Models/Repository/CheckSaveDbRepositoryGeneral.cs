@@ -21,21 +21,16 @@ namespace CheckSaver.Models.Repository
         }
 
 
-        public List<NeighbourNames> GetNeighboursNames()
+        public List<Neighbours> GetNeighboursNames()
         {
 
             return (
                 from neighbour in _db.Neighbours
                 orderby  neighbour.IsDefault descending, neighbour.Name
-                select new NeighbourNames { id = neighbour.Id, name = neighbour.Name, isDefault = neighbour.IsDefault }).ToList();
+                select neighbour).ToList();
         }
 
-        public class NeighbourNames
-        {
-            public int id;
-            public string name;
-            public bool isDefault;
-        }
+
 
         public List<Products> FindProductsinDb(string term)
         {
