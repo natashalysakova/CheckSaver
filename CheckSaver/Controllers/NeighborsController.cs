@@ -74,7 +74,7 @@ namespace CheckSaver.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Photo")] Neighbours neighbor)
+        public ActionResult Edit(Neighbours neighbor)
         {
             if (ModelState.IsValid)
             {
