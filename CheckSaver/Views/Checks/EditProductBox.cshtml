@@ -47,7 +47,7 @@
                     }
                     else
                     {
-                        <div class="checkbox-inline not-default-neghbour hidden cb_@c.Id"  id="@c.Id">
+                        <div class="checkbox-inline not-default-neghbour cb_@c.Id"  id="@c.Id">
                             <input type="checkbox" value="@c.Id" name="Purchases[@ViewData["number"]].WhoWillUse"  checked="" />
                             @c.Name
                         </div>
@@ -57,14 +57,14 @@
                 {
                     if (c.IsDefault)
                     {
-                        <div class="checkbox-inline hidden cb_@c.Id"  id="@c.Id">
+                        <div class="checkbox-inline cb_@c.Id"  id="@c.Id">
                             <input type="checkbox" value="@c.Id" name="Purchases[@ViewData["number"]].WhoWillUse" />
                             @c.Name
                         </div>
                     }
                     else
                     {
-                        <div class="checkbox-inline not-default-neghbour hidden cb_@c.Id"  id="@c.Id">
+                        <div class="checkbox-inline not-default-neghbour cb_@c.Id"  id="@c.Id">
                             <input type="checkbox" value="@c.Id" name="Purchases[@ViewData["number"]].WhoWillUse" />
                             @c.Name
                         </div>
