@@ -45,7 +45,7 @@ namespace CheckSaver.Models.Repository
         {
             Neighbours n = FindNeighbourById(id);
 
-            Dictionary<DateTime, decimal> myPurchase = new Dictionary<DateTime, decimal>();
+            Dictionary<string, decimal> myPurchase = new Dictionary<string, decimal>();
 
             foreach (var check in _db.Checks)
             {
@@ -53,22 +53,23 @@ namespace CheckSaver.Models.Repository
                 {
                     foreach (var wwuse in purchase.WhoWillUse)
                     {
-                        if(wwuse.Neighbours == n)
+                        if (wwuse.Neighbours == n)
                         {
-                            if (!myPurchase.ContainsKey(check.Date))
+                            string key = check.Date.ToString("yyyy") + check.Date.ToString("MM");
+                            if (!myPurchase.ContainsKey(key))
                             {
-                                myPurchase.Add(check.Date, purchase.CostPerPerson);
+                                myPurchase.Add(key, purchase.CostPerPerson);
                             }
                             else
                             {
-                                myPurchase[check.Date] += purchase.CostPerPerson;
+                                myPurchase[key] += purchase.CostPerPerson;
                             }
                         }
                     }
                 }
             }
 
-            var grouped = (from d in myPurchase orderby d.Key group d by d.Key.Month into t select  CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(t.Key) + ": " + t.Sum(x => x.Value).ToString("C")).ToList();
+            var grouped = (from d in myPurchase orderby d.Key select $"'{d.Key.Substring(2, 2)} {CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Convert.ToInt32(d.Key.Substring(4)))} : {d.Value.ToString("C")}").ToList();
 
             return grouped;
         }
