@@ -1,0 +1,131 @@
+﻿@using System.Globalization
+@model CheckSaver.Models.InputModels.InvoiceInputModel
+
+@{
+    ViewBag.Title = "Создать квитанцию";
+    Layout = "~/Views/Shared/_InvoiceLayour.cshtml";
+
+}
+
+<script>
+    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
+
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
+</script>
+
+
+@{
+    string month = DateTimeFormatInfo.CurrentInfo.GetMonthName(Model.Month);
+}
+
+@using (Html.BeginForm())
+{
+    <label>Месяц</label>
+    <input type="text" value="@month" readonly="readonly" />
+
+    <label>год</label>
+    <input type="number" name="Year" value="@Model.Year" readonly="readonly" />
+
+    <label>Адрес</label>
+    <input type="text" name="Address" value="@Model.Address" readonly="readonly" />
+
+    <table class="table">
+        <tr>
+            <td colspan="6">
+                <h4>Вода</h4>
+            </td>
+        </tr>
+
+        <tr>
+            <th>Название</th>
+            <th>Начальное значение</th>
+            <th>Конечное значение</th>
+            <th>Разница</th>
+            <th>Тариф</th>
+            <th>К оплате</th>
+        </tr>
+        <tr>
+            <td>Холодная Вода</td>
+            <td><input class="form-control" type="number" name="ColdWaterInput.StartValue" /></td>
+            <td><input class="form-control" type="number" name="ColdWaterInput.FinishValue" /></td>
+            <td><input class="form-control" type="number" name="ColdWaterInput.Difference" readonly="readonly" /></td>
+            <td>
+                <a tabindex="0" class="btn btn-info" role="button" data-toggle="popover" data-placement="left" data-trigger="focus" title="Тариф на холодную воду" data-content="@Model.ColdWaterInput.Tarif.Price">Тариф</a>
+            </td>
+            <td><input class="form-control" type="number" name="ColdWaterInput.Cost" readonly="readonly" /></td>
+        </tr>
+        <tr>
+            <td>Горячая Вода</td>
+            <td><input class="form-control" type="number" name="HotWaterInput.StartValue" /></td>
+            <td><input class="form-control" type="number" name="HotWaterInput.FinishValue" /></td>
+            <td><input class="form-control" type="number" name="HotWaterInput.Difference" readonly="readonly" /></td>
+            <td>Тариф</td>
+            <td><input class="form-control" type="number" name="HotWaterInput.Cost" readonly="readonly" /></td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <h4>Электричество</h4>
+            </td>
+        </tr>
+        <tr>
+            <th>Навание</th>
+            <th>Начальное значение</th>
+            <th>Конечное значение</th>
+            <th>Разница</th>
+            <th>Тариф</th>
+            <th>К оплате</th>
+        </tr>
+        <tr>
+            <td>Электричество</td>
+            <td><input class="form-control" type="number" name="HotWaterInput.StartValue" /></td>
+            <td><input class="form-control" type="number" name="HotWaterInput.FinishValue" /></td>
+            <td><input class="form-control" type="number" name="HotWaterInput.Difference" readonly="readonly" /></td>
+            <td>Тариф</td>
+            <td><input class="form-control" type="number" name="HotWaterInput.Cost" readonly="readonly" /></td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <h4>Газ</h4>
+            </td>
+        </tr>
+        <tr>
+            <th>Название</th>
+            <th>Начальное значение</th>
+            <th>Конечное значение</th>
+            <th>Разница</th>
+            <th>Тариф</th>
+            <th>К оплате</th>
+        </tr>
+        <tr>
+            <td>Газ</td>
+            <td><input class="form-control" type="number" name="GasInput.StartValue" /></td>
+            <td><input class="form-control" type="number" name="GasInput.FinishValue" /></td>
+            <td><input class="form-control" type="number" name="GasInput.Difference" readonly="readonly" /></td>
+            <td>Тариф</td>
+            <td><input class="form-control" type="number" name="GasInput.Cost" readonly="readonly" /></td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <h4>Прочее</h4>
+            </td>
+        </tr>
+    </table>
+
+        <label>Всего</label>
+        <input type="number" readonly="readonly" name="TotalSum" />
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+                <hr />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-3 ">
+                <input type="submit" value="Создать" class="card-flat-button delete-button" />
+                <input type="button" value="Отмена" class="card-flat-button" onclick="location.href='@Url.Action("Index")'" />
+            </div>
+        </div>
+}
+

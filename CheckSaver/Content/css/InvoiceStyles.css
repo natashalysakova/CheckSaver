@@ -1,0 +1,43 @@
+﻿.navbar-default {
+    background-color: #03A9F4;
+}
+
+.main-bar {
+    background-color: #0288D1;
+}
+
+.round-button-circle:hover {
+    background: #e3227b;
+}
+.round-button-circle {
+    background-color: #FF4081;
+}
+
+.delete-button:hover {
+    background-color: #e3227b;
+}
+
+
+.card-flat-button {
+    border: 1px solid #FF4081;
+    color: #FF4081;
+}
+
+.delete-button {
+    background-color: #FF4081;
+    color: white;
+}
+
+.form-control:focus {
+    border-color: #0288D1;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(3,169,244);
+}
+
+.dark-primary-color    { background: #0288D1; }
+.default-primary-color { background: #03A9F4; }
+.light-primary-color   { background: #B3E5FC; }
+.text-primary-color    { color: #FFFFFF; }
+.accent-color          { background: #FF4081; }
+.primary-text-color    { color: #212121; }
+.secondary-text-color  { color: #727272; }
+.divider-color         { border-color: #B6B6B6; }

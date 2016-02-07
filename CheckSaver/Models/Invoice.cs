@@ -28,6 +28,8 @@ namespace CheckSaver.Models
         public int Month { get; set; }
         public System.DateTime CreationDate { get; set; }
         public decimal TotalSum { get; set; }
+        public byte Year { get; set; }
+        public string Address { get; set; }
     
         public virtual Electricity Electricity { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

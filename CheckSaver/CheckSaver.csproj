@@ -139,12 +139,17 @@
     <Compile Include="Controllers\API\ChecksApiController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\ChecksController.cs" />
+    <Compile Include="Controllers\ElectricityTarifsController.cs" />
+    <Compile Include="Controllers\FPNamesController.cs" />
+    <Compile Include="Controllers\GasTarifsController.cs" />
+    <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\MainSiteController.cs" />
     <Compile Include="Controllers\NeighborsController.cs" />
     <Compile Include="Controllers\PricesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\StoresController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
+    <Compile Include="Controllers\WaterTarifsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -154,47 +159,53 @@
     </Compile>
     <Compile Include="Models\DetailsModels\CheckDetailsModel.cs" />
     <Compile Include="Models\Electricity.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ElectricityTarif.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ExtentionsModels\Checks.cs" />
+    <Compile Include="Models\ExtentionsModels\ITarif.cs" />
     <Compile Include="Models\ExtentionsModels\Neghbours.cs" />
     <Compile Include="Models\ExtentionsModels\Products.cs" />
     <Compile Include="Models\ExtentionsModels\Purchase.cs" />
     <Compile Include="Models\ExtentionsModels\Stores.cs" />
     <Compile Include="Models\ExtentionsModels\Transactions.cs" />
+    <Compile Include="Models\ExtentionsModels\WaterTarif.cs" />
     <Compile Include="Models\FixedPays.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FPName.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Gas.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GasTarif.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\InputModels\CheckInputModel.cs" />
+    <Compile Include="Models\InputModels\InvoiceInputModel.cs" />
     <Compile Include="Models\InputModels\ProductInputModel.cs" />
     <Compile Include="Models\InputModels\PurchaseInputModel.cs" />
     <Compile Include="Models\InputModels\TransactionInputModel.cs" />
     <Compile Include="Models\Invoice.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\InvoiceModel.Context.cs">
+    <Compile Include="Models\InvoicesModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>InvoiceModel.Context.tt</DependentUpon>
+      <DependentUpon>InvoicesModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\InvoiceModel.cs">
+    <Compile Include="Models\InvoicesModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\InvoiceModel.Designer.cs">
+    <Compile Include="Models\InvoicesModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>InvoiceModel.edmx</DependentUpon>
+      <DependentUpon>InvoicesModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Metadata\ChecksMetadata.cs" />
     <Compile Include="Models\Metadata\NeighboursMetadata.cs" />
@@ -236,6 +247,7 @@
     <Compile Include="Models\Repository\CheckSaveDbRepositoryNeighbours.cs" />
     <Compile Include="Models\Repository\CheckSaveDbRepositoryGeneral.cs" />
     <Compile Include="Models\Repository\CheckSaveDbRepositoryTransactions.cs" />
+    <Compile Include="Models\Repository\InvoiceDbRepository.cs" />
     <Compile Include="Models\Stores.cs">
       <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
     </Compile>
@@ -243,10 +255,10 @@
       <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Water.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WaterTarif.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WhoWillUse.cs">
       <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
@@ -295,6 +307,7 @@
     <Content Include="Content\images\mnu.png" />
     <Content Include="Content\images\w512h5121339248515check512.png" />
     <Content Include="Content\images\yandex_logo_en-svg.png" />
+    <Content Include="Content\css\InvoiceStyles.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -331,15 +344,15 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\InvoiceModel.Context.tt">
+    <Content Include="Models\InvoicesModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>InvoiceModel.edmx</DependentUpon>
-      <LastGenOutput>InvoiceModel.Context.cs</LastGenOutput>
+      <DependentUpon>InvoicesModel.edmx</DependentUpon>
+      <LastGenOutput>InvoicesModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\InvoiceModel.tt">
+    <Content Include="Models\InvoicesModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>InvoiceModel.edmx</DependentUpon>
-      <LastGenOutput>InvoiceModel.cs</LastGenOutput>
+      <DependentUpon>InvoicesModel.edmx</DependentUpon>
+      <LastGenOutput>InvoicesModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\AddFieldsScript.js" />
     <Content Include="Scripts\bigCard.js" />
@@ -405,12 +418,12 @@
       <LastGenOutput>NewCheckSaverModel.cs</LastGenOutput>
     </Content>
     <Content Include="Content\css\AdvancedStyles.less" />
-    <EntityDeploy Include="Models\InvoiceModel.edmx">
+    <EntityDeploy Include="Models\InvoicesModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>InvoiceModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>InvoicesModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\InvoiceModel.edmx.diagram">
-      <DependentUpon>InvoiceModel.edmx</DependentUpon>
+    <Content Include="Models\InvoicesModel.edmx.diagram">
+      <DependentUpon>InvoicesModel.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\fs.pubxml" />
     <None Include="Properties\PublishProfiles\host.pubxml" />
@@ -499,6 +512,28 @@
     <Content Include="Views\Checks\Card.cshtml" />
     <Content Include="Views\Checks\_checks.cshtml" />
     <Content Include="Views\Checks\EditProductBox.cshtml" />
+    <Content Include="Views\Invoices\Delete.cshtml" />
+    <Content Include="Views\Invoices\Details.cshtml" />
+    <Content Include="Views\Invoices\Edit.cshtml" />
+    <Content Include="Views\Invoices\Index.cshtml" />
+    <Content Include="Views\ElectricityTarifs\Create.cshtml" />
+    <Content Include="Views\ElectricityTarifs\Delete.cshtml" />
+    <Content Include="Views\ElectricityTarifs\Details.cshtml" />
+    <Content Include="Views\ElectricityTarifs\Edit.cshtml" />
+    <Content Include="Views\ElectricityTarifs\Index.cshtml" />
+    <Content Include="Views\GasTarifs\Create.cshtml" />
+    <Content Include="Views\GasTarifs\Delete.cshtml" />
+    <Content Include="Views\GasTarifs\Details.cshtml" />
+    <Content Include="Views\GasTarifs\Edit.cshtml" />
+    <Content Include="Views\GasTarifs\Index.cshtml" />
+    <Content Include="Views\FPNames\Create.cshtml" />
+    <Content Include="Views\FPNames\Delete.cshtml" />
+    <Content Include="Views\FPNames\Details.cshtml" />
+    <Content Include="Views\FPNames\Edit.cshtml" />
+    <Content Include="Views\FPNames\Index.cshtml" />
+    <Content Include="Views\Invoices\_invoice.cshtml" />
+    <Content Include="Views\Invoices\CreateInvoice.cshtml" />
+    <Content Include="Views\Invoices\Create.cshtml" />
     <None Include="Views\MainSite\en\footer.cshtml" />
     <None Include="Views\MainSite\en\navbar.cshtml" />
     <None Include="Views\MainSite\en\referat.cshtml" />
@@ -565,6 +600,12 @@
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Stores\Store.cshtml" />
     <Content Include="Views\Neighbors\Neighbour.cshtml" />
+    <Content Include="Views\WaterTarifs\Create.cshtml" />
+    <Content Include="Views\WaterTarifs\Delete.cshtml" />
+    <Content Include="Views\WaterTarifs\Details.cshtml" />
+    <Content Include="Views\WaterTarifs\Edit.cshtml" />
+    <Content Include="Views\WaterTarifs\Index.cshtml" />
+    <Content Include="Views\Shared\_InvoiceLayour.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

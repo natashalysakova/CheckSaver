@@ -15,10 +15,11 @@ namespace CheckSaver.Models
     public partial class FixedPays
     {
         public int Id { get; set; }
-        public string Name { get; set; }
         public decimal Price { get; set; }
         public int InvoiceId { get; set; }
+        public int NameId { get; set; }
     
         public virtual Invoice Invoice { get; set; }
+        public virtual FPName FPName { get; set; }
     }
 }

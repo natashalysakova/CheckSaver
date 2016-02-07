@@ -13,10 +13,10 @@ namespace CheckSaver.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class InvoicesCS : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public InvoicesCS()
+            : base("name=InvoicesCS")
         {
         }
     
@@ -33,5 +33,6 @@ namespace CheckSaver.Models
         public virtual DbSet<Invoice> Invoice { get; set; }
         public virtual DbSet<Water> Water { get; set; }
         public virtual DbSet<WaterTarif> WaterTarif { get; set; }
+        public virtual DbSet<FPName> FPName { get; set; }
     }
 }

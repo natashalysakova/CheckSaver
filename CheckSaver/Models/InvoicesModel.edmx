@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="uh357966_db2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="InvoicesModelNamespace.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Electricity">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StartValue" Type="decimal" Precision="19" Scale="2" Nullable="false" />
           <Property Name="FinishValue" Type="decimal" Precision="19" Scale="2" Nullable="false" />
           <Property Name="ValueDifference" Type="decimal" Precision="19" Scale="2" Nullable="false" />
@@ -20,9 +20,9 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StartDate" Type="date" Nullable="false" />
-          <Property Name="FinishDate" Type="date" Nullable="false" />
+          <Property Name="FinishDate" Type="date" />
           <Property Name="LowLevelRange" Type="int" Nullable="false" />
           <Property Name="HighLevelRange" Type="int" />
           <Property Name="LowPrice" Type="decimal" Precision="19" Scale="4" Nullable="false" />
@@ -33,21 +33,23 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameId" Type="int" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="InvoiceId" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="FPName">
-          <Property Name="Name" Type="nvarchar" MaxLength="32" />
-        </EntityType>-->
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="Gas">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StartValue" Type="decimal" Precision="19" Scale="2" Nullable="false" />
           <Property Name="FinishValue" Type="decimal" Precision="19" Scale="2" Nullable="false" />
           <Property Name="ValueDifference" Type="decimal" Precision="19" Scale="2" Nullable="false" />
@@ -58,9 +60,9 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StartDate" Type="date" Nullable="false" />
-          <Property Name="FinishDate" Type="date" Nullable="false" />
+          <Property Name="FinishDate" Type="date" />
           <Property Name="LevelRange" Type="int" Nullable="false" />
           <Property Name="LowPrice" Type="decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="HighPrice" Type="decimal" Precision="19" Scale="4" />
@@ -71,7 +73,7 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ColdWaterPriceId" Type="int" Nullable="false" />
           <Property Name="HotWaterPriceId" Type="int" />
           <Property Name="ElectricityPriceId" Type="int" Nullable="false" />
@@ -79,12 +81,14 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
           <Property Name="Month" Type="int" Nullable="false" />
           <Property Name="CreationDate" Type="datetime" Nullable="false" />
           <Property Name="TotalSum" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Year" Type="tinyint" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="Water">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StartValue" Type="decimal" Precision="19" Scale="2" Nullable="false" />
           <Property Name="FinishValue" Type="decimal" Precision="19" Scale="2" Nullable="false" />
           <Property Name="ValueDifference" Type="decimal" Precision="19" Scale="2" Nullable="false" />
@@ -95,13 +99,13 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StartDate" Type="date" Nullable="false" />
-          <Property Name="FinishDate" Type="date" Nullable="false" />
+          <Property Name="FinishDate" Type="date" />
           <Property Name="Price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="WaterType" Type="nvarchar" MaxLength="10" />
         </EntityType>
-        <Association Name="FK__Electrici__Tarif__60A75C0F">
+        <Association Name="FK__Electrici__Tarif__0A9D95DB">
           <End Role="ElectricityTarif" Type="Self.ElectricityTarif" Multiplicity="1" />
           <End Role="Electricity" Type="Self.Electricity" Multiplicity="*" />
           <ReferentialConstraint>
@@ -113,7 +117,7 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__FixedPays__Invoi__6B24EA82">
+        <Association Name="FK__FixedPays__Invoi__0C85DE4D">
           <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
           <End Role="FixedPays" Type="Self.FixedPays" Multiplicity="*" />
           <ReferentialConstraint>
@@ -125,7 +129,19 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Gas__TarifId__66603565">
+        <Association Name="FK__FixedPays__NameI__0D7A0286">
+          <End Role="FPName" Type="Self.FPName" Multiplicity="1" />
+          <End Role="FixedPays" Type="Self.FixedPays" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FPName">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FixedPays">
+              <PropertyRef Name="NameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Gas__TarifId__0E6E26BF">
           <End Role="GasTarif" Type="Self.GasTarif" Multiplicity="1" />
           <End Role="Gas" Type="Self.Gas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -137,7 +153,7 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Water__TarifId__6383C8BA">
+        <Association Name="FK__Water__TarifId__123EB7A3">
           <End Role="WaterTarif" Type="Self.WaterTarif" Multiplicity="1" />
           <End Role="Water" Type="Self.Water" Multiplicity="*" />
           <ReferentialConstraint>
@@ -197,28 +213,33 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="uh357966_db2ModelStoreContainer">
+        <EntityContainer Name="InvoicesModelNamespaceStoreContainer">
           <EntitySet Name="Electricity" EntityType="Self.Electricity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ElectricityTarif" EntityType="Self.ElectricityTarif" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FixedPays" EntityType="Self.FixedPays" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FPName" EntityType="Self.FPName" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gas" EntityType="Self.Gas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GasTarif" EntityType="Self.GasTarif" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Water" EntityType="Self.Water" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WaterTarif" EntityType="Self.WaterTarif" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Electrici__Tarif__60A75C0F" Association="Self.FK__Electrici__Tarif__60A75C0F">
+          <AssociationSet Name="FK__Electrici__Tarif__0A9D95DB" Association="Self.FK__Electrici__Tarif__0A9D95DB">
             <End Role="ElectricityTarif" EntitySet="ElectricityTarif" />
             <End Role="Electricity" EntitySet="Electricity" />
           </AssociationSet>
-          <AssociationSet Name="FK__FixedPays__Invoi__6B24EA82" Association="Self.FK__FixedPays__Invoi__6B24EA82">
+          <AssociationSet Name="FK__FixedPays__Invoi__0C85DE4D" Association="Self.FK__FixedPays__Invoi__0C85DE4D">
             <End Role="Invoice" EntitySet="Invoice" />
             <End Role="FixedPays" EntitySet="FixedPays" />
           </AssociationSet>
-          <AssociationSet Name="FK__Gas__TarifId__66603565" Association="Self.FK__Gas__TarifId__66603565">
+          <AssociationSet Name="FK__FixedPays__NameI__0D7A0286" Association="Self.FK__FixedPays__NameI__0D7A0286">
+            <End Role="FPName" EntitySet="FPName" />
+            <End Role="FixedPays" EntitySet="FixedPays" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Gas__TarifId__0E6E26BF" Association="Self.FK__Gas__TarifId__0E6E26BF">
             <End Role="GasTarif" EntitySet="GasTarif" />
             <End Role="Gas" EntitySet="Gas" />
           </AssociationSet>
-          <AssociationSet Name="FK__Water__TarifId__6383C8BA" Association="Self.FK__Water__TarifId__6383C8BA">
+          <AssociationSet Name="FK__Water__TarifId__123EB7A3" Association="Self.FK__Water__TarifId__123EB7A3">
             <End Role="WaterTarif" EntitySet="WaterTarif" />
             <End Role="Water" EntitySet="Water" />
           </AssociationSet>
@@ -239,11 +260,10 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
             <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="uh357966_db2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="InvoicesModelNamespace" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Electricity">
           <Key>
             <PropertyRef Name="Id" />
@@ -263,7 +283,7 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="FinishDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FinishDate" Type="DateTime" Precision="0" />
           <Property Name="LowLevelRange" Type="Int32" Nullable="false" />
           <Property Name="HighLevelRange" Type="Int32" />
           <Property Name="LowPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
@@ -276,10 +296,11 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="InvoiceId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Invoice" Relationship="Self.FK__FixedPays__Invoi__6B24EA82" FromRole="FixedPays" ToRole="Invoice" />
+          <Property Name="NameId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FPName" Relationship="InvoicesModelNamespace.FK__FixedPays__NameI__0D7A0286" FromRole="FixedPays" ToRole="FPName" />
         </EntityType>
         <EntityType Name="Gas">
           <Key>
@@ -300,7 +321,7 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="FinishDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FinishDate" Type="DateTime" Precision="0" />
           <Property Name="LevelRange" Type="Int32" Nullable="false" />
           <Property Name="LowPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="HighPrice" Type="Decimal" Precision="19" Scale="4" />
@@ -325,6 +346,8 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
           <NavigationProperty Name="Gas" Relationship="Self.FK_Invoice_Gas" FromRole="Invoice" ToRole="Gas" />
           <NavigationProperty Name="Water" Relationship="Self.FK_Invoice_Water" FromRole="Invoice" ToRole="Water" />
           <NavigationProperty Name="Water1" Relationship="Self.FK_Invoice_Water1" FromRole="Invoice" ToRole="Water" />
+          <Property Name="Year" Type="Byte" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Water">
           <Key>
@@ -346,7 +369,7 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="FinishDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FinishDate" Type="DateTime" Precision="0" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="WaterType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Water" Relationship="Self.FK__Water__TarifId__6383C8BA" FromRole="WaterTarif" ToRole="Water" />
@@ -447,7 +470,7 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="InvoicesCS" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Electricity" EntityType="Self.Electricity" />
           <EntitySet Name="ElectricityTarif" EntityType="Self.ElectricityTarif" />
           <EntitySet Name="FixedPays" EntityType="Self.FixedPays" />
@@ -488,15 +511,40 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
             <End Role="WaterTarif" EntitySet="WaterTarif" />
             <End Role="Water" EntitySet="Water" />
           </AssociationSet>
+          <EntitySet Name="FPName" EntityType="InvoicesModelNamespace.FPName" />
+          <AssociationSet Name="FK__FixedPays__NameI__0D7A0286" Association="InvoicesModelNamespace.FK__FixedPays__NameI__0D7A0286">
+            <End Role="FPName" EntitySet="FPName" />
+            <End Role="FixedPays" EntitySet="FixedPays" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="FPName">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="FixedPays" Relationship="InvoicesModelNamespace.FK__FixedPays__NameI__0D7A0286" FromRole="FPName" ToRole="FixedPays" />
+        </EntityType>
+        <Association Name="FK__FixedPays__NameI__0D7A0286">
+          <End Type="InvoicesModelNamespace.FPName" Role="FPName" Multiplicity="1" />
+          <End Type="InvoicesModelNamespace.FixedPays" Role="FixedPays" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FPName">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FixedPays">
+              <PropertyRef Name="NameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="uh357966_db2ModelStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="InvoicesModelNamespaceStoreContainer" CdmEntityContainer="InvoicesCS">
           <EntitySetMapping Name="Electricity">
-            <EntityTypeMapping TypeName="uh357966_db2Model.Electricity">
+            <EntityTypeMapping TypeName="InvoicesModelNamespace.Electricity">
               <MappingFragment StoreEntitySet="Electricity">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="StartValue" ColumnName="StartValue" />
@@ -508,7 +556,7 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ElectricityTarif">
-            <EntityTypeMapping TypeName="uh357966_db2Model.ElectricityTarif">
+            <EntityTypeMapping TypeName="InvoicesModelNamespace.ElectricityTarif">
               <MappingFragment StoreEntitySet="ElectricityTarif">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
@@ -522,17 +570,17 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FixedPays">
-            <EntityTypeMapping TypeName="uh357966_db2Model.FixedPays">
+            <EntityTypeMapping TypeName="InvoicesModelNamespace.FixedPays">
               <MappingFragment StoreEntitySet="FixedPays">
+                <ScalarProperty Name="NameId" ColumnName="NameId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Gas">
-            <EntityTypeMapping TypeName="uh357966_db2Model.Gas">
+            <EntityTypeMapping TypeName="InvoicesModelNamespace.Gas">
               <MappingFragment StoreEntitySet="Gas">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="StartValue" ColumnName="StartValue" />
@@ -544,7 +592,7 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GasTarif">
-            <EntityTypeMapping TypeName="uh357966_db2Model.GasTarif">
+            <EntityTypeMapping TypeName="InvoicesModelNamespace.GasTarif">
               <MappingFragment StoreEntitySet="GasTarif">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
@@ -558,8 +606,10 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Invoice">
-            <EntityTypeMapping TypeName="uh357966_db2Model.Invoice">
+            <EntityTypeMapping TypeName="InvoicesModelNamespace.Invoice">
               <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ColdWaterPriceId" ColumnName="ColdWaterPriceId" />
                 <ScalarProperty Name="HotWaterPriceId" ColumnName="HotWaterPriceId" />
@@ -572,7 +622,7 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Water">
-            <EntityTypeMapping TypeName="uh357966_db2Model.Water">
+            <EntityTypeMapping TypeName="InvoicesModelNamespace.Water">
               <MappingFragment StoreEntitySet="Water">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="StartValue" ColumnName="StartValue" />
@@ -584,13 +634,21 @@ warning 6013: The table/view 'uh357966_db2.dbo.FPName' does not have a primary k
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WaterTarif">
-            <EntityTypeMapping TypeName="uh357966_db2Model.WaterTarif">
+            <EntityTypeMapping TypeName="InvoicesModelNamespace.WaterTarif">
               <MappingFragment StoreEntitySet="WaterTarif">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="WaterType" ColumnName="WaterType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FPName">
+            <EntityTypeMapping TypeName="InvoicesModelNamespace.FPName">
+              <MappingFragment StoreEntitySet="FPName">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

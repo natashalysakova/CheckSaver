@@ -1,0 +1,80 @@
+﻿@model CheckSaver.Models.Invoice
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Invoice</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Month)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Month)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalSum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalSum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Electricity.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Electricity.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gas.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gas.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Water.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Water.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Water1.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Water1.Id)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

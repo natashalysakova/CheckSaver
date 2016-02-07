@@ -22,7 +22,7 @@ namespace CheckSaver.Models
     
         public int Id { get; set; }
         public System.DateTime StartDate { get; set; }
-        public System.DateTime FinishDate { get; set; }
+        public Nullable<System.DateTime> FinishDate { get; set; }
         public int LowLevelRange { get; set; }
         public Nullable<int> HighLevelRange { get; set; }
         public decimal LowPrice { get; set; }

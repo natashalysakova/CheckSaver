@@ -1,0 +1,39 @@
+﻿@model CheckSaver.Models.InputModels.InvoiceInputModel
+
+@{
+    ViewBag.Title = "Период оплаты";
+    Layout = "~/Views/Shared/_InvoiceLayour.cshtml";
+
+}
+
+<script>
+    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
+</script>
+
+
+@using (Html.BeginForm())
+{
+    <label>Месяц</label>
+    @Html.DropDownList("Month", null, htmlAttributes: new { @class = "form-control" })
+
+    <label>год</label>
+    <input type="number" min="1990" max="2999" required="required" name="Year" value="@DateTime.Now.Year" />
+
+    <label>Адрес</label>
+    <input type="text" name="Address" />
+
+    
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+            <hr />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-3 ">
+            <input type="submit" value="Продолжить" class="card-flat-button delete-button" />
+            <input type="button" value="Отмена" class="card-flat-button" onclick="location.href='@Url.Action("Index")'" />
+        </div>
+    </div>
+}
+
