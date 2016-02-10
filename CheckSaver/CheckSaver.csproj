@@ -185,6 +185,7 @@
       <DependentUpon>InvoicesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\InputModels\CheckInputModel.cs" />
+    <Compile Include="Models\InputModels\FixedPaysInputModel.cs" />
     <Compile Include="Models\InputModels\InvoiceInputModel.cs" />
     <Compile Include="Models\InputModels\ProductInputModel.cs" />
     <Compile Include="Models\InputModels\PurchaseInputModel.cs" />

@@ -15,7 +15,7 @@ namespace CheckSaver.Models.InputModels
         public Utilities<ElectricityTarif> ElectricityInput { get; set; }
         public Utilities<GasTarif> GasInput { get; set; }
 
-        List<FixedPays> FixedPaysInput { get; set; }
+        public List<FixedPaysInputModel> FixedPaysInput { get; set; }
 
         public int Month { get; set; }
         public int Year { get; set; }
@@ -31,15 +31,16 @@ namespace CheckSaver.Models.InputModels
             HotWaterInput = new Utilities<WaterTarif>();
             ElectricityInput = new Utilities<ElectricityTarif>();
             GasInput = new Utilities<GasTarif>();
+            FixedPaysInput = new List<FixedPaysInputModel>();
         }
 
 
         public class Utilities<T> where T : ITarif
         {
-            public double StartValue { get; set; }
-            public double FinishValue { get; set; }
-            public double Difference { get; set; }
-            public double Cost { get; set; }
+            public string StartValue { get; set; }
+            public string FinishValue { get; set; }
+            public string Difference { get; set; }
+            public string Cost { get; set; }
 
             public T Tarif { get; set; }
         }

@@ -35,7 +35,7 @@ namespace CheckSaver.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FixedPays> FixedPays { get; set; }
         public virtual Gas Gas { get; set; }
-        public virtual Water Water { get; set; }
-        public virtual Water Water1 { get; set; }
+        public virtual Water HotWater { get; set; }
+        public virtual Water ColdWater { get; set; }
     }
 }

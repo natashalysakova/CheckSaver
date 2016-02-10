@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CheckSaver.Models;
+using CheckSaver.Models.ExtentionsModels;
 using CheckSaver.Models.InputModels;
 using CheckSaver.Models.Repository;
 
@@ -20,7 +21,7 @@ namespace CheckSaver.Controllers
         // GET: Invoices
         public ActionResult Index()
         {
-            var invoice = db.Invoice.Include(i => i.Electricity).Include(i => i.Gas).Include(i => i.Water).Include(i => i.Water1);
+            var invoice = db.Invoice.Include(i => i.Electricity).Include(i => i.Gas).Include(i => i.HotWater).Include(i => i.ColdWater);
             return View(invoice.ToList());
         }
 
@@ -50,14 +51,35 @@ namespace CheckSaver.Controllers
         public ActionResult Create(InvoiceInputModel model)
         {
             _repository.SetActualTarifs(model);
-            return View("CreateInvoice", model);
+            TempData["invoice"] = model;
+            return RedirectToAction("CreateInvoice");
         }
 
+        public ActionResult CreateInvoice()
+        {
+            if (TempData["invoice"] != null)
+            {
+                InvoiceInputModel model = (InvoiceInputModel) TempData["invoice"];
+
+                return View(model);
+            }
+
+            return RedirectToAction("Create");
+
+        }
 
         [HttpPost]
-        public ActionResult CreateInvoice(InvoiceInputModel model)
+        [ActionName("CreateInvoice")]
+        public ActionResult CreateNewInvoice(InvoiceInputModel model)
         {
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Calculate(int tarifId, string type, string difference)
+        {
+            ITarif tarif = _repository.GetTarif(type, tarifId);
+            difference = difference.Replace(".", ",");
+            return Json(tarif.Calculate(Convert.ToDouble(difference)), JsonRequestBehavior.AllowGet);
         }
 
         // POST: Invoices/Create

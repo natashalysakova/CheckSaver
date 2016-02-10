@@ -17,8 +17,8 @@ namespace CheckSaver.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Water()
         {
-            this.Invoice = new HashSet<Invoice>();
-            this.Invoice1 = new HashSet<Invoice>();
+            this.HotInvoices = new HashSet<Invoice>();
+            this.ColdInvoices = new HashSet<Invoice>();
         }
     
         public int Id { get; set; }
@@ -29,9 +29,9 @@ namespace CheckSaver.Models
         public decimal TotalCost { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoice { get; set; }
+        public virtual ICollection<Invoice> HotInvoices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoice1 { get; set; }
+        public virtual ICollection<Invoice> ColdInvoices { get; set; }
         public virtual WaterTarif WaterTarif { get; set; }
     }
 }

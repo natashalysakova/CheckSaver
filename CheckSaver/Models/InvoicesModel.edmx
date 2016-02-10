@@ -344,8 +344,8 @@
           <NavigationProperty Name="Electricity" Relationship="Self.FK_Invoice_Electricity" FromRole="Invoice" ToRole="Electricity" />
           <NavigationProperty Name="FixedPays" Relationship="Self.FK__FixedPays__Invoi__6B24EA82" FromRole="Invoice" ToRole="FixedPays" />
           <NavigationProperty Name="Gas" Relationship="Self.FK_Invoice_Gas" FromRole="Invoice" ToRole="Gas" />
-          <NavigationProperty Name="Water" Relationship="Self.FK_Invoice_Water" FromRole="Invoice" ToRole="Water" />
-          <NavigationProperty Name="Water1" Relationship="Self.FK_Invoice_Water1" FromRole="Invoice" ToRole="Water" />
+          <NavigationProperty Name="HotWater" Relationship="Self.FK_Invoice_Water" FromRole="Invoice" ToRole="Water" />
+          <NavigationProperty Name="ColdWater" Relationship="Self.FK_Invoice_Water1" FromRole="Invoice" ToRole="Water" />
           <Property Name="Year" Type="Byte" Nullable="false" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -359,8 +359,8 @@
           <Property Name="ValueDifference" Type="Decimal" Precision="19" Scale="2" Nullable="false" />
           <Property Name="TarifId" Type="Int32" Nullable="false" />
           <Property Name="TotalCost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="Invoice" Relationship="Self.FK_Invoice_Water" FromRole="Water" ToRole="Invoice" />
-          <NavigationProperty Name="Invoice1" Relationship="Self.FK_Invoice_Water1" FromRole="Water" ToRole="Invoice" />
+          <NavigationProperty Name="HotInvoices" Relationship="Self.FK_Invoice_Water" FromRole="Water" ToRole="Invoice" />
+          <NavigationProperty Name="ColdInvoices" Relationship="Self.FK_Invoice_Water1" FromRole="Water" ToRole="Invoice" />
           <NavigationProperty Name="WaterTarif" Relationship="Self.FK__Water__TarifId__6383C8BA" FromRole="Water" ToRole="WaterTarif" />
         </EntityType>
         <EntityType Name="WaterTarif">
