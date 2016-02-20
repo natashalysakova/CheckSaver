@@ -28,7 +28,7 @@ namespace CheckSaver.Models
         public int Month { get; set; }
         public System.DateTime CreationDate { get; set; }
         public decimal TotalSum { get; set; }
-        public byte Year { get; set; }
+        public int Year { get; set; }
         public string Address { get; set; }
     
         public virtual Electricity Electricity { get; set; }

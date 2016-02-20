@@ -8,6 +8,6 @@ namespace CheckSaver.Models.ExtentionsModels
 {
     public interface ITarif
     {
-        decimal Calculate(double difference);
+        decimal Calculate(double difference, int month);
     }
 }

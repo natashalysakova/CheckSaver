@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_InvoiceLayour.cshtml";
+
 }
 
 <h2>Details</h2>
@@ -51,19 +53,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Water.Id)
+            @Html.DisplayNameFor(model => model.ColdWater.Id)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Water.Id)
+            @Html.DisplayFor(model => model.ColdWater.Id)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Water1.Id)
+            @Html.DisplayNameFor(model => model.HotWater.Id)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Water1.Id)
+            @Html.DisplayFor(model => model.HotWater.Id)
         </dd>
 
     </dl>

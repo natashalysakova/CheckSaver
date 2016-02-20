@@ -21,7 +21,7 @@ namespace CheckSaver.Models.InputModels
         public int Year { get; set; }
         public DateTime CreationDate { get; set; }
 
-        public Decimal TotalSum { get; set; }
+        public string TotalSum { get; set; }
         public string Address { get; set; }
 
 

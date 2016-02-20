@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -44,14 +45,21 @@ namespace CheckSaver.Controllers
         public ActionResult Create()
         {
             ViewBag.Month = new SelectList(_repository.GetMonthes(),  "Id", "MonthName", DateTime.Now.Month);
+            ViewBag.Address = _repository.GetLastUsedAddress();
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(InvoiceInputModel model)
         {
+            if (model == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             _repository.SetActualTarifs(model);
             TempData["invoice"] = model;
+
             return RedirectToAction("CreateInvoice");
         }
 
@@ -60,7 +68,6 @@ namespace CheckSaver.Controllers
             if (TempData["invoice"] != null)
             {
                 InvoiceInputModel model = (InvoiceInputModel) TempData["invoice"];
-
                 return View(model);
             }
 
@@ -72,36 +79,28 @@ namespace CheckSaver.Controllers
         [ActionName("CreateInvoice")]
         public ActionResult CreateNewInvoice(InvoiceInputModel model)
         {
-            return RedirectToAction("Index");
+            if (model == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            int newInvoiceId = _repository.AddInvoice(model);
+
+            return RedirectToAction("Details", new { id = newInvoiceId });
         }
 
-        public ActionResult Calculate(int tarifId, string type, string difference)
+        public ActionResult Calculate(int tarifId, string type, string difference, string month)
         {
             ITarif tarif = _repository.GetTarif(type, tarifId);
             difference = difference.Replace(".", ",");
-            return Json(tarif.Calculate(Convert.ToDouble(difference)), JsonRequestBehavior.AllowGet);
+            int monthNumber = 0;
+            if (month != null)
+            {
+                monthNumber = DateTime.ParseExact(month, "MMMM", CultureInfo.CurrentCulture).Month;
+            }
+
+            return Json(tarif.Calculate(Convert.ToDouble(difference), monthNumber), JsonRequestBehavior.AllowGet);
         }
-
-        // POST: Invoices/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "Id,ColdWaterPriceId,HotWaterPriceId,ElectricityPriceId,GasPriceId,Month,CreationDate,TotalSum")] Invoice invoice)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Invoice.Add(invoice);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    ViewBag.ElectricityPriceId = new SelectList(db.Electricity, "Id", "Id", invoice.ElectricityPriceId);
-        //    ViewBag.GasPriceId = new SelectList(db.Gas, "Id", "Id", invoice.GasPriceId);
-        //    ViewBag.HotWaterPriceId = new SelectList(db.Water, "Id", "Id", invoice.HotWaterPriceId);
-        //    ViewBag.ColdWaterPriceId = new SelectList(db.Water, "Id", "Id", invoice.ColdWaterPriceId);
-        //    return View(invoice);
-        //}
 
         // GET: Invoices/Edit/5
         public ActionResult Edit(int? id)

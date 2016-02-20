@@ -121,10 +121,10 @@ namespace CheckSaver.Models.Repository
 
         private decimal GetLastValue(string utilityType)
         {
-            var invoices = from invoice in db.Invoice
+            var invoices = (from invoice in db.Invoice
                 orderby invoice.Year
                 orderby invoice.Month
-                select invoice;
+                select invoice).ToList();
 
             if (invoices.Any())
             {
@@ -161,11 +161,11 @@ namespace CheckSaver.Models.Repository
 
         private decimal GetLastPriceForPay(string names)
         {
-            var pays = from pay in db.FixedPays
+            var pays = (from pay in db.FixedPays
                 where pay.FPName.Name == names
                 orderby pay.Invoice.Year
                 orderby pay.Invoice.Month
-                select pay;
+                select pay).ToList();
 
             if (pays.Any())
                 return pays.Last().Price;
@@ -217,6 +217,105 @@ namespace CheckSaver.Models.Repository
                 return tarifs.First();
 
             return null;
+        }
+
+        public string GetLastUsedAddress()
+        {
+            var addreses = (from invoice in db.Invoice
+                orderby invoice.Year
+                orderby invoice.Month
+                select invoice.Address
+                ).ToList();
+
+            if (addreses.Any())
+                return addreses.Last();
+
+            return string.Empty;
+        }
+
+        public int AddInvoice(InvoiceInputModel model)
+        {
+            Invoice invoice = db.Invoice.Create();
+            invoice.Month = model.Month;
+            invoice.Address = model.Address;
+            invoice.CreationDate = DateTime.Now;
+            invoice.Year = model.Year;
+            invoice.TotalSum = Convert.ToDecimal(model.TotalSum.Replace('.', ','));
+
+            invoice.ColdWater = AddWater(model.ColdWaterInput);
+            invoice.HotWater = AddWater(model.HotWaterInput);
+            invoice.Electricity = AddElectricity(model.ElectricityInput);
+            if (model.GasInput.Tarif != null)
+            {
+                invoice.Gas = AddGas(model.GasInput);
+            }
+
+            db.Invoice.Add(invoice);
+            db.SaveChanges();
+
+            AddFixedPays(model.FixedPaysInput, invoice.Id);
+
+            return invoice.Id;
+        }
+
+        private void AddFixedPays(List<FixedPaysInputModel> fixedPaysInput, int invoiceId)
+        {
+            ICollection<FixedPays> collection = new List<FixedPays>();
+
+            foreach (var item in fixedPaysInput)
+            {
+                if (item.Price == 0)
+                    continue;
+
+                FixedPays pays = new FixedPays();
+                pays.FPName = db.FPName.Where(x=> x.Name == item.Name).FirstOrDefault();
+                pays.Price = item.Price;
+                pays.InvoiceId = invoiceId;
+                collection.Add(pays);
+            }
+
+            db.FixedPays.AddRange(collection);
+            db.SaveChanges();
+        }
+
+        private Gas AddGas(InvoiceInputModel.Utilities<GasTarif> gasInput)
+        {
+            Gas gas = new Gas();
+            gas.StartValue = Convert.ToDecimal(gasInput.StartValue.Replace('.', ','));
+            gas.FinishValue = Convert.ToDecimal(gasInput.FinishValue.Replace('.', ','));
+            gas.ValueDifference = Convert.ToDecimal(gasInput.Difference.Replace('.', ','));
+            gas.TotalCost = Convert.ToDecimal(gasInput.Cost.Replace('.', ','));
+            gas.GasTarif = db.GasTarif.Find(gasInput.Tarif.Id);
+            db.Gas.Add(gas);
+            db.SaveChanges();
+            return gas;
+
+        }
+
+        private Electricity AddElectricity(InvoiceInputModel.Utilities<ElectricityTarif> electricityInput)
+        {
+            Electricity electricity = new Electricity();
+            electricity.StartValue = Convert.ToDecimal(electricityInput.StartValue.Replace('.', ','));
+            electricity.FinishValue = Convert.ToDecimal(electricityInput.FinishValue.Replace('.', ','));
+            electricity.ValueDifference = Convert.ToDecimal(electricityInput.Difference.Replace('.', ','));
+            electricity.TotalCost = Convert.ToDecimal(electricityInput.Cost.Replace('.', ','));
+            electricity.ElectricityTarif = db.ElectricityTarif.Find(electricityInput.Tarif.Id);
+            db.Electricity.Add(electricity);
+            db.SaveChanges();
+            return electricity;
+        }
+
+        private Water AddWater(InvoiceInputModel.Utilities<WaterTarif> waterInput)
+        {
+            Water coldWater = new Water();
+            coldWater.StartValue = Convert.ToDecimal(waterInput.StartValue.Replace('.', ','));
+            coldWater.FinishValue = Convert.ToDecimal(waterInput.FinishValue.Replace('.', ','));
+            coldWater.ValueDifference = Convert.ToDecimal(waterInput.Difference.Replace('.', ','));
+            coldWater.TotalCost = Convert.ToDecimal(waterInput.Cost.Replace('.', ','));
+            coldWater.WaterTarif = db.WaterTarif.Find(waterInput.Tarif.Id);
+            db.Water.Add(coldWater);
+            db.SaveChanges();
+            return coldWater;
         }
     }
 }

@@ -81,7 +81,7 @@
           <Property Name="Month" Type="int" Nullable="false" />
           <Property Name="CreationDate" Type="datetime" Nullable="false" />
           <Property Name="TotalSum" Type="decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="Year" Type="tinyint" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="Water">
@@ -346,7 +346,7 @@
           <NavigationProperty Name="Gas" Relationship="Self.FK_Invoice_Gas" FromRole="Invoice" ToRole="Gas" />
           <NavigationProperty Name="HotWater" Relationship="Self.FK_Invoice_Water" FromRole="Invoice" ToRole="Water" />
           <NavigationProperty Name="ColdWater" Relationship="Self.FK_Invoice_Water1" FromRole="Invoice" ToRole="Water" />
-          <Property Name="Year" Type="Byte" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Water">

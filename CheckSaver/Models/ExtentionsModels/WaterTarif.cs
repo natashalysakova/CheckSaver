@@ -8,27 +8,9 @@ namespace CheckSaver.Models
 {
     public partial class WaterTarif : ITarif
     {
-        public decimal Calculate(double difference)
+        public decimal Calculate(double difference, int month = 0)
         {
             return Convert.ToDecimal(difference) * Price;
-        }
-    }
-
-
-    public partial class ElectricityTarif : ITarif
-    {
-        public decimal Calculate(double difference)
-        {
-            return 0;
-        }
-    }
-
-
-    public partial class GasTarif : ITarif
-    {
-        public decimal Calculate(double difference)
-        {
-            return 0;
         }
     }
 }

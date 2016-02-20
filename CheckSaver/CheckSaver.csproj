@@ -165,6 +165,8 @@
       <DependentUpon>InvoicesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ExtentionsModels\Checks.cs" />
+    <Compile Include="Models\ExtentionsModels\ElectricityTarif.cs" />
+    <Compile Include="Models\ExtentionsModels\GasTarif.cs" />
     <Compile Include="Models\ExtentionsModels\ITarif.cs" />
     <Compile Include="Models\ExtentionsModels\Neghbours.cs" />
     <Compile Include="Models\ExtentionsModels\Products.cs" />
