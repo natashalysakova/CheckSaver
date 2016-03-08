@@ -138,6 +138,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\API\ChecksApiController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
+    <Compile Include="Controllers\CalculatorController.cs" />
     <Compile Include="Controllers\ChecksController.cs" />
     <Compile Include="Controllers\ElectricityTarifsController.cs" />
     <Compile Include="Controllers\FPNamesController.cs" />
@@ -282,6 +283,8 @@
     <Content Include="Content\css\jquery-ui.theme.css" />
     <Content Include="Content\css\jquery-ui.theme.min.css" />
     <Content Include="Content\css\myStyles.css" />
+    <Content Include="Content\css\semantic.css" />
+    <Content Include="Content\css\semantic.min.css" />
     <Content Include="Content\css\Site.css" />
     <Content Include="Content\fonts\font-awesome\css\font-awesome.css" />
     <Content Include="Content\fonts\font-awesome\css\font-awesome.min.css" />
@@ -428,6 +431,7 @@
     <Content Include="Models\InvoicesModel.edmx.diagram">
       <DependentUpon>InvoicesModel.edmx</DependentUpon>
     </Content>
+    <Content Include="package.json" />
     <None Include="Properties\PublishProfiles\fs.pubxml" />
     <None Include="Properties\PublishProfiles\host.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
@@ -510,6 +514,8 @@
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\semantic.js" />
+    <Content Include="Scripts\semantic.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Application\Semki.cshtml" />
     <Content Include="Views\Checks\Card.cshtml" />
@@ -537,6 +543,8 @@
     <Content Include="Views\Invoices\_invoice.cshtml" />
     <Content Include="Views\Invoices\CreateInvoice.cshtml" />
     <Content Include="Views\Invoices\Create.cshtml" />
+    <Content Include="Views\Calculator\Index.cshtml" />
+    <Content Include="Views\Calculator\View.cshtml" />
     <None Include="Views\MainSite\en\footer.cshtml" />
     <None Include="Views\MainSite\en\navbar.cshtml" />
     <None Include="Views\MainSite\en\referat.cshtml" />
@@ -609,9 +617,14 @@
     <Content Include="Views\WaterTarifs\Edit.cshtml" />
     <Content Include="Views\WaterTarifs\Index.cshtml" />
     <Content Include="Views\Shared\_InvoiceLayour.cshtml" />
+    <Content Include="Views\Shared\_CalcLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="components\" />
+    <Folder Include="Content\css\components\" />
+    <Folder Include="Content\themes\default\" />
+    <Folder Include="Scripts\components\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
