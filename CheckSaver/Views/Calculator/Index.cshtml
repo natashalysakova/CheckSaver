@@ -4,23 +4,43 @@
 }
 
 <script>
+	var x = 1;
+	var y = 1;
     $(function () {
         $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
 
         $("input[type=number]").attr("step", ".01");
         $("input[type=number]").change(Calculate());
+		$("div.positive").change(PlusField());
     });
 
-    function AddPlusField() {
+    function PlusField() {
         var inp = this;
-
-        if (inp.value != "") {
-            $("div.positive").append('<div class="form-group"><input class="form-control" type="number" placeholder="" onchange="Calculate();"></div>');
+		
+        if (inp.value != "" && inp.id == "id_" + x) {
+            $("div.positive").append('<div class="form-group"><input class="form-control" type="number" id="id_' + x + '" placeholder="" step=".01" onchange="Calculate(); PlusField();"></div>');
+			x++;
         }
+		else if(inp.value == "" && inp.id != "id_" + x){
+			$("div.positive form-group").last().remove();
+			x--;
+		}
+    }
+	
+	function MinusField() {
+        var inp = this;
+		
+        if (inp.value != "" && inp.id == "yd_" + y) {
+            $("div.negative").append('<div class="row card-inline-row"><div class="col-lg-8"><input class="form-control" type="text" placeholder="Что" /></div><div class="col-lg-4"><input class="form-control" type="number" step=".01" id="yd_"' + y + ' placeholder="Цена" onchange="MinusField(); Calculate();"></div></div>');
+			y++;
+        }
+		else if(inp.value == "" && inp.id != "yd_" + y){
+			$("div.negative card-inline-row").last().remove();
+			y--;
+		}
     }
 
     function Calculate() {
-        AddPlusField();
             var positives = $("div.positive input[type=number]");
             var negatives = $("div.negative input[type=number]");
 
