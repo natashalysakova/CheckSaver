@@ -12,24 +12,18 @@ namespace CheckSaver.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class GasTarif
+    public partial class FPName
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public GasTarif()
+        public FPName()
         {
-            this.Gas = new HashSet<Gas>();
+            this.FixedPays = new HashSet<FixedPays>();
         }
     
+        public string Name { get; set; }
         public int Id { get; set; }
-        public System.DateTime StartDate { get; set; }
-        public Nullable<System.DateTime> FinishDate { get; set; }
-        public int LevelRange { get; set; }
-        public decimal LowPrice { get; set; }
-        public Nullable<decimal> HighPrice { get; set; }
-        public int StartMonth { get; set; }
-        public int EndMonth { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Gas> Gas { get; set; }
+        public virtual ICollection<FixedPays> FixedPays { get; set; }
     }
 }

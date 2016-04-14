@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d39bb0bae1b345d1915836996db1a269" Name="Diagram1">
+        <EntityTypeShape EntityType="InvoicesModelNamespace.Electricity" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoicesModelNamespace.ElectricityTarif" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoicesModelNamespace.FixedPays" Width="1.5" PointX="7.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoicesModelNamespace.Gas" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoicesModelNamespace.GasTarif" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoicesModelNamespace.Invoice" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoicesModelNamespace.Water" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoicesModelNamespace.WaterTarif" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <AssociationConnector Association="InvoicesModelNamespace.FK__Electrici__Tarif__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoicesModelNamespace.FK_Invoice_Electricity" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoicesModelNamespace.FK__FixedPays__Invoi__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoicesModelNamespace.FK__Gas__TarifId__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoicesModelNamespace.FK_Invoice_Gas" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoicesModelNamespace.FK_Invoice_Water" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoicesModelNamespace.FK_Invoice_Water1" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoicesModelNamespace.FK__Water__TarifId__6383C8BA" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="InvoicesModelNamespace.FPName" Width="1.5" PointX="7.125" PointY="5.25" />
+        <AssociationConnector Association="InvoicesModelNamespace.FK__FixedPays__NameI__0D7A0286" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

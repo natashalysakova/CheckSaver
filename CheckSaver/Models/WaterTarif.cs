@@ -22,7 +22,7 @@ namespace CheckSaver.Models
     
         public int Id { get; set; }
         public System.DateTime StartDate { get; set; }
-        public System.DateTime FinishDate { get; set; }
+        public Nullable<System.DateTime> FinishDate { get; set; }
         public decimal Price { get; set; }
         public string WaterType { get; set; }
     
