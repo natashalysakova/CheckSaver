@@ -288,9 +288,9 @@ function CloseCard(div) {
 
 function getimage(id, image_key, imgid, div) {
 
-    $['getJSON']('http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=' + image_key + '&callback=?', function (json) {
+    $['getJSON']('https://www.googleapis.com/customsearch/v1?key=AIzaSyATewup4u6oJ29MVaiUEytbSNazUmzpKQk&cx=003904640663735575709:6w281wz3bac&q=' + image_key + '&searchType=image&imgSize=medium&alt=json', function (json) {
         var img = new Image();
-        img.src = (json['responseData']['results'][id]['url']);
+        img.src = (json.items[id]['link']);
         img.onload = function () {
             setTimeout
 (
