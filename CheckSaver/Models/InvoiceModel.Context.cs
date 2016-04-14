@@ -16,7 +16,7 @@ namespace CheckSaver.Models
     public partial class Entities : DbContext
     {
         public Entities()
-            : base("name=Entities")
+            : base("name=uh357966_db2Entities1")
         {
         }
     
