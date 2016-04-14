@@ -377,6 +377,10 @@ li {
     height: 75%;
     -ms-border-radius: 2px 2px 0px 0px;
     border-radius: 2px 2px 0px 0px;
+    
+}
+
+.card-main{
     -webkit-filter: blur(1.2px);
     overflow: hidden;
     border: solid 1px rgba(255, 255, 255, 0);
