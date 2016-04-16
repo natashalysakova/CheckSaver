@@ -16,7 +16,7 @@ namespace CheckSaver.Models
     public partial class InvoicesCS : DbContext
     {
         public InvoicesCS()
-            : base("name=InvoicesCS")
+            : base("name=CheckSaverInvoice")
         {
         }
     

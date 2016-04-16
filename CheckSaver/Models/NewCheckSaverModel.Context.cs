@@ -13,10 +13,10 @@ namespace CheckSaver.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class uh357966_db2Entities1 : DbContext
+    public partial class CheckSaver : DbContext
     {
-        public uh357966_db2Entities1()
-            : base("name=uh357966_db2Entities1")
+        public CheckSaver()
+            : base("name=CheckSaver")
         {
         }
     
