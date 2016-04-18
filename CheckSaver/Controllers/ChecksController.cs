@@ -206,41 +206,35 @@ namespace CheckSaver.Controllers
         public ActionResult FindProducts(string term, int storeId, string fieldId)
         {
             var products = _repository.FindProductsinDb(term);
-            var prices = _repository.FindProductPrice(products, storeId);
 
-            if (prices.Any())
+            var responce = new List<Responce>();
+            foreach (var product in products)
             {
-                if (prices.First() != null)
+                int pricesCount = 0;
+                foreach (var price in product.Price.OrderByDescending(x=>x.Date))
                 {
-                    var projection = from price in prices
-                                     where price != null
-                                     select new
-                                     {
-                                         id = price.Id,
-                                         value = price.Products.Title,
-                                         price = price.Cost,
-                                         field = fieldId
-                                     };
-
-                    return Json(projection.ToList(),
-                  JsonRequestBehavior.AllowGet);
+                    if(price.StoreId == storeId)
+                    {
+                        responce.Add(new Responce() { fieldId = fieldId, id = price.Id, price = price.Cost, value = product.Title });
+                        pricesCount++;
+                        break;
+                    }
                 }
-                else
+                if(pricesCount == 0)
                 {
-                    var projection = from product in products
-                                     select new
-                                     {
-                                         id = product.Id,
-                                         value = product.Title,
-                                         field = fieldId
-                                     };
-                    return Json(projection.ToList(),
-                  JsonRequestBehavior.AllowGet);
+                    responce.Add(new Responce() { fieldId = fieldId, value = product.Title }); 
                 }
             }
 
-            return null;
-
+            return Json(responce, JsonRequestBehavior.AllowGet);
+        }
+        
+        private class Responce
+        {
+            public int id { get; set; }
+            public string value { get; set; }
+            public decimal price { get; set; }
+            public string fieldId { get; set; }
         }
 
         public ActionResult ProductBox(string index)

@@ -121,8 +121,10 @@ function AddAutoComplete(input, storeId) {
         source: aurl,
         minLength: 2,
         select: function (event, ui) {
-            $("#Purchases_" + ui.item.field + "__Product_Price").val(ui.item.price);
-            $("#Purchases_" + ui.item.field + "__Count").val("1");
+            if (ui.item.price != 0) {
+                $("#Purchases_" + ui.item.fieldId + "__Product_Price").val(ui.item.price);
+            }
+            $("#Purchases_" + ui.item.fieldId + "__Count").val("1");
         }
     });
 }

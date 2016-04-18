@@ -13,9 +13,9 @@ namespace CheckSaver.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CheckSaver : DbContext
+    public partial class CheckSaverContext : DbContext
     {
-        public CheckSaver()
+        public CheckSaverContext()
             : base("name=CheckSaver")
         {
         }

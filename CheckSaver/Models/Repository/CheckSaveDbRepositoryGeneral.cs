@@ -7,7 +7,7 @@ namespace CheckSaver.Models.Repository
 {
     public partial class CheckSaveDbRepository :IDisposable
     {
-        private CheckSaver _db = new CheckSaver();
+        private CheckSaverContext _db = new CheckSaverContext();
 
 
         internal IEnumerable GetStoresList()
@@ -32,12 +32,17 @@ namespace CheckSaver.Models.Repository
 
 
 
-        public List<Products> FindProductsinDb(string term)
+        //public List<Products> FindProductsinDb(string term)
+        //{
+        //    List<Products> products = (from product in _db.Products
+        //        where product.Title.ToLower().Contains(term.ToLower())
+        //        select product).ToList();
+        //    return products;
+        //}
+
+        public IEnumerable<Products> FindProductsinDb(string term)
         {
-            List<Products> products = (from product in _db.Products
-                where product.Title.ToLower().Contains(term.ToLower())
-                select product).ToList();
-            return products;
+            return _db.Products.Where(x => x.Title.ToLower().Contains(term.ToLower()));
         }
 
         public List<Price> FindProductPrice(List<Products> product, int storeId)
