@@ -446,11 +446,11 @@
     <Content Include="package.json" />
     <None Include="Properties\PublishProfiles\fs.pubxml" />
     <None Include="Properties\PublishProfiles\host.pubxml" />
-    <None Include="Scripts\jquery-2.1.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\jquery-2.1.3.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.11.3.js" />
     <Content Include="Scripts\jquery-ui-1.11.3.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
@@ -556,26 +556,63 @@
     <Content Include="Views\Invoices\CreateInvoice.cshtml" />
     <Content Include="Views\Invoices\Create.cshtml" />
     <Content Include="Views\Calculator\Index.cshtml" />
-    <Content Include="Views\Calculator\View.cshtml" />
-    <None Include="Views\MainSite\en\footer.cshtml" />
-    <None Include="Views\MainSite\en\navbar.cshtml" />
-    <None Include="Views\MainSite\en\referat.cshtml" />
-    <None Include="Views\MainSite\en\resume.cshtml" />
-    <Content Include="Views\MainSite\ru\application.cshtml" />
-    <None Include="Views\MainSite\ru\biography.cshtml" />
-    <None Include="Views\MainSite\ru\footer.cshtml" />
-    <None Include="Views\MainSite\ru\individual.cshtml" />
-    <None Include="Views\MainSite\ru\library.cshtml" />
-    <None Include="Views\MainSite\ru\links.cshtml" />
-    <None Include="Views\MainSite\ru\navbar.cshtml" />
-    <None Include="Views\MainSite\ru\referat.cshtml" />
-    <None Include="Views\MainSite\ru\report.cshtml" />
-    <None Include="Views\MainSite\ru\resume.cshtml" />
-    <None Include="Views\MainSite\ua\biography.cshtml" />
-    <None Include="Views\MainSite\ua\footer.cshtml" />
-    <None Include="Views\MainSite\ua\navbar.cshtml" />
-    <None Include="Views\MainSite\ua\referat.cshtml" />
-    <None Include="Views\MainSite\ua\resume.cshtml" />
+    <Content Include="Views\MainSite\en\footer.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MainSite\en\navbar.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MainSite\en\referat.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MainSite\en\resume.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MainSite\ru\application.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MainSite\ru\biography.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MainSite\ru\footer.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MainSite\ru\individual.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MainSite\ru\library.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MainSite\ru\links.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MainSite\ru\navbar.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MainSite\ru\referat.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MainSite\ru\report.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MainSite\ru\resume.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MainSite\ua\biography.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MainSite\ua\footer.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MainSite\ua\navbar.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MainSite\ua\referat.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MainSite\ua\resume.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -605,7 +642,9 @@
     <Content Include="Views\Checks\Edit.cshtml" />
     <Content Include="Views\Checks\Index.cshtml" />
     <Content Include="Views\Checks\ProductBox.cshtml" />
-    <Content Include="Views\MainSite\Index.cshtml" />
+    <Content Include="Views\MainSite\Index.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Views\Prices\Create.cshtml" />
     <Content Include="Views\Prices\Delete.cshtml" />
     <Content Include="Views\Prices\Details.cshtml" />
