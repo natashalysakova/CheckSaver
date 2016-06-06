@@ -1,0 +1,59 @@
+﻿@using CheckSaver.Models
+@model CheckSaver.Models.Purchases
+
+@{
+    string s = string.Format("Purchases[{0}].Id", ViewData["number"]);
+}
+<input data-val="true" data-val-number="The field Id must be a number." data-val-required="The Id field is required." id="Id" name="@s" type="hidden" value="@Model.Id">
+
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-big card-no-shadows">
+    <div class="col-xs-3">
+        @{
+            s = string.Format("Purchases[{0}].Product.Name", ViewData["number"]);
+        }
+        <input class="form-control name text-box single-line valid" data-val="true" data-val-required="The Title field is required." id="Products_Title" index="@ViewData["number"]" name="@s" type="text" value="@Model.Products.Title" style="cursor: auto;" />
+        @Html.ValidationMessageFor(model => model.Products.Title, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="col-xs-2">
+        @{
+            s = string.Format("Purchases[{0}].Count", ViewData["number"]);
+        }
+        <input class="form-control count text-box single-line valid" data-val="true" data-val-required="The Count field is required." id="Products_Count" index="@ViewData["number"]" name="@s" type="text" value="@Model.Count.ToString("G3")" style="cursor: auto;" />
+        @Html.ValidationMessageFor(model => model.Count, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="col-xs-2">
+        @{
+            s = string.Format("Purchases[{0}].Product.Price", ViewData["number"]);
+        }
+        <input class="form-control cost text-box single-line valid" data-val="true" data-val-required="The Cost field is required." id="Products_Cost" index="@ViewData["number"]" name="@s" type="text" value="@Model.Cost.ToString("##.00")" style="cursor: auto;" />
+        @Html.ValidationMessageFor(model => model.Cost, "", new { @class = "text-danger" })
+    </div>
+    <div class=" col-xs-5">
+        @{
+
+            foreach (Neighbours c in ViewBag.Names)
+            {
+                if (c.IsDefault || Model.WhoWillUse.Where(x => x.Neighbours == c).Any())
+                {
+                    <div class="checkbox-inline cb_@c.Id" id="@c.Id">
+                        <input type="checkbox" value="@c.Id" name="Purchases[@ViewData["number"]].WhoWillUse" checked="" />
+                        @c.Name
+                    </div>
+                }
+                else
+                {
+                    <div class="checkbox-inline not-default-neghbour cb_@c.Id" id="@c.Id">
+                        <input type="checkbox" value="@c.Id" name="Purchases[@ViewData["number"]].WhoWillUse" />
+                        @c.Name
+                    </div>
+                }
+
+            }
+        }
+
+    </div>
+
+</div>
+

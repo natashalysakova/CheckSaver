@@ -1,0 +1,28 @@
+﻿@using System.Linq
+@using CheckSaver.Helpers;
+@model IEnumerable<CheckSaver.Models.Checks>
+
+@{
+    ViewBag.Title = "Чеки";
+    Layout = "~/Areas/Checks/Views/Shared/_Layout.cshtml";
+
+}
+
+<script>
+    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
+</script>
+
+
+<div class="container" id="loadedChecks">
+    @{ 
+        Html.RenderPartial("_checks", Model, ViewData);
+    }
+</div>
+<div class="round-button">
+    <div class="round-button-circle" onclick="location.href = '@Url.Action("Create", "Checks")'; ">
+        +
+    </div>
+</div>
+
+<div class="overlay"></div>
+

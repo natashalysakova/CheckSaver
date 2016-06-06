@@ -199,31 +199,6 @@
     border-radius: 2px;
 }
 
-.card-calc{
-    padding: 16px;
-    height: auto;
-}
-
-.card-inline-row{
-    margin-bottom: 15px;
-    margin-left: 0;
-    margin-right 0;
-}
-
-.positive{
-    background-color: #388E3C;
-    color: white;
-}
-
-.negative{
-    background-color: #E53935;
-    color: white;
-}
-
-.total{
-    background-color: #039BE5;
-    color: white;
-}
 
 .card-big {
     height: auto;

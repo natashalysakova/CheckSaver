@@ -1,0 +1,111 @@
+﻿@using System
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Хранитель чеков</title>
+
+    @*<link href='http://fonts.googleapis.com/css?family=Ubuntu&subset=latin-ext,cyrillic-ext' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Comfortaa&subset=latin-ext,cyrillic-ext' rel='stylesheet' type='text/css'>*@
+    <link href='http://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+
+
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/css/jquery-ui.min.css" />
+
+    @*<link href="/Content/css/roboto.min.css" rel="stylesheet">
+        <link href="/Content/css/material.min.css" rel="stylesheet">
+        <link href="/Content/css/ripples.min.css" rel="stylesheet">*@
+
+
+    <link rel="stylesheet" href="~/Content/css/Site.css" />
+    <link rel="stylesheet" href="~/Content/css/myStyles.css" />
+
+    <script src="~/Scripts/jquery-2.1.3.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.11.3.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+    <script src="~/Scripts/jquery-2.1.3.intellisense.js"></script>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/FileUpload.js"></script>
+    <script src="~/Scripts/AddFieldsScript.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+</head>
+<body>
+<div class="main-bar">
+
+</div>
+<div class="header col-md-3 col-sm-3 col-lg-2 bottom-bordered">
+    <div class="header-image"></div>
+</div>
+    <div class="navbar navbar-default navbar-fixed-top col-md-9 col-md-offset-3 col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+        <div class="container">
+            <div class="navbar-header navbar-brand">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("Хранитель чеков", "Index", "Checks", new {area = ""}, new {@class = "navbar-brand"})*@
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-sm-3 col-md-3 col-lg-2 right-menu">
+        @*<div class="toolbar">Главное меню</div>*@
+
+        <div class=" navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/Checks"><span class="glyphicon glyphicon-piggy-bank"></span>Чеки</a></li>
+                <li><a href="/Transactions"><span class="glyphicon glyphicon-transfer"></span>Транзакции</a></li>
+                <li><a href="/Stores"><span class="glyphicon glyphicon-shopping-cart"></span>Магазины</a></li>
+                <li class="bottom-bordered"><a href="/Neighbors"><span class="glyphicon glyphicon-user"></span>Соседи</a></li>
+
+                <li><a href="/ElectricityTarifs"><span class="glyphicon glyphicon-shopping-cart"></span>Эл. Тарифы</a></li>
+                <li><a href="/FPNames"><span class="glyphicon glyphicon-shopping-cart"></span>Справочник</a></li>
+                <li><a href="/GasTarifs"><span class="glyphicon glyphicon-shopping-cart"></span>Тарифы газ</a></li>
+                <li><a href="/Invoices"><span class="glyphicon glyphicon-shopping-cart"></span>Квитанции</a></li>
+                <li class="bottom-bordered"><a href="/WaterTarifs"><span class="glyphicon glyphicon-shopping-cart"></span>Вода тарифы</a></li>
+                <li class="bottom-bordered"><a href="/Calculator"><span class="glyphicon glyphicon-calendar"></span>Калькулятор</a></li>
+
+                @*<li><a href="/Products"><span class="glyphicon glyphicon-apple"></span>Продукты</a></li>*@
+                @*<li class="bottom-bordered"><a href="/Prices"><span class="glyphicon glyphicon-usd"></span>Цены</a></li>*@
+                <li><a href="/"><span class="glyphicon glyphicon-flag"></span>На Главную</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2 body-content">
+            @RenderBody()
+    </div>
+    <hr />
+    @*<footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>*@
+    @*<div id="overlay">
+        <img src="http://www.ray.rai.it/dl/siti/images/loading.gif" id="loader" />
+    </div>*@
+
+    @RenderSection("scripts", false)
+
+    @*<script src="~/Scripts/ripples.min.js"></script>
+        <script src="~/Scripts/material.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                // This command is used to initialize some elements and make them work properly
+                $.material.init();
+            });
+        </script>*@
+
+
+</body>
+</html>

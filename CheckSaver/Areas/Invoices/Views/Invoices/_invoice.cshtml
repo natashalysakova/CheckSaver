@@ -1,0 +1,25 @@
+﻿@model CheckSaver.Models.Invoice
+@using System.Globalization;
+
+
+<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+    <div class="card card-small">
+        @{ 
+            string fileName = Model.Month + ".jpg";
+        }
+        <div class="card-image" style="background-image: url(/Content/images/Seasons/@fileName)">
+            <div class="card-title">@Model.Month</div>
+        </div>
+        <div class="card-action">
+            <a href="@Url.Action("Details", "Invoices", new {id = Model.Id})">
+                <div class="card-flat-icon"><span class="glyphicon glyphicon-eye-open"></span></div>
+            </a>
+            <a href="@Url.Action("Edit", "Invoices", new {id = Model.Id})">
+                <div class="card-flat-icon"><span class="glyphicon glyphicon-edit"></span></div>
+            </a>
+            <a href="@Url.Action("Delete", "Invoices", new {id = Model.Id})">
+                <div class="card-flat-icon"><span class="glyphicon glyphicon-trash"></span></div>
+            </a>
+        </div>
+    </div> 
+</div>
