@@ -1,5 +1,6 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="addfieldsscript.js" />
+/// <reference path="animation.js" />
 /// <reference path="bigcard.js" />
 /// <reference path="bootstrap.js" />
 /// <reference path="bootstrap-datepicker.js" />

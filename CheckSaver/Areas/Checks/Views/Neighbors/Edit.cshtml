@@ -4,11 +4,6 @@
     ViewBag.Title = "Редактирование соседа " + Model.Name;
 }
 
-<script>
-    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
-</script>
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

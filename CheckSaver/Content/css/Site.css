@@ -1,25 +1,111 @@
 ﻿body {
-    background-color: rgb(227, 227, 227);
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    padding-top: 100px;
-}
+            margin: 0;
+            font-family: RobotoDraft, Roboto, sans-serif;
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+        }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding: 30px;
-}
+        a {
+            color: #333;
+            text-decoration: none;
+        }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
-}
+            a:visited {
+                color: #333;
+                text-decoration: none;
+            }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
+        #logo {
+            border-bottom: 1px solid #e0e0e0;
+            display: block;
+            position: relative;
+            background-color: white;
+            padding: 12px 0 11px 24px;
+        }
+
+        #right_menu {
+            position: fixed;
+            height: 100%;
+            width: 240px;
+            background-color: white;
+            z-index: 1;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 13px;
+            font-weight: 700;
+        }
+        #right_menu ul{
+            list-style-type: none;
+            padding: 0;
+        }
+
+            #right_menu ul li {
+                font-weight: 700;
+                margin-top: 0;
+                cursor: pointer;
+                position:relative;
+                overflow: hidden;
+            }
+
+                #right_menu ul li:hover {
+                    background-color: #e0e0e0;
+                }
+
+                #right_menu ul li:active {
+                                        background-color: #e0e0e0;
+
+                }
+
+                #right_menu ul li a {
+                    display: block;
+                    padding: 15px 0 15px 22px;
+                    cursor: pointer;
+                    user-select: none;
+                    position: relative;
+                }
+
+        #content-panel {
+            margin-left: 240px;
+            background-color: #fafafa;
+            z-index: 0;
+            min-height: 100%;
+            border-left: 1px solid #e0e0e0;
+        }
+
+        #content-body {
+            margin: auto;
+            padding-top: 128px;
+            width: 1060px;
+        }
+
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-left: 240px;
+            background-color: #5E35B1;
+            height: 64px;
+            width: 100%;
+            color: white;
+            font-size: 18px;
+            line-height: 64px;
+            margin-left: 72px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+        }
+
+        #content {
+            width: 100%;
+        }
+
+        #legal {
+            background-color: white;
+            position: absolute;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer {
+            background-color: white;
+            position: static;
+            height: 96px;
+            width: 100%;
+            bottom: 0;
+        }

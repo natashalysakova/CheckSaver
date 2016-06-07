@@ -158,9 +158,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Pager.cs" />
-    <Compile Include="Models\Checks.cs">
-      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\DetailsModels\CheckDetailsModel.cs" />
     <Compile Include="Models\Electricity.cs">
       <DependentUpon>InvoicesModel.tt</DependentUpon>
@@ -220,33 +217,7 @@
     <Compile Include="Models\Metadata\PurchaseMetadata.cs" />
     <Compile Include="Models\Metadata\StoresMetadata.cs" />
     <Compile Include="Models\Metadata\TransactionsMetadata.cs" />
-    <Compile Include="Models\Neighbours.cs">
-      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NewCheckSaverModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NewCheckSaverModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NewCheckSaverModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NewCheckSaverModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NewCheckSaverModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Price.cs">
-      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Products.cs">
-      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Purchases.cs">
-      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Plugin\IPligin.cs" />
     <Compile Include="Models\Repository\CheckSaveDbRepositoryPrices.cs" />
     <Compile Include="Models\Repository\CheckSaveDbRepositoryProducts.cs" />
     <Compile Include="Models\Repository\CheckSaveDbRepositoryStores.cs" />
@@ -255,25 +226,17 @@
     <Compile Include="Models\Repository\CheckSaveDbRepositoryGeneral.cs" />
     <Compile Include="Models\Repository\CheckSaveDbRepositoryTransactions.cs" />
     <Compile Include="Models\Repository\InvoiceDbRepository.cs" />
-    <Compile Include="Models\Stores.cs">
-      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Transactions.cs">
-      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Water.cs">
       <DependentUpon>InvoicesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WaterTarif.cs">
       <DependentUpon>InvoicesModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\WhoWillUse.cs">
-      <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\agency.css" />
+    <Content Include="Content\css\animation.css" />
     <Content Include="Content\css\bootstrap-theme.css" />
     <Content Include="Content\css\bootstrap-theme.min.css" />
     <Content Include="Content\css\bootstrap.css" />
@@ -376,6 +339,7 @@
       <LastGenOutput>InvoicesModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\AddFieldsScript.js" />
+    <Content Include="Scripts\animation.js" />
     <Content Include="Scripts\bigCard.js" />
     <Content Include="Scripts\MainSite\agency.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -421,23 +385,6 @@
     <Content Include="Content\fonts\font-awesome\scss\_spinning.scss" />
     <Content Include="Content\fonts\font-awesome\scss\_stacked.scss" />
     <Content Include="Content\fonts\font-awesome\scss\_variables.scss" />
-    <EntityDeploy Include="Models\NewCheckSaverModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NewCheckSaverModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\NewCheckSaverModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NewCheckSaverModel.edmx</DependentUpon>
-      <LastGenOutput>NewCheckSaverModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\NewCheckSaverModel.edmx.diagram">
-      <DependentUpon>NewCheckSaverModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\NewCheckSaverModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NewCheckSaverModel.edmx</DependentUpon>
-      <LastGenOutput>NewCheckSaverModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\css\AdvancedStyles.less" />
     <EntityDeploy Include="Models\InvoicesModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -450,12 +397,10 @@
     <Content Include="Areas\Checks\Views\web.config" />
     <Content Include="Areas\Invoices\Views\web.config" />
     <Content Include="Areas\Calculator\Views\web.config" />
-    <Content Include="Areas\Calculator\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Checks\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Invoices\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Checks\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Calculator\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Invoices\Views\_ViewStart.cshtml" />
+    <Content Include="Content\css\ChecksColors.css" />
     <None Include="Properties\PublishProfiles\fs.pubxml" />
     <None Include="Properties\PublishProfiles\host.pubxml" />
     <None Include="Properties\PublishProfiles\LocalNetwork.pubxml" />
@@ -647,8 +592,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Calculator\Models\" />
+    <Folder Include="Areas\Calculator\Views\Shared\" />
     <Folder Include="Areas\Checks\Models\" />
+    <Folder Include="Areas\Checks\Views\Shared\" />
     <Folder Include="Areas\Invoices\Models\" />
+    <Folder Include="Areas\Invoices\Views\Shared\" />
     <Folder Include="Content\css\components\" />
     <Folder Include="Content\themes\default\" />
     <Folder Include="Scripts\components\" />

@@ -16,8 +16,11 @@ namespace CheckSaver.Areas.Checks
         {
             context.MapRoute(
                 "Checks_default",
-                "Checks/{controller}/{action}/{id}",new { action = "Index", id = UrlParameter.Optional }, 
-                new[] { "CheckSaver.Areas.Checks.Controllers" });
+                "{controller}/{action}/{id}",
+                new { action = "Index", id = UrlParameter.Optional },
+                new { controller = "Checks|Neighbors|Prices|Products|Stores|Transactions" },
+                new[] { "CheckSaver.Areas.Checks.Controllers" }
+            );
         }
     }
 }

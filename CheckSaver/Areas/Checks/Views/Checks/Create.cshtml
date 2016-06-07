@@ -6,11 +6,6 @@
     ViewBag.Title = "Создать чек";
 }
 
-<script>
-    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
-</script>
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
