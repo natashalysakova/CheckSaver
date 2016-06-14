@@ -41,7 +41,7 @@ namespace CheckSaver.Models.Repository
 
         }
 
-        internal List<string> GetMonthPays(int? id)
+        internal Dictionary<string, decimal> GetMonthPays(int? id)
         {
             Neighbours n = FindNeighbourById(id);
 
@@ -56,6 +56,8 @@ namespace CheckSaver.Models.Repository
                         if (wwuse.Neighbours == n)
                         {
                             string key = check.Date.ToString("yyyy") + check.Date.ToString("MM");
+                            key =
+                                $"{key.Substring(2, 2)}   {CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Convert.ToInt32(key.Substring(4)))}";
                             if (!myPurchase.ContainsKey(key))
                             {
                                 myPurchase.Add(key, purchase.CostPerPerson);
@@ -69,9 +71,14 @@ namespace CheckSaver.Models.Repository
                 }
             }
 
-            var grouped = (from d in myPurchase orderby d.Key select $"'{d.Key.Substring(2, 2)} {CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Convert.ToInt32(d.Key.Substring(4)))} : {d.Value.ToString("C")}").ToList();
+            //var grouped = (
+            //    from d in myPurchase
+            //    orderby d.Key
+            //    select $"'{d.Key.Substring(2, 2)} " +
+            //           $"{CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Convert.ToInt32(d.Key.Substring(4)))} : " +
+            //           $"{d.Value.ToString("C")}").ToList();
 
-            return grouped;
+            return myPurchase;
         }
     }
 }

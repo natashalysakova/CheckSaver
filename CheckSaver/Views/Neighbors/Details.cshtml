@@ -26,13 +26,21 @@
             Растраты
         </div>
         @{
-            foreach (var item in ViewBag.MonthPay)
+            foreach (KeyValuePair<string, decimal> item in ViewBag.MonthPay)
             {
-                @item<br />
+                string s = item.Key + ": " + item.Value.ToString("C");
+                @s
             }
         }
         <hr />
-
+       @{ var myChart = new Chart(width: 600, height: 400)
+              .AddTitle("Растраты")
+              .AddSeries(
+                  name: "Месяца",
+                  xValue: ViewBag.MonthPay.Keys,
+                  yValues: ViewBag.MonthPay.Values)
+              .Write(); 
+           }
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
