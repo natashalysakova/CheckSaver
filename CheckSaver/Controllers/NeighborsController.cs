@@ -1,5 +1,9 @@
-﻿using System.Net;
+﻿using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Net;
 using System.Web.Mvc;
+using System.Web.UI.DataVisualization.Charting;
 using CheckSaver.Models;
 using CheckSaver.Models.Repository;
 
@@ -32,6 +36,64 @@ namespace CheckSaver.Controllers
             return View(neighbor);
         }
 
+        public ActionResult NeigbourMonthStat(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Neighbours neighbor = _repository.FindNeighbourById(id);
+            if (neighbor == null)
+            {
+                return HttpNotFound();
+            }
+
+            var pays = _repository.Get12MonthPays(id);
+
+            //Bitmap image = new Bitmap(1700, 1700);
+            //Graphics g = Graphics.FromImage(image);
+            Chart chart = new Chart
+            {
+                Width = 950,
+                Height = 400
+            };
+
+
+            ChartArea area = new ChartArea("area")
+            {
+                BackColor = Color.FromArgb(64, Color.White),
+                AxisX =
+                {
+                    IsLabelAutoFit = true,
+                    LabelAutoFitStyle = LabelAutoFitStyles.LabelsAngleStep30,
+                    LabelStyle = {Enabled = true},
+                    Interval = 1,
+                    MajorGrid = {LineColor = Color.LightGray}
+                }
+            };
+            area.AxisY.MajorGrid.LineColor = Color.LightGray;
+
+            Series series = new Series
+            {
+                IsValueShownAsLabel = true,
+                Color = Color.FromArgb(0, 150, 136)
+            };
+            series.Points.DataBindXY(pays.Keys.ToArray(), pays.Values.ToArray());
+
+            chart.ChartAreas.Add(area);
+            chart.Series.Add(series);
+            MemoryStream imageStream = new MemoryStream();
+            chart.SaveImage(imageStream, ChartImageFormat.Png);
+            chart.TextAntiAliasingQuality = TextAntiAliasingQuality.SystemDefault;
+            Response.ContentType = "image/png";
+            imageStream.WriteTo(Response.OutputStream);
+            //g.Dispose();
+            //image.Dispose();
+            return null;
+        }
+
+
+        
         // GET: Neighbors/Create
         public ActionResult Create()
         {

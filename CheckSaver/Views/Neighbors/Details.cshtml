@@ -14,10 +14,10 @@
         <div class="main-title">@ViewBag.Title</div>
         <div class="sub-title"></div>
     </div>
-    <div class="form-group" >
-        @Html.Label("Сосед по умолчанию?", htmlAttributes: new { @class = "control-label col-md-3"})
+    <div class="form-group">
+        @Html.Label("Сосед по умолчанию?", htmlAttributes: new { @class = "control-label col-md-3" })
         <div class="col-md-9">
-            @Html.EditorFor(model => model.IsDefault, new { htmlAttributes = new { @class = "form-control", @disabled="disabled"} })
+            @Html.EditorFor(model => model.IsDefault, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
         </div>
     </div>
     <hr />
@@ -25,22 +25,16 @@
         <div class="main-title">
             Растраты
         </div>
-        @{
-            foreach (KeyValuePair<string, decimal> item in ViewBag.MonthPay)
+
+        @foreach (KeyValuePair<string, decimal> item in ViewBag.MonthPay)
             {
                 string s = item.Key + ": " + item.Value.ToString("C");
                 @s
-            }
+                @:</br>
         }
+
         <hr />
-       @{ var myChart = new Chart(width: 600, height: 400)
-              .AddTitle("Растраты")
-              .AddSeries(
-                  name: "Месяца",
-                  xValue: ViewBag.MonthPay.Keys,
-                  yValues: ViewBag.MonthPay.Values)
-              .Write(); 
-           }
+        <img class="img-responsive" src="@Url.Action("NeigbourMonthStat", new { id = Model.Id})" />
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
@@ -67,7 +61,7 @@
             </div>
         </div>
 
-        @foreach (Checks check in Model.Checks.OrderByDescending(x => x.Date))
+        @foreach (CheckSaver.Models.Checks check in Model.Checks.OrderByDescending(x => x.Date))
         {
             <div class="col-md-4 col-xs-12 col-sm-6 col-lg-3">
                 @{
@@ -75,53 +69,53 @@
                 }
             </div>
                     }
-        
+
         <hr />
 
     </div>
-    
-        @*    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-offset-0 col-lg-offset-0">
 
-        <div class="main-title">
-            Должны @Model.Name
-        </div>
+    @*    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-offset-0 col-lg-offset-0">
 
-        @foreach (Transactions transaction in Model.MyPaysNP)
+            <div class="main-title">
+                Должны @Model.Name
+            </div>
+
+            @foreach (Transactions transaction in Model.MyPaysNP)
+                {
+                    if (!@transaction.IsDebitOff)
+                    {
+
+                    <p>
+                        @transaction.Date.ToShortDateString() - @transaction.Caption - @transaction.ForWhomNP.Name: @transaction.Summa.ToString("C");
+                    </p>
+                }
+            }
+
+            @{
+                var summ = (from t in Model.MyPaysNP where !t.IsDebitOff group t by t.ForWhomNP.Name into groups select groups).ToList();
+                foreach (var item in summ)
+                {
+                    <p>
+                        @item.Key: @item.Sum(x => x.Summa).ToString("C")
+                    </p>
+
+                }
+            }
+
+            <hr />
+            <div class="main-title">
+                @Model.Name Должeн
+            </div>
+            @foreach (Transactions transaction in Model.PaysForMeNP)
             {
                 if (!@transaction.IsDebitOff)
                 {
-
-                <p>
-                    @transaction.Date.ToShortDateString() - @transaction.Caption - @transaction.ForWhomNP.Name: @transaction.Summa.ToString("C");
-                </p>
+                    <p>@transaction.Date.ToShortDateString() - @transaction.Caption - @transaction.WhoPayNP.Name: @transaction.Summa.ToString("C")</p>
+                }
             }
-        }
 
-        @{
-            var summ = (from t in Model.MyPaysNP where !t.IsDebitOff group t by t.ForWhomNP.Name into groups select groups).ToList();
-            foreach (var item in summ)
-            {
-                <p>
-                    @item.Key: @item.Sum(x => x.Summa).ToString("C")
-                </p>
+            <hr />
+        </div>*@
 
-            }
-        }
 
-        <hr />
-        <div class="main-title">
-            @Model.Name Должeн
-        </div>
-        @foreach (Transactions transaction in Model.PaysForMeNP)
-        {
-            if (!@transaction.IsDebitOff)
-            {
-                <p>@transaction.Date.ToShortDateString() - @transaction.Caption - @transaction.WhoPayNP.Name: @transaction.Summa.ToString("C")</p>
-            }
-        }
-
-        <hr />
-    </div>*@
-
-       
-    </div>
+</div>
