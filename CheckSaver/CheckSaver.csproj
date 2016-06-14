@@ -41,14 +41,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -159,12 +151,6 @@
     </Compile>
     <Compile Include="Helpers\Pager.cs" />
     <Compile Include="Models\DetailsModels\CheckDetailsModel.cs" />
-    <Compile Include="Models\Electricity.cs">
-      <DependentUpon>InvoicesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ElectricityTarif.cs">
-      <DependentUpon>InvoicesModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ExtentionsModels\Checks.cs" />
     <Compile Include="Models\ExtentionsModels\ElectricityTarif.cs" />
     <Compile Include="Models\ExtentionsModels\GasTarif.cs" />
@@ -175,42 +161,12 @@
     <Compile Include="Models\ExtentionsModels\Stores.cs" />
     <Compile Include="Models\ExtentionsModels\Transactions.cs" />
     <Compile Include="Models\ExtentionsModels\WaterTarif.cs" />
-    <Compile Include="Models\FixedPays.cs">
-      <DependentUpon>InvoicesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FPName.cs">
-      <DependentUpon>InvoicesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Gas.cs">
-      <DependentUpon>InvoicesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GasTarif.cs">
-      <DependentUpon>InvoicesModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\InputModels\CheckInputModel.cs" />
     <Compile Include="Models\InputModels\FixedPaysInputModel.cs" />
     <Compile Include="Models\InputModels\InvoiceInputModel.cs" />
     <Compile Include="Models\InputModels\ProductInputModel.cs" />
     <Compile Include="Models\InputModels\PurchaseInputModel.cs" />
     <Compile Include="Models\InputModels\TransactionInputModel.cs" />
-    <Compile Include="Models\Invoice.cs">
-      <DependentUpon>InvoicesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\InvoicesModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InvoicesModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\InvoicesModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InvoicesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\InvoicesModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InvoicesModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Metadata\ChecksMetadata.cs" />
     <Compile Include="Models\Metadata\NeighboursMetadata.cs" />
     <Compile Include="Models\Metadata\ProductsMetadata.cs" />
@@ -226,12 +182,6 @@
     <Compile Include="Models\Repository\CheckSaveDbRepositoryGeneral.cs" />
     <Compile Include="Models\Repository\CheckSaveDbRepositoryTransactions.cs" />
     <Compile Include="Models\Repository\InvoiceDbRepository.cs" />
-    <Compile Include="Models\Water.cs">
-      <DependentUpon>InvoicesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\WaterTarif.cs">
-      <DependentUpon>InvoicesModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -328,16 +278,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\InvoicesModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>InvoicesModel.edmx</DependentUpon>
-      <LastGenOutput>InvoicesModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\InvoicesModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>InvoicesModel.edmx</DependentUpon>
-      <LastGenOutput>InvoicesModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\AddFieldsScript.js" />
     <Content Include="Scripts\animation.js" />
     <Content Include="Scripts\bigCard.js" />
@@ -386,13 +326,6 @@
     <Content Include="Content\fonts\font-awesome\scss\_stacked.scss" />
     <Content Include="Content\fonts\font-awesome\scss\_variables.scss" />
     <Content Include="Content\css\AdvancedStyles.less" />
-    <EntityDeploy Include="Models\InvoicesModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>InvoicesModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\InvoicesModel.edmx.diagram">
-      <DependentUpon>InvoicesModel.edmx</DependentUpon>
-    </Content>
     <Content Include="package.json" />
     <Content Include="Areas\Checks\Views\web.config" />
     <Content Include="Areas\Invoices\Views\web.config" />
@@ -610,6 +543,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CheckSaverCore\CheckSaverCore.csproj">
+      <Project>{f4e3c1cf-14e8-42bb-b512-2fb5361cd800}</Project>
+      <Name>CheckSaverCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

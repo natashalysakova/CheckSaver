@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using CheckSaver.Models;
 
@@ -12,7 +7,7 @@ namespace CheckSaver.Areas.Invoices.Controllers
 {
     public class WaterTarifsController : Controller
     {
-        private InvoicesCS db = new InvoicesCS();
+        InvoicesM
 
         // GET: WaterTarifs
         public ActionResult Index()

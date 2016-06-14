@@ -54,6 +54,42 @@
     <Compile Include="Checks.cs">
       <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Electricity.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElectricityTarif.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FixedPays.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FPName.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Gas.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GasTarif.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoicesModel.Context.cs">
+      <DependentUpon>InvoicesModel.Context.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="InvoicesModel.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="InvoicesModel.Designer.cs">
+      <DependentUpon>InvoicesModel.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="IRepository.cs" />
     <Compile Include="NeigbourRepository.cs" />
     <Compile Include="Neighbours.cs">
@@ -92,11 +128,28 @@
     <Compile Include="Transactions.cs">
       <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="UnitOfWork.cs" />
+    <Compile Include="Water.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WaterTarif.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="WhoWillUse.cs">
       <DependentUpon>NewCheckSaverModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="InvoicesModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>InvoicesModel.edmx</DependentUpon>
+      <LastGenOutput>InvoicesModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="InvoicesModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>InvoicesModel.edmx</DependentUpon>
+      <LastGenOutput>InvoicesModel.cs</LastGenOutput>
+    </Content>
     <Content Include="NewCheckSaverModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>NewCheckSaverModel.edmx</DependentUpon>
@@ -109,6 +162,13 @@
     </EntityDeploy>
     <Content Include="NewCheckSaverModel.edmx.diagram">
       <DependentUpon>NewCheckSaverModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="InvoicesModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>InvoicesModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="InvoicesModel.edmx.diagram">
+      <DependentUpon>InvoicesModel.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
   </ItemGroup>

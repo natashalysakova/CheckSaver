@@ -3,13 +3,13 @@ using System.Data.Entity;
 
 namespace CheckSaverCore
 {
-    abstract class Repository<T,C> where T: class where C : DbContext
+    public abstract class Repository<T,C> where T: class where C : DbContext
     {
-        private readonly C _context;
+        protected readonly C Context;
 
-        public Repository(C context)
+        protected Repository(C context)
         {
-            this._context = context;
+            this.Context = context;
         }
         public abstract void Dispose();
 
@@ -21,7 +21,7 @@ namespace CheckSaverCore
 
         public void Save()
         {
-            _context.SaveChanges();
+            Context.SaveChanges();
         }
     }
 }

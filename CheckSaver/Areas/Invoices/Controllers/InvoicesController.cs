@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Net;
@@ -10,20 +7,18 @@ using System.Web.Mvc;
 using CheckSaver.Models;
 using CheckSaver.Models.ExtentionsModels;
 using CheckSaver.Models.InputModels;
-using CheckSaver.Models.Repository;
 
 namespace CheckSaver.Areas.Invoices.Controllers
 {
     public class InvoicesController : Controller
     {
-        private InvoicesCS db = new InvoicesCS();
-        InvoiceDbRepository _repository = new InvoiceDbRepository();
+        readonly CheckSaverCore.InvoicesWU _unitOfWork = new CheckSaverCore.InvoicesWU();
 
         // GET: Invoices
         public ActionResult Index()
         {
-            var invoice = db.Invoice.Include(i => i.Electricity).Include(i => i.Gas).Include(i => i.HotWater).Include(i => i.ColdWater);
-            return View(invoice.ToList());
+            var invoices = _unitOfWork.GetInvoices();
+            return View(invoices);
         }
 
         // GET: Invoices/Details/5
@@ -33,7 +28,7 @@ namespace CheckSaver.Areas.Invoices.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Invoice invoice = db.Invoice.Find(id);
+            Invoice invoice = _unitOfWork.GetById(id);
             if (invoice == null)
             {
                 return HttpNotFound();
