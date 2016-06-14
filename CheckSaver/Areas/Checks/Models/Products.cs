@@ -10,9 +10,9 @@ namespace CheckSaver.Models
     [MetadataType(typeof(ProductsMetadata))]
     public partial class Products
     {
-        internal decimal GetPrice(int storeId)
-        {
-            return this.Price.Where(x => x.StoreId == storeId).FirstOrDefault().Cost;
-        }
+        //internal decimal GetPrice(int storeId)
+        //{
+        //    return this.Price.Where(x => x.StoreId == storeId).FirstOrDefault().Cost;
+        //}
     }
 }

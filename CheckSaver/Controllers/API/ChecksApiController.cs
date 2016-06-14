@@ -12,61 +12,61 @@ namespace CheckSaver.Controllers.API
 {
     public class ChecksApiController : ApiController
     {
-        CheckSaveDbRepository _repository = new CheckSaveDbRepository();
+        //CheckSaveDbRepository _repository = new CheckSaveDbRepository();
         
-        // GET: api/ChecksApi
-        public object Get()
-        {
-            var c =  _repository.GetChecks();
-            List<object> answer = new List<object>();
-            foreach (Checks item in c)
-            {
-                answer.Add(new
-                {
-                    id = item.Id,
-                    date = item.Date,
-                    neighbour = item.Neighbours.Name,
-                    photo = item.Stores.Photo,
-                    store = item.Stores.Title,
+        //// GET: api/ChecksApi
+        //public object Get()
+        //{
+        //    var c =  _repository.GetChecks();
+        //    List<object> answer = new List<object>();
+        //    foreach (Checks item in c)
+        //    {
+        //        answer.Add(new
+        //        {
+        //            id = item.Id,
+        //            date = item.Date,
+        //            neighbour = item.Neighbours.Name,
+        //            photo = item.Stores.Photo,
+        //            store = item.Stores.Title,
 
-                });
-            }
+        //        });
+        //    }
 
-            return Json(answer);
-        }
+        //    return Json(answer);
+        //}
 
-        // GET: api/ChecksApi/5
-        public object Get(int id)
-        {
-            Checks c = _repository.FindCheckById(id);
+        //// GET: api/ChecksApi/5
+        //public object Get(int id)
+        //{
+        //    Checks c = _repository.FindCheckById(id);
 
-            var res = new
-            {
-                id = c.Id,
-                date = c.Date.ToShortDateString(),
-                neighbour = c.Neighbours.Name,
-                photo = c.Stores.Photo,
-                store = c.Stores.Title,
+        //    var res = new
+        //    {
+        //        id = c.Id,
+        //        date = c.Date.ToShortDateString(),
+        //        neighbour = c.Neighbours.Name,
+        //        photo = c.Stores.Photo,
+        //        store = c.Stores.Title,
 
-            };
-            return Json(res);
-        }
+        //    };
+        //    return Json(res);
+        //}
 
-        // POST: api/ChecksApi
-        public void Post([FromBody]object value)
-        {
-        }
+        //// POST: api/ChecksApi
+        //public void Post([FromBody]object value)
+        //{
+        //}
 
-        // PUT: api/ChecksApi/5
-        public void Put(int id, [FromBody]Checks value)
-        {
+        //// PUT: api/ChecksApi/5
+        //public void Put(int id, [FromBody]Checks value)
+        //{
 
-        }
+        //}
 
-        // DELETE: api/ChecksApi/5
-        public void Delete(int id)
-        {
-            _repository.RemoveCheck(id);
-        }
+        //// DELETE: api/ChecksApi/5
+        //public void Delete(int id)
+        //{
+        //    _repository.RemoveCheck(id);
+        //}
     }
 }

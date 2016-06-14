@@ -41,11 +41,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.DurableInstancing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -151,16 +155,16 @@
     </Compile>
     <Compile Include="Helpers\Pager.cs" />
     <Compile Include="Models\DetailsModels\CheckDetailsModel.cs" />
-    <Compile Include="Models\ExtentionsModels\Checks.cs" />
-    <Compile Include="Models\ExtentionsModels\ElectricityTarif.cs" />
-    <Compile Include="Models\ExtentionsModels\GasTarif.cs" />
-    <Compile Include="Models\ExtentionsModels\ITarif.cs" />
-    <Compile Include="Models\ExtentionsModels\Neghbours.cs" />
-    <Compile Include="Models\ExtentionsModels\Products.cs" />
-    <Compile Include="Models\ExtentionsModels\Purchase.cs" />
-    <Compile Include="Models\ExtentionsModels\Stores.cs" />
-    <Compile Include="Models\ExtentionsModels\Transactions.cs" />
-    <Compile Include="Models\ExtentionsModels\WaterTarif.cs" />
+    <Compile Include="Areas\Checks\Models\Checks.cs" />
+    <Compile Include="Areas\Invoices\Models\ElectricityTarif.cs" />
+    <Compile Include="Areas\Invoices\Models\GasTarif.cs" />
+    <Compile Include="Areas\Invoices\Models\ITarif.cs" />
+    <Compile Include="Areas\Checks\Models\Neghbours.cs" />
+    <Compile Include="Areas\Checks\Models\Products.cs" />
+    <Compile Include="Areas\Checks\Models\Purchase.cs" />
+    <Compile Include="Areas\Checks\Models\Stores.cs" />
+    <Compile Include="Areas\Checks\Models\Transactions.cs" />
+    <Compile Include="Areas\Invoices\Models\WaterTarif.cs" />
     <Compile Include="Models\InputModels\CheckInputModel.cs" />
     <Compile Include="Models\InputModels\FixedPaysInputModel.cs" />
     <Compile Include="Models\InputModels\InvoiceInputModel.cs" />
@@ -526,12 +530,11 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Calculator\Models\" />
     <Folder Include="Areas\Calculator\Views\Shared\" />
-    <Folder Include="Areas\Checks\Models\" />
     <Folder Include="Areas\Checks\Views\Shared\" />
-    <Folder Include="Areas\Invoices\Models\" />
     <Folder Include="Areas\Invoices\Views\Shared\" />
     <Folder Include="Content\css\components\" />
     <Folder Include="Content\themes\default\" />
+    <Folder Include="Models\ExtentionsModels\" />
     <Folder Include="Scripts\components\" />
   </ItemGroup>
   <ItemGroup>

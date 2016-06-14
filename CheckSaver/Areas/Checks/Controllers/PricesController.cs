@@ -12,7 +12,7 @@ namespace CheckSaver.Areas.Checks.Controllers
 { 
     public class PricesController : Controller
     {
-        private Models.CheckSaverContext db = new Models.CheckSaverContext();
+        private CheckSaverContext db = new CheckSaverContext();
 
         // GET: Prices
         public ActionResult Index()

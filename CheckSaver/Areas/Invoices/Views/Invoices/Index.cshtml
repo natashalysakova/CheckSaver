@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CheckSaver.Models.Invoice>
+﻿@model IEnumerable<Invoice>
 
 @{
     ViewBag.Title = "Квитанции";
@@ -8,7 +8,7 @@
 
 
 <div class="container">
-    @foreach (CheckSaver.Models.Invoice item in Model)
+    @foreach (var item in Model)
     {
         Html.RenderPartial("_invoice", item);
     }
