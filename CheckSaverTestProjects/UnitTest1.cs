@@ -54,55 +54,55 @@ namespace CheckSaverTestProjects
             Assert.AreEqual("42.86", summ);
         }
 
-        [TestMethod]
-        public void TestMethod5()
-        {
+        //[TestMethod]
+        //public void TestMethod5()
+        //{
 
-            Assert.AreNotEqual(0, _invoiceDbRepository.AddInvoice(
-                new InvoiceInputModel()
-                {
-                    Address = "test",
-                    ColdWaterInput = new InvoiceInputModel.Utilities<WaterTarif>()
-                    {
-                        StartValue = "0",
-                        FinishValue = "50",
-                        Cost = "25",
-                        Difference = "50",
-                        Tarif = new WaterTarif(),
-                    },
-                    CreationDate = DateTime.Now.Date,
-                    ElectricityInput = new InvoiceInputModel.Utilities<ElectricityTarif>()
-                    {
-                        StartValue = "0",
-                        FinishValue = "50",
-                        Cost = "25",
-                        Difference = "50",
-                        Tarif = new ElectricityTarif(),
-                    },
+        //    Assert.AreNotEqual(0, _invoiceDbRepository.AddInvoice(
+        //        new InvoiceInputModel()
+        //        {
+        //            Address = "test",
+        //            ColdWaterInput = new InvoiceInputModel.Utilities<WaterTarif>()
+        //            {
+        //                StartValue = "0",
+        //                FinishValue = "50",
+        //                Cost = "25",
+        //                Difference = "50",
+        //                Tarif = new WaterTarif(),
+        //            },
+        //            CreationDate = DateTime.Now.Date,
+        //            ElectricityInput = new InvoiceInputModel.Utilities<ElectricityTarif>()
+        //            {
+        //                StartValue = "0",
+        //                FinishValue = "50",
+        //                Cost = "25",
+        //                Difference = "50",
+        //                Tarif = new ElectricityTarif(),
+        //            },
 
-                    FixedPaysInput = new System.Collections.Generic.List<FixedPaysInputModel>(),
+        //            FixedPaysInput = new System.Collections.Generic.List<FixedPaysInputModel>(),
 
-                    GasInput = new InvoiceInputModel.Utilities<GasTarif>()
-                    {
-                        StartValue = "0",
-                        FinishValue = "50",
-                        Cost = "25",
-                        Difference = "50",
-                        Tarif = new GasTarif(),
-                    },
+        //            GasInput = new InvoiceInputModel.Utilities<GasTarif>()
+        //            {
+        //                StartValue = "0",
+        //                FinishValue = "50",
+        //                Cost = "25",
+        //                Difference = "50",
+        //                Tarif = new GasTarif(),
+        //            },
 
-                    HotWaterInput = new InvoiceInputModel.Utilities<WaterTarif>()
-                    {
-                        StartValue = "0",
-                        FinishValue = "50",
-                        Cost = "25",
-                        Difference = "50",
-                        Tarif = new WaterTarif(),
-                    },
-                    Month = 06,
-                    TotalSum = "1000",
-                    Year = 2016
-                }));
-        }
+        //            HotWaterInput = new InvoiceInputModel.Utilities<WaterTarif>()
+        //            {
+        //                StartValue = "0",
+        //                FinishValue = "50",
+        //                Cost = "25",
+        //                Difference = "50",
+        //                Tarif = new WaterTarif(),
+        //            },
+        //            Month = 06,
+        //            TotalSum = "1000",
+        //            Year = 2016
+        //        }));
+        //}
     }
 }
