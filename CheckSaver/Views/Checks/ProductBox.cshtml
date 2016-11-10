@@ -1,0 +1,78 @@
+﻿@using CheckSaver.Models
+@using CheckSaverCore.DataModels
+@model CheckSaverCore.DataModels.InputModels.CheckInputModel
+@{
+    int i = ViewBag.Index;
+}
+
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-big card-no-shadows">
+    <div class="col-xs-3">
+        @Html.EditorFor(model => model.Purchases[i].Product.Name, new { htmlAttributes = new { @class = "form-control name", index = i.ToString() } })
+        @Html.ValidationMessageFor(model => model.Purchases[i].Product.Name, "", new { @class = "text-danger" })
+    </div>
+    <div class="col-xs-2">
+        @Html.EditorFor(model => model.Purchases[i].Count, new { htmlAttributes = new { @class = "form-control count", type = "number" } })
+        @Html.ValidationMessageFor(model => model.Purchases[i].Count, "", new { @class = "text-danger" })
+    </div>
+    <div class="col-xs-2">
+        @Html.EditorFor(model => model.Purchases[i].Product.Price, new { htmlAttributes = new { @class = "form-control price", type = "number" } })
+        @Html.ValidationMessageFor(model => model.Purchases[i].Product.Price, "", new { @class = "text-danger" })
+    </div>
+    <div class=" col-xs-5">
+        @{
+
+            foreach (Neighbour c in ViewBag.Names)
+            {
+                if (c.IsDefault)
+                {
+                    <div class="checkbox-inline cb_@c.Id" id="@c.Id">
+                        <input type="checkbox" value="@c.Id" name="Purchases[@i].WhoWillUse" />
+                        @c.Name
+                    </div>
+                }
+                else
+                {
+                    <div class="checkbox-inline not-default-neghbour hidden cb_@c.Id" id="@c.Id">
+                        <input type="checkbox" value="@c.Id" name="Purchases[@i].WhoWillUse" />
+                        @c.Name
+                    </div>
+                }
+            }
+        }
+    </div>
+
+</div>
+
+
+@*@model CheckSaver.Models.Purchases
+@{
+    int i = ViewBag.Index;
+}
+
+<div class="form-group">
+    <div class="col-xs-3">
+        @Html.EditorFor(model => model.Products.Title, new { htmlAttributes = new { @class = "form-control name", index = i.ToString() } })
+        @Html.ValidationMessageFor(model => model.Products.Title, "", new { @class = "text-danger" })
+    </div>
+    <div class="col-xs-2">
+        @Html.EditorFor(model => model.Cost, new { htmlAttributes = new { @class = "form-control price" } })
+        @Html.ValidationMessageFor(model => model.Cost, "", new { @class = "text-danger" })
+    </div>
+    <div class="col-xs-2">
+        @Html.EditorFor(model => model.Count, new { htmlAttributes = new { @class = "form-control count" } })
+        @Html.ValidationMessageFor(model => model.Count, "", new { @class = "text-danger" })
+    </div>
+    <div class=" col-xs-4">
+        @{
+
+            foreach (var c in ViewBag.Names)
+            {
+                <div class="checkbox">
+                    <input type="checkbox" value="@c.Key" name="Purchases[@i].WhoWillUse" />
+                    @c.Value
+                </div>
+            }
+        }
+    </div>
+
+</div>*@

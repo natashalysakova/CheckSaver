@@ -1,0 +1,676 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="checkSaverModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Checks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NeighbourId" Type="int" Nullable="false" />
+          <Property Name="StoreId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Neighbours">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsDefault" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Prices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="StoreId" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Purchases">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CheckId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CostPerPerson" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Count" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Summ" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transactions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WhoPay" Type="int" Nullable="false" />
+          <Property Name="ForWhom" Type="int" Nullable="false" />
+          <Property Name="Summa" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Caption" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="IsDebitOff" Type="bit" Nullable="false" />
+          <Property Name="CheckId" Type="int" />
+        </EntityType>
+        <EntityType Name="WhoWillUses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NeighbourId" Type="int" Nullable="false" />
+          <Property Name="PurchaseId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_n_Checks_n_Neighbours">
+          <End Role="Neighbours" Type="Self.Neighbours" Multiplicity="1" />
+          <End Role="Checks" Type="Self.Checks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Neighbours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Checks">
+              <PropertyRef Name="NeighbourId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_Checks_n_Stores">
+          <End Role="Stores" Type="Self.Stores" Multiplicity="1" />
+          <End Role="Checks" Type="Self.Checks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Checks">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_Price_n_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Prices" Type="Self.Prices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Prices">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_Price_n_Stores">
+          <End Role="Stores" Type="Self.Stores" Multiplicity="1" />
+          <End Role="Prices" Type="Self.Prices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Prices">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_Purchases_n_Checks">
+          <End Role="Checks" Type="Self.Checks" Multiplicity="1" />
+          <End Role="Purchases" Type="Self.Purchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Checks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Purchases">
+              <PropertyRef Name="CheckId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_Purchases_n_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Purchases" Type="Self.Purchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Purchases">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_Transactions_n_Checks">
+          <End Role="Checks" Type="Self.Checks" Multiplicity="0..1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Checks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="CheckId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_Transactions_n_Neighbours">
+          <End Role="Neighbours" Type="Self.Neighbours" Multiplicity="1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Neighbours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="WhoPay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_Transactions_n_Neighbours1">
+          <End Role="Neighbours" Type="Self.Neighbours" Multiplicity="1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Neighbours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="ForWhom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_WhoWillUse_n_Neighbours">
+          <End Role="Neighbours" Type="Self.Neighbours" Multiplicity="1" />
+          <End Role="WhoWillUses" Type="Self.WhoWillUses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Neighbours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WhoWillUses">
+              <PropertyRef Name="NeighbourId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_WhoWillUse_n_Purchases">
+          <End Role="Purchases" Type="Self.Purchases" Multiplicity="1" />
+          <End Role="WhoWillUses" Type="Self.WhoWillUses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WhoWillUses">
+              <PropertyRef Name="PurchaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="checkSaverModelStoreContainer">
+          <EntitySet Name="Checks" EntityType="Self.Checks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Neighbours" EntityType="Self.Neighbours" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prices" EntityType="Self.Prices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Purchases" EntityType="Self.Purchases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stores" EntityType="Self.Stores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WhoWillUses" EntityType="Self.WhoWillUses" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_n_Checks_n_Neighbours" Association="Self.FK_n_Checks_n_Neighbours">
+            <End Role="Neighbours" EntitySet="Neighbours" />
+            <End Role="Checks" EntitySet="Checks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_Checks_n_Stores" Association="Self.FK_n_Checks_n_Stores">
+            <End Role="Stores" EntitySet="Stores" />
+            <End Role="Checks" EntitySet="Checks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_Price_n_Products" Association="Self.FK_n_Price_n_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Prices" EntitySet="Prices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_Price_n_Stores" Association="Self.FK_n_Price_n_Stores">
+            <End Role="Stores" EntitySet="Stores" />
+            <End Role="Prices" EntitySet="Prices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_Purchases_n_Checks" Association="Self.FK_n_Purchases_n_Checks">
+            <End Role="Checks" EntitySet="Checks" />
+            <End Role="Purchases" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_Purchases_n_Products" Association="Self.FK_n_Purchases_n_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Purchases" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_Transactions_n_Checks" Association="Self.FK_n_Transactions_n_Checks">
+            <End Role="Checks" EntitySet="Checks" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_Transactions_n_Neighbours" Association="Self.FK_n_Transactions_n_Neighbours">
+            <End Role="Neighbours" EntitySet="Neighbours" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_Transactions_n_Neighbours1" Association="Self.FK_n_Transactions_n_Neighbours1">
+            <End Role="Neighbours" EntitySet="Neighbours" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_WhoWillUse_n_Neighbours" Association="Self.FK_n_WhoWillUse_n_Neighbours">
+            <End Role="Neighbours" EntitySet="Neighbours" />
+            <End Role="WhoWillUses" EntitySet="WhoWillUses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_WhoWillUse_n_Purchases" Association="Self.FK_n_WhoWillUse_n_Purchases">
+            <End Role="Purchases" EntitySet="Purchases" />
+            <End Role="WhoWillUses" EntitySet="WhoWillUses" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="checkSaverModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="checkSaverEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Checks" EntityType="checkSaverModel.Check" />
+          <EntitySet Name="Neighbours" EntityType="checkSaverModel.Neighbour" />
+          <EntitySet Name="Prices" EntityType="checkSaverModel.Price" />
+          <EntitySet Name="Products" EntityType="checkSaverModel.Product" />
+          <EntitySet Name="Purchases" EntityType="checkSaverModel.Purchase" />
+          <EntitySet Name="Stores" EntityType="checkSaverModel.Store" />
+          <EntitySet Name="Transactions" EntityType="checkSaverModel.Transaction" />
+          <EntitySet Name="WhoWillUses" EntityType="checkSaverModel.WhoWillUse" />
+          <AssociationSet Name="FK_n_Checks_n_Stores" Association="checkSaverModel.FK_n_Checks_n_Stores">
+            <End Role="n_Stores" EntitySet="Stores" />
+            <End Role="n_Checks" EntitySet="Checks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_Purchases_n_Checks" Association="checkSaverModel.FK_n_Purchases_n_Checks">
+            <End Role="n_Checks" EntitySet="Checks" />
+            <End Role="n_Purchases" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_Transactions_n_Checks" Association="checkSaverModel.FK_n_Transactions_n_Checks">
+            <End Role="n_Checks" EntitySet="Checks" />
+            <End Role="n_Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_Transactions_n_Neighbours" Association="checkSaverModel.FK_n_Transactions_n_Neighbours">
+            <End Role="n_Neighbours" EntitySet="Neighbours" />
+            <End Role="n_Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_Transactions_n_Neighbours1" Association="checkSaverModel.FK_n_Transactions_n_Neighbours1">
+            <End Role="n_Neighbours" EntitySet="Neighbours" />
+            <End Role="n_Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_WhoWillUse_n_Neighbours" Association="checkSaverModel.FK_n_WhoWillUse_n_Neighbours">
+            <End Role="n_Neighbours" EntitySet="Neighbours" />
+            <End Role="n_WhoWillUse" EntitySet="WhoWillUses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_Price_n_Products" Association="checkSaverModel.FK_n_Price_n_Products">
+            <End Role="n_Products" EntitySet="Products" />
+            <End Role="n_Price" EntitySet="Prices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_Price_n_Stores" Association="checkSaverModel.FK_n_Price_n_Stores">
+            <End Role="n_Stores" EntitySet="Stores" />
+            <End Role="n_Price" EntitySet="Prices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_Purchases_n_Products" Association="checkSaverModel.FK_n_Purchases_n_Products">
+            <End Role="n_Products" EntitySet="Products" />
+            <End Role="n_Purchases" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_WhoWillUse_n_Purchases" Association="checkSaverModel.FK_n_WhoWillUse_n_Purchases">
+            <End Role="n_Purchases" EntitySet="Purchases" />
+            <End Role="n_WhoWillUse" EntitySet="WhoWillUses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_n_Checks_n_Neighbours" Association="checkSaverModel.FK_n_Checks_n_Neighbours">
+            <End Role="Neighbour" EntitySet="Neighbours" />
+            <End Role="Check" EntitySet="Checks" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Check">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NeighbourId" Type="Int32" Nullable="false" />
+          <Property Name="StoreId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Stores" Relationship="checkSaverModel.FK_n_Checks_n_Stores" FromRole="n_Checks" ToRole="n_Stores" />
+          <NavigationProperty Name="Purchases" Relationship="checkSaverModel.FK_n_Purchases_n_Checks" FromRole="n_Checks" ToRole="n_Purchases" />
+          <NavigationProperty Name="Transactions" Relationship="checkSaverModel.FK_n_Transactions_n_Checks" FromRole="n_Checks" ToRole="n_Transactions" />
+          <NavigationProperty Name="Neighbour" Relationship="checkSaverModel.FK_n_Checks_n_Neighbours" FromRole="Check" ToRole="Neighbour" />
+        </EntityType>
+        <EntityType Name="Neighbour">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="WhoPays" Relationship="checkSaverModel.FK_n_Transactions_n_Neighbours" FromRole="n_Neighbours" ToRole="n_Transactions" />
+          <NavigationProperty Name="ForWhom" Relationship="checkSaverModel.FK_n_Transactions_n_Neighbours1" FromRole="n_Neighbours" ToRole="n_Transactions" />
+          <NavigationProperty Name="WhoWillUse" Relationship="checkSaverModel.FK_n_WhoWillUse_n_Neighbours" FromRole="n_Neighbours" ToRole="n_WhoWillUse" />
+          <NavigationProperty Name="Checks" Relationship="checkSaverModel.FK_n_Checks_n_Neighbours" FromRole="Neighbour" ToRole="Check" />
+        </EntityType>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="StoreId" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Products" Relationship="checkSaverModel.FK_n_Price_n_Products" FromRole="n_Price" ToRole="n_Products" />
+          <NavigationProperty Name="Stores" Relationship="checkSaverModel.FK_n_Price_n_Stores" FromRole="n_Price" ToRole="n_Stores" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Price" Relationship="checkSaverModel.FK_n_Price_n_Products" FromRole="n_Products" ToRole="n_Price" />
+          <NavigationProperty Name="Purchases" Relationship="checkSaverModel.FK_n_Purchases_n_Products" FromRole="n_Products" ToRole="n_Purchases" />
+        </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CheckId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="CostPerPerson" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Count" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Summ" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="Checks" Relationship="checkSaverModel.FK_n_Purchases_n_Checks" FromRole="n_Purchases" ToRole="n_Checks" />
+          <NavigationProperty Name="Products" Relationship="checkSaverModel.FK_n_Purchases_n_Products" FromRole="n_Purchases" ToRole="n_Products" />
+          <NavigationProperty Name="WhoWillUse" Relationship="checkSaverModel.FK_n_WhoWillUse_n_Purchases" FromRole="n_Purchases" ToRole="n_WhoWillUse" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Checks" Relationship="checkSaverModel.FK_n_Checks_n_Stores" FromRole="n_Stores" ToRole="n_Checks" />
+          <NavigationProperty Name="Price" Relationship="checkSaverModel.FK_n_Price_n_Stores" FromRole="n_Stores" ToRole="n_Price" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WhoPay" Type="Int32" Nullable="false" />
+          <Property Name="ForWhom" Type="Int32" Nullable="false" />
+          <Property Name="Summa" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Caption" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDebitOff" Type="Boolean" Nullable="false" />
+          <Property Name="CheckId" Type="Int32" />
+          <NavigationProperty Name="Checks" Relationship="checkSaverModel.FK_n_Transactions_n_Checks" FromRole="n_Transactions" ToRole="n_Checks" />
+          <NavigationProperty Name="NeigbourWhoPay" Relationship="checkSaverModel.FK_n_Transactions_n_Neighbours" FromRole="n_Transactions" ToRole="n_Neighbours" />
+          <NavigationProperty Name="NeighboursWhomPay" Relationship="checkSaverModel.FK_n_Transactions_n_Neighbours1" FromRole="n_Transactions" ToRole="n_Neighbours" />
+        </EntityType>
+        <EntityType Name="WhoWillUse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NeighbourId" Type="Int32" Nullable="false" />
+          <Property Name="PurchaseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Neighbours" Relationship="checkSaverModel.FK_n_WhoWillUse_n_Neighbours" FromRole="n_WhoWillUse" ToRole="n_Neighbours" />
+          <NavigationProperty Name="Purchases" Relationship="checkSaverModel.FK_n_WhoWillUse_n_Purchases" FromRole="n_WhoWillUse" ToRole="n_Purchases" />
+        </EntityType>
+        <Association Name="FK_n_Checks_n_Stores">
+          <End Type="checkSaverModel.Store" Role="n_Stores" Multiplicity="1" />
+          <End Type="checkSaverModel.Check" Role="n_Checks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="n_Stores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="n_Checks">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_Purchases_n_Checks">
+          <End Type="checkSaverModel.Check" Role="n_Checks" Multiplicity="1" />
+          <End Type="checkSaverModel.Purchase" Role="n_Purchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="n_Checks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="n_Purchases">
+              <PropertyRef Name="CheckId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_Transactions_n_Checks">
+          <End Type="checkSaverModel.Check" Role="n_Checks" Multiplicity="0..1" />
+          <End Type="checkSaverModel.Transaction" Role="n_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="n_Checks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="n_Transactions">
+              <PropertyRef Name="CheckId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_Transactions_n_Neighbours">
+          <End Type="checkSaverModel.Neighbour" Role="n_Neighbours" Multiplicity="1" />
+          <End Type="checkSaverModel.Transaction" Role="n_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="n_Neighbours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="n_Transactions">
+              <PropertyRef Name="WhoPay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_Transactions_n_Neighbours1">
+          <End Type="checkSaverModel.Neighbour" Role="n_Neighbours" Multiplicity="1" />
+          <End Type="checkSaverModel.Transaction" Role="n_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="n_Neighbours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="n_Transactions">
+              <PropertyRef Name="ForWhom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_WhoWillUse_n_Neighbours">
+          <End Type="checkSaverModel.Neighbour" Role="n_Neighbours" Multiplicity="1" />
+          <End Type="checkSaverModel.WhoWillUse" Role="n_WhoWillUse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="n_Neighbours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="n_WhoWillUse">
+              <PropertyRef Name="NeighbourId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_Price_n_Products">
+          <End Type="checkSaverModel.Product" Role="n_Products" Multiplicity="1" />
+          <End Type="checkSaverModel.Price" Role="n_Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="n_Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="n_Price">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_Price_n_Stores">
+          <End Type="checkSaverModel.Store" Role="n_Stores" Multiplicity="1" />
+          <End Type="checkSaverModel.Price" Role="n_Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="n_Stores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="n_Price">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_Purchases_n_Products">
+          <End Type="checkSaverModel.Product" Role="n_Products" Multiplicity="1" />
+          <End Type="checkSaverModel.Purchase" Role="n_Purchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="n_Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="n_Purchases">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_WhoWillUse_n_Purchases">
+          <End Type="checkSaverModel.Purchase" Role="n_Purchases" Multiplicity="1" />
+          <End Type="checkSaverModel.WhoWillUse" Role="n_WhoWillUse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="n_Purchases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="n_WhoWillUse">
+              <PropertyRef Name="PurchaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_n_Checks_n_Neighbours">
+          <End Type="checkSaverModel.Neighbour" Role="Neighbour" Multiplicity="1" />
+          <End Type="checkSaverModel.Check" Role="Check" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Neighbour">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Check">
+              <PropertyRef Name="NeighbourId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="checkSaverModelStoreContainer" CdmEntityContainer="checkSaverEntities">
+    <EntitySetMapping Name="Checks">
+      <EntityTypeMapping TypeName="IsTypeOf(checkSaverModel.Check)">
+        <MappingFragment StoreEntitySet="Checks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NeighbourId" ColumnName="NeighbourId" />
+          <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Neighbours">
+      <EntityTypeMapping TypeName="IsTypeOf(checkSaverModel.Neighbour)">
+        <MappingFragment StoreEntitySet="Neighbours">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prices">
+      <EntityTypeMapping TypeName="IsTypeOf(checkSaverModel.Price)">
+        <MappingFragment StoreEntitySet="Prices">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="IsTypeOf(checkSaverModel.Product)">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Purchases">
+      <EntityTypeMapping TypeName="IsTypeOf(checkSaverModel.Purchase)">
+        <MappingFragment StoreEntitySet="Purchases">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CheckId" ColumnName="CheckId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="CostPerPerson" ColumnName="CostPerPerson" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Summ" ColumnName="Summ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stores">
+      <EntityTypeMapping TypeName="IsTypeOf(checkSaverModel.Store)">
+        <MappingFragment StoreEntitySet="Stores">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="IsTypeOf(checkSaverModel.Transaction)">
+        <MappingFragment StoreEntitySet="Transactions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="WhoPay" ColumnName="WhoPay" />
+          <ScalarProperty Name="ForWhom" ColumnName="ForWhom" />
+          <ScalarProperty Name="Summa" ColumnName="Summa" />
+          <ScalarProperty Name="Caption" ColumnName="Caption" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="IsDebitOff" ColumnName="IsDebitOff" />
+          <ScalarProperty Name="CheckId" ColumnName="CheckId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WhoWillUses">
+      <EntityTypeMapping TypeName="IsTypeOf(checkSaverModel.WhoWillUse)">
+        <MappingFragment StoreEntitySet="WhoWillUses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NeighbourId" ColumnName="NeighbourId" />
+          <ScalarProperty Name="PurchaseId" ColumnName="PurchaseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

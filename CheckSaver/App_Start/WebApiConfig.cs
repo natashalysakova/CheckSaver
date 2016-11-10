@@ -16,6 +16,12 @@ namespace CheckSaver
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "FilesApi",
+                routeTemplate: "api/{controller}/{path}",
+                defaults: new { path = RouteParameter.Optional }
+            );
         }
     }
 }

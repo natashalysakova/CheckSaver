@@ -31,6 +31,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,8 +43,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\CheckSaverCore\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -50,6 +56,10 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.DurableInstancing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -60,7 +70,39 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -73,32 +115,8 @@
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
-    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Mvc, Version=__MvcPagesVersion__, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WebActivatorEx">
@@ -117,60 +135,37 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net.Http.Formatting">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.2\lib\net45\System.Web.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http.WebHost">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.2\lib\net45\System.Web.Http.WebHost.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Areas\Calculator\CalculatorAreaRegistration.cs" />
-    <Compile Include="Areas\Checks\ChecksAreaRegistration.cs" />
-    <Compile Include="Areas\Invoices\InvoicesAreaRegistration.cs" />
     <Compile Include="Controllers\API\ChecksApiController.cs" />
+    <Compile Include="Controllers\API\TestController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
-    <Compile Include="Areas\Calculator\Controllers\CalculatorController.cs" />
-    <Compile Include="Areas\Checks\Controllers\ChecksController.cs" />
-    <Compile Include="Areas\Invoices\Controllers\ElectricityTarifsController.cs" />
-    <Compile Include="Areas\Invoices\Controllers\FPNamesController.cs" />
-    <Compile Include="Areas\Invoices\Controllers\GasTarifsController.cs" />
-    <Compile Include="Areas\Invoices\Controllers\InvoicesController.cs" />
+    <Compile Include="Controllers\CalculatorController.cs" />
+    <Compile Include="Controllers\ChecksController.cs" />
+    <Compile Include="Controllers\ElectricityTarifsController.cs" />
+    <Compile Include="Controllers\FPNamesController.cs" />
+    <Compile Include="Controllers\GasTarifsController.cs" />
+    <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\MainSiteController.cs" />
-    <Compile Include="Areas\Checks\Controllers\NeighborsController.cs" />
-    <Compile Include="Areas\Checks\Controllers\PricesController.cs" />
-    <Compile Include="Areas\Checks\Controllers\ProductsController.cs" />
-    <Compile Include="Areas\Checks\Controllers\StoresController.cs" />
-    <Compile Include="Areas\Checks\Controllers\TransactionsController.cs" />
-    <Compile Include="Areas\Invoices\Controllers\WaterTarifsController.cs" />
+    <Compile Include="Controllers\NeighborsController.cs" />
+    <Compile Include="Controllers\PricesController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\StoresController.cs" />
+    <Compile Include="Controllers\TransactionsController.cs" />
+    <Compile Include="Controllers\WaterTarifsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Pager.cs" />
     <Compile Include="Models\DetailsModels\CheckDetailsModel.cs" />
-    <Compile Include="Areas\Checks\Models\Checks.cs" />
-    <Compile Include="Areas\Invoices\Models\ElectricityTarif.cs" />
-    <Compile Include="Areas\Invoices\Models\GasTarif.cs" />
-    <Compile Include="Areas\Invoices\Models\ITarif.cs" />
-    <Compile Include="Areas\Checks\Models\Neghbours.cs" />
-    <Compile Include="Areas\Checks\Models\Products.cs" />
-    <Compile Include="Areas\Checks\Models\Purchase.cs" />
-    <Compile Include="Areas\Checks\Models\Stores.cs" />
-    <Compile Include="Areas\Checks\Models\Transactions.cs" />
-    <Compile Include="Areas\Invoices\Models\WaterTarif.cs" />
-    <Compile Include="Models\InputModels\CheckInputModel.cs" />
-    <Compile Include="Models\InputModels\FixedPaysInputModel.cs" />
-    <Compile Include="Models\InputModels\InvoiceInputModel.cs" />
-    <Compile Include="Models\InputModels\ProductInputModel.cs" />
-    <Compile Include="Models\InputModels\PurchaseInputModel.cs" />
-    <Compile Include="Models\InputModels\TransactionInputModel.cs" />
+    <Compile Include="Invoices\Models\ElectricityTarif.cs" />
+    <Compile Include="Invoices\Models\GasTarif.cs" />
+    <Compile Include="Invoices\Models\ITarif.cs" />
+    <Compile Include="Invoices\Models\WaterTarif.cs" />
     <Compile Include="Models\Metadata\ChecksMetadata.cs" />
     <Compile Include="Models\Metadata\NeighboursMetadata.cs" />
     <Compile Include="Models\Metadata\ProductsMetadata.cs" />
@@ -178,14 +173,6 @@
     <Compile Include="Models\Metadata\StoresMetadata.cs" />
     <Compile Include="Models\Metadata\TransactionsMetadata.cs" />
     <Compile Include="Models\Plugin\IPligin.cs" />
-    <Compile Include="Models\Repository\CheckSaveDbRepositoryPrices.cs" />
-    <Compile Include="Models\Repository\CheckSaveDbRepositoryProducts.cs" />
-    <Compile Include="Models\Repository\CheckSaveDbRepositoryStores.cs" />
-    <Compile Include="Models\Repository\CheckSaveDbRepositoryChecks.cs" />
-    <Compile Include="Models\Repository\CheckSaveDbRepositoryNeighbours.cs" />
-    <Compile Include="Models\Repository\CheckSaveDbRepositoryGeneral.cs" />
-    <Compile Include="Models\Repository\CheckSaveDbRepositoryTransactions.cs" />
-    <Compile Include="Models\Repository\InvoiceDbRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -205,7 +192,7 @@
     <Content Include="Content\css\myStyles.css" />
     <Content Include="Content\css\semantic.css" />
     <Content Include="Content\css\semantic.min.css" />
-    <Content Include="Content\css\Site.css" />
+    <Content Include="Content\css\test.css" />
     <Content Include="Content\fonts\font-awesome\css\font-awesome.css" />
     <Content Include="Content\fonts\font-awesome\css\font-awesome.min.css" />
     <Content Include="Content\fonts\font-awesome\fonts\fontawesome-webfont.svg" />
@@ -331,13 +318,9 @@
     <Content Include="Content\fonts\font-awesome\scss\_variables.scss" />
     <Content Include="Content\css\AdvancedStyles.less" />
     <Content Include="package.json" />
-    <Content Include="Areas\Checks\Views\web.config" />
-    <Content Include="Areas\Invoices\Views\web.config" />
-    <Content Include="Areas\Calculator\Views\web.config" />
-    <Content Include="Areas\Checks\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Calculator\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Invoices\Views\_ViewStart.cshtml" />
     <Content Include="Content\css\ChecksColors.css" />
+    <None Include="Properties\PublishProfiles\check-saver - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\check-saver - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\fs.pubxml" />
     <None Include="Properties\PublishProfiles\host.pubxml" />
     <None Include="Properties\PublishProfiles\LocalNetwork.pubxml" />
@@ -426,32 +409,33 @@
     <Content Include="Scripts\semantic.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Application\Semki.cshtml" />
-    <Content Include="Areas\Checks\Views\Checks\Card.cshtml" />
-    <Content Include="Areas\Checks\Views\Checks\_checks.cshtml" />
-    <Content Include="Areas\Checks\Views\Checks\EditProductBox.cshtml" />
-    <Content Include="Areas\Invoices\Views\Invoices\Delete.cshtml" />
-    <Content Include="Areas\Invoices\Views\Invoices\Details.cshtml" />
-    <Content Include="Areas\Invoices\Views\Invoices\Edit.cshtml" />
-    <Content Include="Areas\Invoices\Views\Invoices\Index.cshtml" />
-    <Content Include="Areas\Invoices\Views\ElectricityTarifs\Create.cshtml" />
-    <Content Include="Areas\Invoices\Views\ElectricityTarifs\Delete.cshtml" />
-    <Content Include="Areas\Invoices\Views\ElectricityTarifs\Details.cshtml" />
-    <Content Include="Areas\Invoices\Views\ElectricityTarifs\Edit.cshtml" />
-    <Content Include="Areas\Invoices\Views\ElectricityTarifs\Index.cshtml" />
-    <Content Include="Areas\Invoices\Views\GasTarifs\Create.cshtml" />
-    <Content Include="Areas\Invoices\Views\GasTarifs\Delete.cshtml" />
-    <Content Include="Areas\Invoices\Views\GasTarifs\Details.cshtml" />
-    <Content Include="Areas\Invoices\Views\GasTarifs\Edit.cshtml" />
-    <Content Include="Areas\Invoices\Views\GasTarifs\Index.cshtml" />
-    <Content Include="Areas\Invoices\Views\FPNames\Create.cshtml" />
-    <Content Include="Areas\Invoices\Views\FPNames\Delete.cshtml" />
-    <Content Include="Areas\Invoices\Views\FPNames\Details.cshtml" />
-    <Content Include="Areas\Invoices\Views\FPNames\Edit.cshtml" />
-    <Content Include="Areas\Invoices\Views\FPNames\Index.cshtml" />
-    <Content Include="Areas\Invoices\Views\Invoices\_invoice.cshtml" />
-    <Content Include="Areas\Invoices\Views\Invoices\CreateInvoice.cshtml" />
-    <Content Include="Areas\Invoices\Views\Invoices\Create.cshtml" />
-    <Content Include="Areas\Calculator\Views\Calculator\Index.cshtml" />
+    <Content Include="Views\Checks\Card.cshtml" />
+    <Content Include="Views\Checks\_checks.cshtml" />
+    <Content Include="Views\Checks\EditProductBox.cshtml" />
+    <Content Include="Views\Invoices\Delete.cshtml" />
+    <Content Include="Views\Invoices\Details.cshtml" />
+    <Content Include="Views\Invoices\Edit.cshtml" />
+    <Content Include="Views\Invoices\Index.cshtml" />
+    <Content Include="Views\ElectricityTarifs\Create.cshtml" />
+    <Content Include="Views\ElectricityTarifs\Delete.cshtml" />
+    <Content Include="Views\ElectricityTarifs\Details.cshtml" />
+    <Content Include="Views\ElectricityTarifs\Edit.cshtml" />
+    <Content Include="Views\ElectricityTarifs\Index.cshtml" />
+    <Content Include="Views\GasTarifs\Create.cshtml" />
+    <Content Include="Views\GasTarifs\Delete.cshtml" />
+    <Content Include="Views\GasTarifs\Details.cshtml" />
+    <Content Include="Views\GasTarifs\Edit.cshtml" />
+    <Content Include="Views\GasTarifs\Index.cshtml" />
+    <Content Include="Views\FPNames\Create.cshtml" />
+    <Content Include="Views\FPNames\Delete.cshtml" />
+    <Content Include="Views\FPNames\Details.cshtml" />
+    <Content Include="Views\FPNames\Edit.cshtml" />
+    <Content Include="Views\FPNames\Index.cshtml" />
+    <Content Include="Views\Invoices\_invoice.cshtml" />
+    <Content Include="Views\Invoices\CreateInvoice.cshtml" />
+    <Content Include="Views\Invoices\Create.cshtml" />
+    <Content Include="Views\Calculator\Index.cshtml" />
+    <Content Include="Views\Calculator\FileBrowser.cshtml" />
     <None Include="Views\MainSite\en\footer.cshtml" />
     <None Include="Views\MainSite\en\navbar.cshtml" />
     <None Include="Views\MainSite\en\referat.cshtml" />
@@ -484,56 +468,54 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Checks\Views\Stores\Create.cshtml" />
-    <Content Include="Areas\Checks\Views\Stores\Delete.cshtml" />
-    <Content Include="Areas\Checks\Views\Stores\Details.cshtml" />
-    <Content Include="Areas\Checks\Views\Stores\Edit.cshtml" />
-    <Content Include="Areas\Checks\Views\Stores\Index.cshtml" />
-    <Content Include="Areas\Checks\Views\Neighbors\Create.cshtml" />
-    <Content Include="Areas\Checks\Views\Neighbors\Delete.cshtml" />
-    <Content Include="Areas\Checks\Views\Neighbors\Details.cshtml" />
-    <Content Include="Areas\Checks\Views\Neighbors\Edit.cshtml" />
-    <Content Include="Areas\Checks\Views\Neighbors\Index.cshtml" />
-    <Content Include="Areas\Checks\Views\Checks\Create.cshtml" />
-    <Content Include="Areas\Checks\Views\Checks\Delete.cshtml" />
-    <Content Include="Areas\Checks\Views\Checks\Details.cshtml" />
-    <Content Include="Areas\Checks\Views\Checks\Edit.cshtml" />
-    <Content Include="Areas\Checks\Views\Checks\Index.cshtml" />
-    <Content Include="Areas\Checks\Views\Checks\ProductBox.cshtml" />
+    <Content Include="Views\Stores\Create.cshtml" />
+    <Content Include="Views\Stores\Delete.cshtml" />
+    <Content Include="Views\Stores\Details.cshtml" />
+    <Content Include="Views\Stores\Edit.cshtml" />
+    <Content Include="Views\Stores\Index.cshtml" />
+    <Content Include="Views\Neighbors\Create.cshtml" />
+    <Content Include="Views\Neighbors\Delete.cshtml" />
+    <Content Include="Views\Neighbors\Details.cshtml" />
+    <Content Include="Views\Neighbors\Edit.cshtml" />
+    <Content Include="Views\Neighbors\Index.cshtml" />
+    <Content Include="Views\Checks\Create.cshtml" />
+    <Content Include="Views\Checks\Delete.cshtml" />
+    <Content Include="Views\Checks\Details.cshtml" />
+    <Content Include="Views\Checks\Edit.cshtml" />
+    <Content Include="Views\Checks\Index.cshtml" />
+    <Content Include="Views\Checks\ProductBox.cshtml" />
     <Content Include="Views\MainSite\Index.cshtml" />
-    <Content Include="Areas\Checks\Views\Prices\Create.cshtml" />
-    <Content Include="Areas\Checks\Views\Prices\Delete.cshtml" />
-    <Content Include="Areas\Checks\Views\Prices\Details.cshtml" />
-    <Content Include="Areas\Checks\Views\Prices\Edit.cshtml" />
-    <Content Include="Areas\Checks\Views\Prices\Index.cshtml" />
-    <Content Include="Areas\Checks\Views\Transactions\Create.cshtml" />
-    <Content Include="Areas\Checks\Views\Transactions\Delete.cshtml" />
-    <Content Include="Areas\Checks\Views\Transactions\Details.cshtml" />
-    <Content Include="Areas\Checks\Views\Transactions\Edit.cshtml" />
-    <Content Include="Areas\Checks\Views\Transactions\Index.cshtml" />
-    <Content Include="Areas\Checks\Views\Products\Create.cshtml" />
-    <Content Include="Areas\Checks\Views\Products\Delete.cshtml" />
-    <Content Include="Areas\Checks\Views\Products\Details.cshtml" />
-    <Content Include="Areas\Checks\Views\Products\Edit.cshtml" />
-    <Content Include="Areas\Checks\Views\Products\Index.cshtml" />
-    <Content Include="Areas\Checks\Views\Stores\Store.cshtml" />
-    <Content Include="Areas\Checks\Views\Neighbors\Neighbour.cshtml" />
-    <Content Include="Areas\Invoices\Views\WaterTarifs\Create.cshtml" />
-    <Content Include="Areas\Invoices\Views\WaterTarifs\Delete.cshtml" />
-    <Content Include="Areas\Invoices\Views\WaterTarifs\Details.cshtml" />
-    <Content Include="Areas\Invoices\Views\WaterTarifs\Edit.cshtml" />
-    <Content Include="Areas\Invoices\Views\WaterTarifs\Index.cshtml" />
+    <Content Include="Views\Prices\Create.cshtml" />
+    <Content Include="Views\Prices\Delete.cshtml" />
+    <Content Include="Views\Prices\Details.cshtml" />
+    <Content Include="Views\Prices\Edit.cshtml" />
+    <Content Include="Views\Prices\Index.cshtml" />
+    <Content Include="Views\Transactions\Create.cshtml" />
+    <Content Include="Views\Transactions\Delete.cshtml" />
+    <Content Include="Views\Transactions\Details.cshtml" />
+    <Content Include="Views\Transactions\Edit.cshtml" />
+    <Content Include="Views\Transactions\Index.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Stores\Store.cshtml" />
+    <Content Include="Views\Neighbors\Neighbour.cshtml" />
+    <Content Include="Views\WaterTarifs\Create.cshtml" />
+    <Content Include="Views\WaterTarifs\Delete.cshtml" />
+    <Content Include="Views\WaterTarifs\Details.cshtml" />
+    <Content Include="Views\WaterTarifs\Edit.cshtml" />
+    <Content Include="Views\WaterTarifs\Index.cshtml" />
     <Content Include="Views\Shared\_InvoiceLayour.cshtml" />
     <Content Include="Views\Shared\_CalcLayout.cshtml" />
+    <Content Include="Views\Shared\_ChecksLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Calculator\Models\" />
-    <Folder Include="Areas\Calculator\Views\Shared\" />
-    <Folder Include="Areas\Checks\Views\Shared\" />
-    <Folder Include="Areas\Invoices\Views\Shared\" />
     <Folder Include="Content\css\components\" />
     <Folder Include="Content\themes\default\" />
+    <Folder Include="Invoices\Controllers\" />
     <Folder Include="Models\ExtentionsModels\" />
     <Folder Include="Scripts\components\" />
   </ItemGroup>

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CheckSaver
+namespace CheckSaverCore
 {
     using System;
     using System.Collections.Generic;

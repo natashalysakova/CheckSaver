@@ -1,9 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CheckSaver.Models.Repository;
 using System.Diagnostics;
 using CheckSaver.Models;
-using CheckSaver.Models.InputModels;
 using Moq;
 
 namespace CheckSaverTestProjects
@@ -62,12 +60,12 @@ namespace CheckSaverTestProjects
 //            //Assert.AreEqual("42,86", summ);
 //        }
 //    }
-    class MyClass
-    {
-        public void Methiod()
-        {
-            var x = new Mock<CheckSaveDbRepository>();
+    //class MyClass
+    //{
+    //    public void Methiod()
+    //    {
+    //        var x = new Mock<CheckSaveDbRepository>();
             
-        }
-    }
+    //    }
+    //}
 }

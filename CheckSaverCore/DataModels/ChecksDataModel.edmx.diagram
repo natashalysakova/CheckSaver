@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="07896cf6b87c48bc890ddec736240568" Name="Diagram1">
+        <EntityTypeShape EntityType="checkSaverModel.Check" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="checkSaverModel.Neighbour" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="checkSaverModel.Price" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="checkSaverModel.Product" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="checkSaverModel.Purchase" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="checkSaverModel.Store" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="checkSaverModel.Transaction" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="checkSaverModel.WhoWillUse" Width="1.5" PointX="0.75" PointY="6.75" />
+        <AssociationConnector Association="checkSaverModel.FK_n_Checks_n_Stores" />
+        <AssociationConnector Association="checkSaverModel.FK_n_Purchases_n_Checks" />
+        <AssociationConnector Association="checkSaverModel.FK_n_Transactions_n_Checks" />
+        <AssociationConnector Association="checkSaverModel.FK_n_Transactions_n_Neighbours" />
+        <AssociationConnector Association="checkSaverModel.FK_n_Transactions_n_Neighbours1" />
+        <AssociationConnector Association="checkSaverModel.FK_n_WhoWillUse_n_Neighbours" />
+        <AssociationConnector Association="checkSaverModel.FK_n_Price_n_Products" />
+        <AssociationConnector Association="checkSaverModel.FK_n_Price_n_Stores" />
+        <AssociationConnector Association="checkSaverModel.FK_n_Purchases_n_Products" />
+        <AssociationConnector Association="checkSaverModel.FK_n_WhoWillUse_n_Purchases" />
+        <AssociationConnector Association="checkSaverModel.FK_n_Checks_n_Neighbours" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

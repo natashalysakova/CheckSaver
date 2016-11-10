@@ -15,19 +15,19 @@ namespace CheckSaver
             //                defaults: new { area = "Checks", controller = "Checks", action = "Index", id = UrlParameter.Optional }
             //);
 
-            //routes.MapRoute(
-            //    name: "Default",
-            //    url: "Checks/{controller}/{action}/{id}",
-            //    defaults: new {controller = "Checks", action = "Index", id = UrlParameter.Optional }
-            //    );
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Checks", action = "Index", id = UrlParameter.Optional }
+                );
 
-            routes.MapRoute("redirect all other requests",
-                "{*url}",
-                new
-                {
-                    controller = "Checks",
-                    action = "Index"
-                }).DataTokens = new RouteValueDictionary(new { area = "Checks" });
+            //routes.MapRoute("redirect all other requests",
+            //    "{*url}",
+            //    new
+            //    {
+            //        controller = "ChecksArea",
+            //        action = "Index"
+            //    }).DataTokens = new RouteValueDictionary(new { area = "Checks" });
         }
     }
 }

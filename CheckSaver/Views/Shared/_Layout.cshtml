@@ -4,7 +4,17 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <style>
         
+
     </style>
+
+    <script src="~/Scripts/jquery-2.1.3.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.11.3.min.js"></script>
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/AddFieldsScript.js"></script>
+
 </head>
 <body>
     <header id="header">@ViewBag.Title</header>
@@ -15,64 +25,69 @@
         </span>
         <ul>
             <li>
-                <a href="@Url.Action("Index", "Checks", new { area = "Checks"})">
+                <a href="@Url.Action("Index", "Checks")">
                     <span class="glyphicon glyphicon-piggy-bank"></span>Чеки
                 </a>
             </li>
             <li>
-                <a href="@Url.Action("Index", "Transactions", new { area = "Checks"})">
+                <a href="@Url.Action("Index", "Transactions")">
                     <span class="glyphicon glyphicon-transfer"></span>Транзакции
                 </a>
             </li>
             <li>
-                <a href="@Url.Action("Index", "Stores", new { area = "Checks"})">
+                <a href="@Url.Action("Index", "Stores")">
                     <span class="glyphicon glyphicon-shopping-cart"></span>Магазины
                 </a>
             </li>
             <li>
-                <a href="@Url.Action("Index", "Neighbors", new { area = "Checks"})">
+                <a href="@Url.Action("Index", "Neighbors")">
                     <span class="glyphicon glyphicon-user"></span>Соседи
 
                 </a>
             </li>
             <li>
 
-                <a href="@Url.Action("Index", "ElectricityTarifs", new { area = "Invoices"})">
+                <a href="@Url.Action("Index", "ElectricityTarifs")">
                     <span class="glyphicon glyphicon-shopping-cart"></span>Эл. Тарифы
                 </a>
             </li>
             <li>
 
-                <a href="@Url.Action("Index", "FPNames", new { area = "Invoices"})">
+                <a href="@Url.Action("Index", "FPNames")">
                     <span class="glyphicon glyphicon-shopping-cart"></span>Справочник
 
                 </a>
             </li>
             <li>
 
-                <a href="@Url.Action("Index", "GasTarifs", new { area = "Invoices"})">
+                <a href="@Url.Action("Index", "GasTarifs")">
                     <span class="glyphicon glyphicon-shopping-cart"></span>Тарифы газ
 
                 </a>
             </li>
             <li>
 
-                <a href="@Url.Action("Index", "Invoices", new { area = "Invoices"})">
+                <a href="@Url.Action("Index", "Invoices")">
                     <span class="glyphicon glyphicon-shopping-cart"></span>Квитанции
                 </a>
             </li>
             <li>
 
-                <a href="@Url.Action("Index", "WaterTarifs", new { area = "Invoices"})">
+                <a href="@Url.Action("Index", "WaterTarifs")">
                     <span class="glyphicon glyphicon-shopping-cart"></span>Вода тарифы
                 </a>
             </li>
             <li>
-
-                <a href="@Url.Action("Index", "Calculator", new { area = "Calculator"})">
+                <a href="@Url.Action("Index", "Calculator")">
                     <span class="glyphicon glyphicon-calendar"></span>Калькулятор
                 </a>
             </li>
+            <li>
+                <a href="@Url.Action("FileBrowser", "Calculator")">
+                    <span class="glyphicon glyphicon-file"></span>Файлы
+                </a>
+            </li>
+
         </ul>
         <div id="legal" class="footer"></div>
     </div>
@@ -84,10 +99,13 @@
         </div>
     </div>
     @Scripts.Render("~/bundles/jquery")
+
+
     @*@Scripts.Render("~/bundles/animations")*@
 
     @Styles.Render("~/Content/css");
-    @RenderSection("scripts", false)
+    <link rel="stylesheet" href="~/Content/css/test.css" />
     @RenderSection("styles", false)
+    @RenderSection("scripts", false)
 </body>
 </html>

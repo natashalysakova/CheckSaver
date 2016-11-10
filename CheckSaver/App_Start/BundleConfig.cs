@@ -7,6 +7,8 @@ namespace CheckSaver
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            BundleTable.EnableOptimizations = true;
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -31,7 +33,8 @@ namespace CheckSaver
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       /*"~/Content/css/bootstrap*", "~/Content/css/jquery-ui*",*/
-                      "~/Content/css/site.css"/*,"~/Content/css/animation.css"*/));
+                      "~/Content/css/test.css"/*, "~/Content/css/myStyles.css","~/Content/css/animation.css"*/));
+            
         }
     }
 }

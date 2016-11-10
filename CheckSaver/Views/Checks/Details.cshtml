@@ -1,0 +1,109 @@
+﻿@using System.Linq
+@using CheckSaverCore.DataModels
+
+@model Check
+@{
+    ViewBag.Title = "Подробно о чеке за " + @Model.Date.ToString("D");
+}
+
+<div class="container">
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2 card card-big">
+        <div class="card-image card-main" style="background: url(@Model.Stores.Photo); background-size: cover; background-position: center center;"></div>
+        <div class="card-neighbour-photo img-circle" style="background-image: url(@Model.Neighbour.Photo); bottom: 170px; left: 24px; position: absolute;"></div>
+
+        <div class="card-big-title">
+            <div class="main-title">Список покупок </div>
+            <div class="sub-title">@Model.Stores.Title - @Model.Stores.Address (@Model.Date.ToString("d"))</div>
+            <div class="sub-title">Дата внесения чека: @Model.CreationDate.ToString("dd.MM.yyyy HH:mm")</div>
+        </div>
+
+        <div class="card-action">
+            <a href="@Url.Action("Edit", "Checks", new {id = Model.Id})">
+                <div class="card-flat-button">Редактировать</div>
+            </a>
+            <a href="@Url.Action("Delete", "Checks", new {id = Model.Id})">
+                <div class="card-flat-button delete-button">Удалить</div>
+            </a>
+        </div>
+    </div>
+    @foreach (Purchase s in Model.Purchases)
+    {
+        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2 card card-big card-collapsed check-hovered" id="@s.Id"
+             onclick="DetailedInfo(@s.Id, '@s.Products.Title' ); ">
+            <div class="short-info">
+                <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8 item-title">
+                    <div class="text-center">
+                        <div class="item-price">@s.Count.ToString("##.000") X @s.Cost.ToString("C")</div>
+                    </div>
+                    @s.Products.Title
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 item-sum text-right">@s.Summ.ToString("C")</div>
+            </div>
+            <div class="loader8" id="progress-@s.Id"></div>
+
+            <div class="detailed-info">
+
+                <div class="detailed-card-img">
+                    <img id="img-@s.Id">
+                </div>
+
+                <div class="card-collapsed-title">
+                    <div class="main-title">
+                        @s.Products.Title
+                    </div>
+
+                    <div class="sub-title">@s.Count.ToString("##.000") X @s.Cost.ToString("C")</div>
+                </div>
+
+                <div class="card-sub-title">Сумма: @s.Summ.ToString("C")</div>
+
+                <div class="card-sub-title sub-title">Кто платит:</div>
+
+                @foreach (WhoWillUse variable in s.WhoWillUse)
+                {
+                    <div class="card-neighbour-photo img-circle" style="background-image: url(@variable.Neighbours.Photo);"></div>
+                }
+                <div class="card-sub-title sub-title">Сколько платит:</div>
+                <div>@s.CostPerPerson.ToString("C")</div>
+
+            </div>
+        </div>
+    }
+
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2 card card-big card-down-bordered">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="col-md-6 col-md-offset-6 col-lg-6 col-lg-offset-6 col-sm-6 col-sm-offset-6 col-xs-6 col-xs-offset-6 item-sum text-right">
+                <div class="total-summ">
+                    Сумма @Model.Purchases.Sum(x=>x.Summ).ToString("C")
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 summary">
+
+                <div class="main-title">К оплате</div>
+
+                @foreach (var summa in ViewBag.Summary)
+                {
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                            <div class="card-neighbour-photo card-neighbour-photo-small img-circle" style="background-image: url(@summa.Key.Photo);"></div>
+                        </div>
+                        <div class="col-md-9 col-lg-9 col-sm-9 col-xs-9">
+                            <div class="main-title summary-price-title">@summa.Value.ToString("C")</div>
+
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="round-button">
+    <div class="round-button-circle" onclick="location.href = '@Url.Action("Create", "Checks")'; ">
+        +
+    </div>
+</div>
+
+<script src="~/Scripts/bigCard.js"></script>

@@ -1,0 +1,180 @@
+﻿
+@{
+    ViewBag.Title = "Калькулятор расходов";
+}
+
+
+
+<div class="collumm quater-collumn">
+    <div class="card card-calc positive">
+        <div class="main-title">Доход</div>
+        <hr>
+        @for (int i = 0; i < 1; i++)
+            {
+            <div class="form-group">
+                <input id="id_@i" class="form-control" type="number" placeholder="" onchange="Calculate(); PlusField(this);">
+            </div>
+        }
+    </div>
+</div>
+
+<div class="collumm half-collumn">
+    <div class="card card-calc negative">
+        <div class="main-title">Траты</div>
+        <hr>
+        @for (int i = 0; i < 1; i++)
+            {
+            <div class="row card-inline-row">
+                <div class="col-lg-8">
+                    <input class="form-control" type="text" placeholder="Что" />
+                </div>
+                <div class="col-lg-4">
+                    <input id="yd_@i class="form-control" type="number" placeholder="Цена" onchange="Calculate(); MinusField(this);" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="collumm quater-collumn last">
+    <div class="card card-calc total">
+        <div class="main-title">Итого</div>
+        <hr>
+
+        <div class="form-group">
+            <input class="form-control" id="pos" type="number" placeholder="0">
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="neg" type="number" placeholder="0">
+        </div>
+        <hr />
+        <div class="form-group">
+            <input class="form-control" id="total" type="number" placeholder="0">
+        </div>
+
+    </div>
+</div>
+
+
+@section scripts {
+    <script type="text/javascript">
+        var x = 0;
+        var y = 0;
+        $(function () {
+            $("input[type=number]").attr("step", ".01");
+
+            var inputs = $("input[type=number]");
+            inputs.change(Calculate());
+
+            $("div .positive input").change(PlusField());
+        });
+
+        function PlusField(inp) {
+
+            if (inp.value != "" && inp.id == "id_" + x) {
+                x++;
+                $("div.positive").append('<div class="form-group"><input class="form-control" type="number" id="id_' + x + '" placeholder="" step=".01" onchange="Calculate(); PlusField(this);"></div>');
+            }
+            else if (inp.value == "" && inp.id != "id_" + x) {
+                x--;
+                $("div.positive .form-group").last().remove();
+            }
+        }
+
+        function MinusField(inp) {
+            if (inp.value != "" && inp.id == "yd_" + y) {
+                y++;
+                $("div.negative").append('<div class="row card-inline-row"><div class="col-lg-8"><input class="form-control" type="text" placeholder="Что" /></div><div class="col-lg-4"><input class="form-control" type="number" step=".01" id="yd_' + y + '" placeholder="Цена" onchange="MinusField(this); Calculate();"></div></div>');
+            }
+            else if (inp.value == "" && inp.id != "yd_" + y) {
+                y--;
+                var rows = $(".negative .card-inline-row");
+
+                rows.last().remove();
+            }
+        }
+
+        function Calculate() {
+            var positives = $("div.positive input[type=number]");
+            var negatives = $("div.negative input[type=number]");
+
+            var pos = 0;
+            positives.each(function () {
+                var v = parseFloat(this.value);
+                if (isNaN(v))
+                    v = 0;
+                pos += v;
+            });
+            $("#pos").val(pos);
+
+            var neg = 0;
+            negatives.each(function () {
+                var v = parseFloat(this.value);
+                if (isNaN(v))
+                    v = 0;
+                neg += v;
+            });
+            $("#neg").val(neg);
+
+            var total = pos - neg;
+            $("#total").val(total);
+        }
+    </script>
+}
+
+@section styles{
+    <style>
+        .card {
+            height: 200px;
+            background: white;
+            -webkit-transition: all 250ms;
+            -moz-transition: all 250ms;
+            transition: all 250ms;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            border-radius: 2px;
+        }
+
+        .card-calc {
+            padding: 16px;
+            height: auto;
+            margin: 10px;
+        }
+
+        .card-inline-row {
+            margin-bottom: 15px;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .positive {
+            background-color: #388E3C;
+            color: white;
+        }
+
+        .negative {
+            background-color: #E53935;
+            color: white;
+        }
+
+        .total {
+            background-color: #039BE5;
+            color: white;
+        }
+
+        .collumm {
+            float: left;
+        }
+
+        .last {
+            padding-left: 0;
+        }
+
+        .quater-collumn {
+            width: 25%;
+        }
+
+        .half-collumn {
+            width: 50%;
+        }
+    </style>
+}
