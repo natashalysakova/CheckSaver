@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <setParameter name="IIS Web Application Name" value="checkSaver.com" />
-  <setParameter name="CheckSaver-Web.config Connection String" value="metadata=res://*/Models.NewCheckSaverModel.csdl|res://*/Models.NewCheckSaverModel.ssdl|res://*/Models.NewCheckSaverModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=DESKTOP-HJFBHBS\SQLEXPRESS;Initial Catalog=checkSaver;Integrated Security=True&quot;" />
-  <setParameter name="CheckSaverInvoice-Web.config Connection String" value="metadata=res://*/Models.InvoicesModel.csdl|res://*/Models.InvoicesModel.ssdl|res://*/Models.InvoicesModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=DESKTOP-HJFBHBS\SQLEXPRESS;Initial Catalog=checkSaver;Integrated Security=True&quot;" />
-</parameters>
