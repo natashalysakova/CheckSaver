@@ -5,47 +5,75 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="checkSaverModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'check-saver-db.dbo.Checks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Checks">
           <Key>
             <PropertyRef Name="Id" />
+            
+            
+            
+            
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="NeighbourId" Type="int" Nullable="false" />
           <Property Name="StoreId" Type="int" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="CreationDate" Type="datetime" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'check-saver-db.dbo.Neighbours' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Neighbours">
           <Key>
             <PropertyRef Name="Id" />
+            
+            
+            
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Photo" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IsDefault" Type="bit" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'check-saver-db.dbo.Prices' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Prices">
           <Key>
             <PropertyRef Name="Id" />
+            
+            
+            
+            
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="StoreId" Type="int" Nullable="false" />
           <Property Name="Cost" Type="decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'check-saver-db.dbo.Products' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Products">
           <Key>
             <PropertyRef Name="Id" />
+            
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'check-saver-db.dbo.Purchases' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Purchases">
           <Key>
             <PropertyRef Name="Id" />
+            
+            
+            
+            
+            
+            
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CheckId" Type="int" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="Cost" Type="decimal" Precision="19" Scale="4" Nullable="false" />
@@ -53,221 +81,124 @@
           <Property Name="Count" Type="decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Summ" Type="decimal" Precision="19" Scale="4" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'check-saver-db.dbo.Stores' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Stores">
           <Key>
             <PropertyRef Name="Id" />
+            
+            
+            
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Photo" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'check-saver-db.dbo.Transactions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Transactions">
           <Key>
             <PropertyRef Name="Id" />
+            
+            
+            
+            
+            
+            
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="WhoPay" Type="int" Nullable="false" />
           <Property Name="ForWhom" Type="int" Nullable="false" />
           <Property Name="Summa" Type="decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Caption" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="IsDebitOff" Type="bit" Nullable="false" />
           <Property Name="CheckId" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'check-saver-db.dbo.WhoWillUses' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="WhoWillUses">
           <Key>
             <PropertyRef Name="Id" />
+            
+            
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="NeighbourId" Type="int" Nullable="false" />
           <Property Name="PurchaseId" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_n_Checks_n_Neighbours">
-          <End Role="Neighbours" Type="Self.Neighbours" Multiplicity="1" />
-          <End Role="Checks" Type="Self.Checks" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Neighbours">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Checks">
-              <PropertyRef Name="NeighbourId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_n_Checks_n_Stores">
-          <End Role="Stores" Type="Self.Stores" Multiplicity="1" />
-          <End Role="Checks" Type="Self.Checks" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Stores">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Checks">
-              <PropertyRef Name="StoreId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_n_Price_n_Products">
-          <End Role="Products" Type="Self.Products" Multiplicity="1" />
-          <End Role="Prices" Type="Self.Prices" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Products">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Prices">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_n_Price_n_Stores">
-          <End Role="Stores" Type="Self.Stores" Multiplicity="1" />
-          <End Role="Prices" Type="Self.Prices" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Stores">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Prices">
-              <PropertyRef Name="StoreId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_n_Purchases_n_Checks">
-          <End Role="Checks" Type="Self.Checks" Multiplicity="1" />
-          <End Role="Purchases" Type="Self.Purchases" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Checks">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Purchases">
-              <PropertyRef Name="CheckId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_n_Purchases_n_Products">
-          <End Role="Products" Type="Self.Products" Multiplicity="1" />
-          <End Role="Purchases" Type="Self.Purchases" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Products">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Purchases">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_n_Transactions_n_Checks">
-          <End Role="Checks" Type="Self.Checks" Multiplicity="0..1" />
-          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Checks">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Transactions">
-              <PropertyRef Name="CheckId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_n_Transactions_n_Neighbours">
-          <End Role="Neighbours" Type="Self.Neighbours" Multiplicity="1" />
-          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Neighbours">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Transactions">
-              <PropertyRef Name="WhoPay" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_n_Transactions_n_Neighbours1">
-          <End Role="Neighbours" Type="Self.Neighbours" Multiplicity="1" />
-          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Neighbours">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Transactions">
-              <PropertyRef Name="ForWhom" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_n_WhoWillUse_n_Neighbours">
-          <End Role="Neighbours" Type="Self.Neighbours" Multiplicity="1" />
-          <End Role="WhoWillUses" Type="Self.WhoWillUses" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Neighbours">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="WhoWillUses">
-              <PropertyRef Name="NeighbourId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_n_WhoWillUse_n_Purchases">
-          <End Role="Purchases" Type="Self.Purchases" Multiplicity="1" />
-          <End Role="WhoWillUses" Type="Self.WhoWillUses" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Purchases">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="WhoWillUses">
-              <PropertyRef Name="PurchaseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="checkSaverModelStoreContainer">
-          <EntitySet Name="Checks" EntityType="Self.Checks" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Neighbours" EntityType="Self.Neighbours" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Prices" EntityType="Self.Prices" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Purchases" EntityType="Self.Purchases" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Stores" EntityType="Self.Stores" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="WhoWillUses" EntityType="Self.WhoWillUses" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_n_Checks_n_Neighbours" Association="Self.FK_n_Checks_n_Neighbours">
-            <End Role="Neighbours" EntitySet="Neighbours" />
-            <End Role="Checks" EntitySet="Checks" />
-          </AssociationSet>
-          <AssociationSet Name="FK_n_Checks_n_Stores" Association="Self.FK_n_Checks_n_Stores">
-            <End Role="Stores" EntitySet="Stores" />
-            <End Role="Checks" EntitySet="Checks" />
-          </AssociationSet>
-          <AssociationSet Name="FK_n_Price_n_Products" Association="Self.FK_n_Price_n_Products">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="Prices" EntitySet="Prices" />
-          </AssociationSet>
-          <AssociationSet Name="FK_n_Price_n_Stores" Association="Self.FK_n_Price_n_Stores">
-            <End Role="Stores" EntitySet="Stores" />
-            <End Role="Prices" EntitySet="Prices" />
-          </AssociationSet>
-          <AssociationSet Name="FK_n_Purchases_n_Checks" Association="Self.FK_n_Purchases_n_Checks">
-            <End Role="Checks" EntitySet="Checks" />
-            <End Role="Purchases" EntitySet="Purchases" />
-          </AssociationSet>
-          <AssociationSet Name="FK_n_Purchases_n_Products" Association="Self.FK_n_Purchases_n_Products">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="Purchases" EntitySet="Purchases" />
-          </AssociationSet>
-          <AssociationSet Name="FK_n_Transactions_n_Checks" Association="Self.FK_n_Transactions_n_Checks">
-            <End Role="Checks" EntitySet="Checks" />
-            <End Role="Transactions" EntitySet="Transactions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_n_Transactions_n_Neighbours" Association="Self.FK_n_Transactions_n_Neighbours">
-            <End Role="Neighbours" EntitySet="Neighbours" />
-            <End Role="Transactions" EntitySet="Transactions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_n_Transactions_n_Neighbours1" Association="Self.FK_n_Transactions_n_Neighbours1">
-            <End Role="Neighbours" EntitySet="Neighbours" />
-            <End Role="Transactions" EntitySet="Transactions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_n_WhoWillUse_n_Neighbours" Association="Self.FK_n_WhoWillUse_n_Neighbours">
-            <End Role="Neighbours" EntitySet="Neighbours" />
-            <End Role="WhoWillUses" EntitySet="WhoWillUses" />
-          </AssociationSet>
-          <AssociationSet Name="FK_n_WhoWillUse_n_Purchases" Association="Self.FK_n_WhoWillUse_n_Purchases">
-            <End Role="Purchases" EntitySet="Purchases" />
-            <End Role="WhoWillUses" EntitySet="WhoWillUses" />
-          </AssociationSet>
+          <EntitySet Name="Checks" EntityType="Self.Checks" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Checks].[Id] AS [Id], 
+    [Checks].[NeighbourId] AS [NeighbourId], 
+    [Checks].[StoreId] AS [StoreId], 
+    [Checks].[Date] AS [Date], 
+    [Checks].[CreationDate] AS [CreationDate]
+    FROM [dbo].[Checks] AS [Checks]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Neighbours" EntityType="Self.Neighbours" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Neighbours].[Id] AS [Id], 
+    [Neighbours].[Name] AS [Name], 
+    [Neighbours].[Photo] AS [Photo], 
+    [Neighbours].[IsDefault] AS [IsDefault]
+    FROM [dbo].[Neighbours] AS [Neighbours]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Prices" EntityType="Self.Prices" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Prices].[Id] AS [Id], 
+    [Prices].[ProductId] AS [ProductId], 
+    [Prices].[StoreId] AS [StoreId], 
+    [Prices].[Cost] AS [Cost], 
+    [Prices].[Date] AS [Date]
+    FROM [dbo].[Prices] AS [Prices]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Products" EntityType="Self.Products" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Products].[Id] AS [Id], 
+    [Products].[Title] AS [Title]
+    FROM [dbo].[Products] AS [Products]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Purchases" EntityType="Self.Purchases" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Purchases].[Id] AS [Id], 
+    [Purchases].[CheckId] AS [CheckId], 
+    [Purchases].[ProductId] AS [ProductId], 
+    [Purchases].[Cost] AS [Cost], 
+    [Purchases].[CostPerPerson] AS [CostPerPerson], 
+    [Purchases].[Count] AS [Count], 
+    [Purchases].[Summ] AS [Summ]
+    FROM [dbo].[Purchases] AS [Purchases]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Stores" EntityType="Self.Stores" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Stores].[Id] AS [Id], 
+    [Stores].[Title] AS [Title], 
+    [Stores].[Photo] AS [Photo], 
+    [Stores].[Address] AS [Address]
+    FROM [dbo].[Stores] AS [Stores]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Transactions" EntityType="Self.Transactions" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Transactions].[Id] AS [Id], 
+    [Transactions].[WhoPay] AS [WhoPay], 
+    [Transactions].[ForWhom] AS [ForWhom], 
+    [Transactions].[Summa] AS [Summa], 
+    [Transactions].[Caption] AS [Caption], 
+    [Transactions].[Date] AS [Date], 
+    [Transactions].[IsDebitOff] AS [IsDebitOff], 
+    [Transactions].[CheckId] AS [CheckId]
+    FROM [dbo].[Transactions] AS [Transactions]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="WhoWillUses" EntityType="Self.WhoWillUses" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [WhoWillUses].[Id] AS [Id], 
+    [WhoWillUses].[NeighbourId] AS [NeighbourId], 
+    [WhoWillUses].[PurchaseId] AS [PurchaseId]
+    FROM [dbo].[WhoWillUses] AS [WhoWillUses]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -334,7 +265,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NeighbourId" Type="Int32" Nullable="false" />
           <Property Name="StoreId" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Stores" Relationship="checkSaverModel.FK_n_Checks_n_Stores" FromRole="n_Checks" ToRole="n_Stores" />
           <NavigationProperty Name="Purchases" Relationship="checkSaverModel.FK_n_Purchases_n_Checks" FromRole="n_Checks" ToRole="n_Purchases" />
@@ -362,7 +293,7 @@
           <Property Name="ProductId" Type="Int32" Nullable="false" />
           <Property Name="StoreId" Type="Int32" Nullable="false" />
           <Property Name="Cost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Products" Relationship="checkSaverModel.FK_n_Price_n_Products" FromRole="n_Price" ToRole="n_Products" />
           <NavigationProperty Name="Stores" Relationship="checkSaverModel.FK_n_Price_n_Stores" FromRole="n_Price" ToRole="n_Stores" />
         </EntityType>
@@ -410,7 +341,7 @@
           <Property Name="ForWhom" Type="Int32" Nullable="false" />
           <Property Name="Summa" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Caption" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IsDebitOff" Type="Boolean" Nullable="false" />
           <Property Name="CheckId" Type="Int32" />
           <NavigationProperty Name="Checks" Relationship="checkSaverModel.FK_n_Transactions_n_Checks" FromRole="n_Transactions" ToRole="n_Checks" />
