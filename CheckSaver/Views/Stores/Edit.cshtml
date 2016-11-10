@@ -1,4 +1,4 @@
-﻿@model CheckSaver.Models.Stores
+﻿@model CheckSaverCore.tmp.ExtentionsModels.Stores
 
 @section scripts
 {
@@ -12,10 +12,6 @@
 @{
     ViewBag.Title = "Редактировать магазин " + Model.Title;
 }
-
-<script>
-    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
-</script>
 
 
 @using (Html.BeginForm())

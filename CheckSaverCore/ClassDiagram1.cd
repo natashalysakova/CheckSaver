@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="CheckSaverCore.DataModels.InputModels.CheckInputModel">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <AssociationLine Name="Purchases" Type="CheckSaverCore.DataModels.InputModels.PurchaseInputModel">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-1.023" Y="1.547" Height="0.182" Width="2.969" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAAAAAAAAAAAAEAAAAAAAAIABAAAAAAAAAAA=</HashCode>
+      <FileName>DataModels\InputModels\CheckInputModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Purchases" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CheckSaverCore.DataModels.InputModels.PurchaseInputModel">
+    <Position X="3.5" Y="2.75" Width="2.5" />
+    <AssociationLine Name="Product" Type="CheckSaverCore.DataModels.InputModels.ProductInputModel">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.381" Y="0.123" Height="0.182" Width="1.027" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataModels\InputModels\PurchaseInputModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Product" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CheckSaverCore.DataModels.InputModels.ProductInputModel">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataModels\InputModels\ProductInputModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

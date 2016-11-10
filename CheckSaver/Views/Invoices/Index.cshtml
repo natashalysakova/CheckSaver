@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CheckSaver.Models.Invoice>
+﻿@model IEnumerable<Invoice>
 
 @{
     ViewBag.Title = "Квитанции";
@@ -6,12 +6,9 @@
 
 }
 
-<script>
-    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
-</script>
 
 <div class="container">
-    @foreach (CheckSaver.Models.Invoice item in Model)
+    @foreach (var item in Model)
     {
         Html.RenderPartial("_invoice", item);
     }

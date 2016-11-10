@@ -1,23 +1,15 @@
-﻿@using System.Collections.Generic
-@using System.Linq
-@using System.Web.Caching
-@using CheckSaver.Models
-@using CheckSaver.Models.DetailsModels
-@*@model CheckSaver.Models.DetailsModels.CheckDetailsModel*@
-@model Checks
+﻿@using System.Linq
+@using CheckSaverCore.DataModels
+
+@model Check
 @{
     ViewBag.Title = "Подробно о чеке за " + @Model.Date.ToString("D");
 }
 
-<script>
-    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
-</script>
-
-
 <div class="container">
     <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2 card card-big">
         <div class="card-image card-main" style="background: url(@Model.Stores.Photo); background-size: cover; background-position: center center;"></div>
-        <div class="card-neighbour-photo img-circle" style="background-image: url(@Model.Neighbours.Photo); bottom: 170px; left: 24px; position: absolute;"></div>
+        <div class="card-neighbour-photo img-circle" style="background-image: url(@Model.Neighbour.Photo); bottom: 170px; left: 24px; position: absolute;"></div>
 
         <div class="card-big-title">
             <div class="main-title">Список покупок </div>
@@ -34,11 +26,11 @@
             </a>
         </div>
     </div>
-    @foreach (Purchases s in Model.Purchases)
+    @foreach (Purchase s in Model.Purchases)
     {
         <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2 card card-big card-collapsed check-hovered" id="@s.Id"
              onclick="DetailedInfo(@s.Id, '@s.Products.Title' ); ">
-            <div class=" short-info">
+            <div class="short-info">
                 <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8 item-title">
                     <div class="text-center">
                         <div class="item-price">@s.Count.ToString("##.000") X @s.Cost.ToString("C")</div>

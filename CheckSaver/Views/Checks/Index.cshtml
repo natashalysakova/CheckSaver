@@ -1,15 +1,8 @@
-﻿@using System.Linq
-@using CheckSaver.Helpers;
-@model IEnumerable<CheckSaver.Models.Checks>
+﻿@model IEnumerable<CheckSaverCore.DataModels.Check>
 
 @{
     ViewBag.Title = "Чеки";
 }
-
-<script>
-    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
-</script>
-
 
 <div class="container" id="loadedChecks">
     @{ 
@@ -23,4 +16,3 @@
 </div>
 
 <div class="overlay"></div>
-

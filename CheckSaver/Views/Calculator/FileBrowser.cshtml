@@ -1,0 +1,59 @@
+﻿@{
+    Layout = "~/Views/Shared/_CalcLayout.cshtml";
+}
+@model CheckSaver.Controllers.API.Folder
+
+
+<div class="FileBrowser">
+    @if (Model.FilesCount != null)
+    {
+        <table>
+            <tr>
+                <th> &lt;10 MB</th>
+                <th> &gt;10MB AND &lt;50 MB</th>
+                <th> &gt;100 MB</th>
+            </tr>
+            <tr>
+                <td>@Model.FilesCount.Small</td>
+                <td>@Model.FilesCount.Medium</td>
+                <td>@Model.FilesCount.Large</td>
+            </tr>
+        </table>
+    }
+    @if (!string.IsNullOrEmpty(Model.Parent))
+    {
+        <p>@Html.ActionLink("...", "GetAll", new {path = Model.Parent})</p>
+    }
+    else if (Model.Parent == string.Empty)
+    {
+        <p>@Html.ActionLink("...", "FileBrowser")</p>
+    }
+
+    @if (Model.AccessError)
+    {
+        <h4>Access Denied</h4>
+    }
+    else
+    {
+        if (Model.Folders != null)
+         {
+             foreach (var folder in Model.Folders)
+             {
+                 string f = folder.Split(new[] {'\\'}, StringSplitOptions.RemoveEmptyEntries).Last();
+                 <p style="font-style: italic;">@Html.ActionLink(f, "GetAll", new {path = folder})</p>
+             }
+         }
+        if (Model.Files != null)
+         {
+             foreach (var files in Model.Files)
+             {
+                 string f = files.Split(new[] {'\\'}, StringSplitOptions.RemoveEmptyEntries).Last();
+
+                 <p>
+                     @f
+                 </p>
+             }
+         }
+    }
+
+</div>

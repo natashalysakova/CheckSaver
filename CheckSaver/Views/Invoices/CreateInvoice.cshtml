@@ -1,7 +1,6 @@
 ﻿@using System.Globalization
 @using CheckSaver.Models
-@using CheckSaver.Models.InputModels
-@model CheckSaver.Models.InputModels.InvoiceInputModel
+@model CheckSaverCore.DataModels.InputModels.InvoiceInputModel
 
 @{
     ViewBag.Title = "Создать квитанцию";
@@ -10,7 +9,6 @@
 }
 
 <script>
-    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
 
     $(function () {
         $('[data-toggle="tooltip"]').tooltip();

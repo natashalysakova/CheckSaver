@@ -1,12 +1,9 @@
-﻿@model CheckSaver.Models.Transactions
+﻿@model CheckSaverCore.tmp.ExtentionsModels.Transactions
 
 @{
     ViewBag.Title = "Подробности транзакции №" + Model.Id + " - " + Model.Caption;
 }
 
-<script>
-    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
-</script>
 
 <div>
     <h4>Transactions</h4>

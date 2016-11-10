@@ -1,5 +1,6 @@
 ﻿@using CheckSaver.Models
-@model CheckSaver.Models.Purchases
+@using CheckSaverCore.DataModels
+@model Purchase
 
 @{
     string s = string.Format("Purchases[{0}].Id", ViewData["number"]);
@@ -33,9 +34,9 @@
     <div class=" col-xs-5">
         @{
 
-            foreach (Neighbours c in ViewBag.Names)
+            foreach (Neighbour c in ViewBag.Names)
             {
-                if (c.IsDefault || Model.WhoWillUse.Where(x => x.Neighbours == c).Any())
+                if (c.IsDefault || Model.WhoWillUse.Any(x => x.Neighbours == c))
                 {
                     <div class="checkbox-inline cb_@c.Id" id="@c.Id">
                         <input type="checkbox" value="@c.Id" name="Purchases[@ViewData["number"]].WhoWillUse" checked="" />

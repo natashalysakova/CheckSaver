@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F4E3C1CF-14E8-42BB-B512-2FB5361CD800}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CheckSaverCore</RootNamespace>
+    <AssemblyName>CheckSaverCore</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CheckSaver\CheckRepository.cs" />
+    <Compile Include="CheckSaver\CheckUnitOfWork.cs" />
+    <Compile Include="CheckSaver\WhoWillUseRepository.cs" />
+    <Compile Include="DataModels\Check.cs">
+      <DependentUpon>ChecksDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModels\ChecksDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChecksDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModels\ChecksDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChecksDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModels\ChecksDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChecksDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataModels\InputModels\CheckInputModel.cs" />
+    <Compile Include="DataModels\InputModels\FixedPaysInputModel.cs" />
+    <Compile Include="DataModels\InputModels\InvoiceInputModel.cs" />
+    <Compile Include="DataModels\InputModels\ProductInputModel.cs" />
+    <Compile Include="DataModels\InputModels\PurchaseInputModel.cs" />
+    <Compile Include="DataModels\InputModels\TransactionInputModel.cs" />
+    <Compile Include="DataModels\Neighbour.cs">
+      <DependentUpon>ChecksDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModels\Price.cs">
+      <DependentUpon>ChecksDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModels\Product.cs">
+      <DependentUpon>ChecksDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModels\Purchase.cs">
+      <DependentUpon>ChecksDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModels\Store.cs">
+      <DependentUpon>ChecksDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModels\Transaction.cs">
+      <DependentUpon>ChecksDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModels\WhoWillUse.cs">
+      <DependentUpon>ChecksDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Electricity.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElectricityTarif.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FixedPays.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FPName.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Gas.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GasTarif.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoicesModel.Context.cs">
+      <DependentUpon>InvoicesModel.Context.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="InvoicesModel.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="InvoicesModel.Designer.cs">
+      <DependentUpon>InvoicesModel.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Invoices\ElectricityRepository.cs" />
+    <Compile Include="Invoices\FixedPaysRepository.cs" />
+    <Compile Include="Invoices\GasRepository.cs" />
+    <Compile Include="Invoices\InvoicesRepository.cs" />
+    <Compile Include="Invoices\WaterRepository.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="CheckSaver\NeigbourRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository.cs" />
+    <Compile Include="CheckSaver\StoreRepository.cs" />
+    <Compile Include="Invoices\InvoiceUnitOfWork.cs" />
+    <Compile Include="Water.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WaterTarif.cs">
+      <DependentUpon>InvoicesModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataModels\ChecksDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ChecksDataModel.edmx</DependentUpon>
+      <LastGenOutput>ChecksDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataModels\ChecksDataModel.edmx.sql" />
+    <Content Include="DataModels\ChecksDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ChecksDataModel.edmx</DependentUpon>
+      <LastGenOutput>ChecksDataModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="InvoicesModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>InvoicesModel.edmx</DependentUpon>
+      <LastGenOutput>InvoicesModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="InvoicesModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>InvoicesModel.edmx</DependentUpon>
+      <LastGenOutput>InvoicesModel.cs</LastGenOutput>
+    </Content>
+    <None Include="App.config" />
+    <EntityDeploy Include="InvoicesModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>InvoicesModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="InvoicesModel.edmx.diagram">
+      <DependentUpon>InvoicesModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="DataModels\ChecksDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ChecksDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="DataModels\ChecksDataModel.edmx.diagram">
+      <DependentUpon>ChecksDataModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,14 @@
+What I want:
+parse checks from next stores:
+	Novus (real and internet)
+
+parse checks from mail by keywords (purchase, order, заказ and so on)
+need to use (best) GMAIL API 
+
+
+
+Move main model, repositories t oanother project... Core project maybe
+
+
+Divide repository to different repositories. Implement IRepository interface
+Implement tests for all repostories with MOCK

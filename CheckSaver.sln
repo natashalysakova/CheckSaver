@@ -1,13 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckSaver", "CheckSaver\CheckSaver.csproj", "{07CC303D-5F89-4488-A429-EDC86CEB54A7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiClient", "WebApiClient\WebApiClient.csproj", "{FCEEE292-E23A-4930-926B-505A01EF4196}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F4E3C1CF-14E8-42BB-B512-2FB5361CD800} = {F4E3C1CF-14E8-42BB-B512-2FB5361CD800}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckSaverTestProjects", "CheckSaverTestProjects\CheckSaverTestProjects.csproj", "{A19993F7-125F-4747-9CBA-CABD914300A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B88D68D9-6C5E-46F9-85CA-DB0A92C26A42}"
+	ProjectSection(SolutionItems) = preProject
+		notes.txt = notes.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckSaverCore", "CheckSaverCore\CheckSaverCore.csproj", "{F4E3C1CF-14E8-42BB-B512-2FB5361CD800}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +27,14 @@ Global
 		{07CC303D-5F89-4488-A429-EDC86CEB54A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07CC303D-5F89-4488-A429-EDC86CEB54A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07CC303D-5F89-4488-A429-EDC86CEB54A7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FCEEE292-E23A-4930-926B-505A01EF4196}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FCEEE292-E23A-4930-926B-505A01EF4196}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FCEEE292-E23A-4930-926B-505A01EF4196}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FCEEE292-E23A-4930-926B-505A01EF4196}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A19993F7-125F-4747-9CBA-CABD914300A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A19993F7-125F-4747-9CBA-CABD914300A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A19993F7-125F-4747-9CBA-CABD914300A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A19993F7-125F-4747-9CBA-CABD914300A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4E3C1CF-14E8-42BB-B512-2FB5361CD800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4E3C1CF-14E8-42BB-B512-2FB5361CD800}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4E3C1CF-14E8-42BB-B512-2FB5361CD800}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4E3C1CF-14E8-42BB-B512-2FB5361CD800}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

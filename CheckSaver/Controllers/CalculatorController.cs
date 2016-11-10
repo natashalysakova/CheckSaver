@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using CheckSaver.Controllers.API;
 
 namespace CheckSaver.Controllers
 {
@@ -12,6 +9,20 @@ namespace CheckSaver.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult FileBrowser()
+        {
+            TestController t = new TestController();
+            var f = t.Get();
+            return View("FileBrowser", f);
+        }
+
+        public ActionResult GetAll(string path)
+        {
+            TestController t = new TestController();
+            var f = t.Get(path);
+            return View("FileBrowser", f);
         }
     }
 }

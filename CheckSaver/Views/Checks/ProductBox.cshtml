@@ -1,5 +1,6 @@
 ﻿@using CheckSaver.Models
-@model CheckSaver.Models.InputModels.CheckInputModel
+@using CheckSaverCore.DataModels
+@model CheckSaverCore.DataModels.InputModels.CheckInputModel
 @{
     int i = ViewBag.Index;
 }
@@ -20,7 +21,7 @@
     <div class=" col-xs-5">
         @{
 
-            foreach (Neighbours c in ViewBag.Names)
+            foreach (Neighbour c in ViewBag.Names)
             {
                 if (c.IsDefault)
                 {

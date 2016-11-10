@@ -1,14 +1,8 @@
-﻿@model System.Collections.Generic.IEnumerable<CheckSaver.Models.Neighbours>
+﻿@model System.Collections.Generic.IEnumerable<CheckSaverCore.tmp.ExtentionsModels.Neighbours>
 
 @{
     ViewBag.Title = "Соседи";
 }
-
-<script>
-    $('.navbar-brand')[0].innerHTML += '@ViewBag.Title';
-</script>
-
-
 
 <div class="container">
     @foreach (var item in Model)
